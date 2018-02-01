@@ -1,0 +1,20 @@
+.signup-header {
+	background-color: #29AB9E;
+	text-align: center;
+	color: white;
+	padding: 10px;
+	font-family: cursive;
+	border-radius: 10px;
+}
+
+.signup-form {
+	background-color: #F9F1DC;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+.login-form {
+	float: right;
+	display: flex;
+}
+
