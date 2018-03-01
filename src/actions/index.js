@@ -4,6 +4,8 @@ import { SubmissionError } from 'redux-form';
 
 export const FETCH_DEFAULT_BILLS = 'fetch_default_bills';
 export const FETCH_BILL = 'fetch_bill';
+export const LOGIN_USER = 'login_user';
+export const LOGOUT_USER = 'logout_user';
 
 const ROOT_URL = 'http://localhost:5000/api';
 
@@ -27,5 +29,24 @@ export function fetchBill(id) {
 	return {
 		type: FETCH_BILL,
 		payload: request
+	}
+}
+
+export function loginUser(values) {
+	axios.post(`${ROOT_URL}/login/`, values)
+	.then((response) => localStorage.setItem("jwt", response.data.jwt));
+
+	return {
+		type: LOGIN_USER,
+		payload: {isUserLoggedIn: true}
+	}
+}
+
+export function logoutUser() {
+	localStorage.removeItem("jwt");
+
+	return {
+		type: LOGOUT_USER,
+		payload: {isUserLoggedIn: false}
 	}
 }

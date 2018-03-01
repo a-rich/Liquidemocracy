@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchBill } from '../actions';
+import { fetchBill, logoutUser, loginUser } from '../actions';
 import { connect } from 'react-redux';
+import { Field, reduxForm, SubmissionError} from 'redux-form';
+import axios from 'axios';
+
+const ROOT_URL = 'http://localhost:5000';
 
 class BillDetail extends Component {
 	constructor(props) {
@@ -9,11 +13,62 @@ class BillDetail extends Component {
 	    this.state = {button: ""};
   }
 
+  	renderField(field) {
+		const { touched , error }  = field.meta;
+		const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+		let type;
+
+		return (
+				<div className={ className }>
+					<input
+						className="form-control"
+						type={field.type}
+						placeholder={field.label}
+						{...field.input}
+					/>
+					<div className="text-help" style={{color: '#B80000'}}>
+					{touched ? error : ''}
+					</div>
+				</div>
+			);
+	}
+
 	componentDidMount() {
-		if(localStorage.getItem("jwt") == null) {
-			this.setState({button: "disabled"})
+		if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
+			this.setState({button: "disabled"});
+		}
+		else {
+			this.setState({button: ""});
 		}
 		this.props.fetchBill(this.props.match.params.id);	
+	}
+
+	logout() {
+		this.props.logoutUser();
+		this.props.history.push("/");
+	}
+
+	onSubmit(values) {
+
+	const config = { headers: {
+		'Content-Type': 'application/json'
+	}}
+
+	const request = axios.post(`${ROOT_URL}/api/login/`, values, config)
+	.then( (response) => {
+		if(response.data.error) {
+			throw new error;
+		}
+		else {
+			this.props.loginUser(values);
+			this.props.history.push("/");
+		}
+	})
+	.catch(error => {
+		throw new SubmissionError({_error: 'Failed to login.'});
+	});
+
+	return request;
 	}
 
 	renderBillDefaultDetail() {
@@ -69,34 +124,98 @@ class BillDetail extends Component {
 	}
 
 	render() {
+		const { handleSubmit, error } = this.props;
+
 		if(!this.props.bill) {
 			return <div>Loading...</div>
 		}
 
+		if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
 		return (
 				<div className="container-fluid">
 					<nav className="navbar bg-primary">
 					 
 					 <Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
 	                
-	                <div className="login-form">
-		                <form className="form-inline navbar-form">
-							<input className="form-control mr-sm-2" type="email" placeholder="Email" />
-							<input className="form-control mr-sm-2" type="password" placeholder="Password" />
+	                <div className="login-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+		                <form className="form-inline navbar-form" >
+							<Field 
+								label="Email"
+								name="email"
+								type="email"
+								component={this.renderField}
+							/>
+							<Field 
+								label="Password"
+								name="password"
+								type="password"
+								component={this.renderField}
+							/>
 							<button className="btn btn-success" type="submit">Sign in</button>
 							<button className="btn btn-info mx-2" 
 							onClick={() => this.props.history.push("/signup")}>Sign Up</button>
+							<span style={{color: '#B80000'}}>{error}</span>
 						</form>
 					</div>
 					</nav>
 					{this.renderBillDefaultDetail()}
 				</div>
 			)
+		}
+		else
+		{
+			return (
+					<div className="container-fluid">
+						<nav className="navbar bg-primary">
+					 
+					 	<Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
+	                	
+	                	<div className="nav-item" style={{color: '#ffffff'}}>
+						 	Profile
+						 </div>
+						 <div className="nav-item" style={{color: '#ffffff'}}>
+						 	Active Votes
+						 </div>
+						 <div className="nav-item" style={{color: '#ffffff'}}>
+						 	Settings
+						 </div>
+						 <div className="nav-item" 
+						 	  style={{color: '#ffffff', cursor:'pointer'}} 
+						 	  onClick={() => this.logout()}>
+						 	Log Out
+						 </div>
+						 	
+						</nav>
+						{this.renderBillDefaultDetail()}
+					</div>
+				)
+		}
+	}
+}
+
+function validate(values) {
+
+		const errors = {};
+
+		if(!values.email) {
+			errors.email = "Email blank.";
+		}
+
+		if(!values.password) {
+			errors.password = "Password blank.";
+
+		return errors;
 	}
 }
 
 function mapStateToProps(state) {
-	return {bill: state.bills.bill};
+	return {bill: state.bills.bill,
+			user: state.user};
 }
 
-export default connect(mapStateToProps, {fetchBill})(BillDetail);
+export default reduxForm({
+	validate,
+	form: 'LoginForm'
+})(
+connect(mapStateToProps, {fetchBill, logoutUser, loginUser})(BillDetail)
+);

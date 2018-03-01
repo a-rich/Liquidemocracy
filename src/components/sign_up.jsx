@@ -1,11 +1,10 @@
 import React, { Component} from 'react';
-import { Field, reduxForm} from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createAccount } from '../actions';
+import { createAccount, loginUser } from '../actions';
 import axios from 'axios';
 import _ from 'lodash';
-import { SubmissionError } from 'redux-form'
 
 const ROOT_URL = 'http://localhost:5000';
 
@@ -44,6 +43,7 @@ class SignUp extends Component {
 			throw new error;
 		}
 		else {
+			this.props.loginUser(values);
 			alert('Account Created.');
 			this.props.history.push("/");
 		}
@@ -128,5 +128,5 @@ export default reduxForm({
 	validate,
 	form: 'SignUpForm'
 })(
-connect(null, { createAccount })(SignUp)
+connect(null, { createAccount, loginUser })(SignUp)
 );
