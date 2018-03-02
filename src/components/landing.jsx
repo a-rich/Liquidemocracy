@@ -171,6 +171,12 @@ class Landing extends Component {
 						</div>
 
 						<div className="col-3">
+
+							<div className="input-group">
+								<input className="form-control" placeholder="Search"></input>
+								<button className="btn btn-secondary"><i className="fas fa-search"></i></button>
+							</div>
+
 							<h6 className="text-center">Level</h6>
 								<select className="form-control" id="Options" onChange={this.billsSort}>
 									<option disabled value="City">City</option>
@@ -234,6 +240,12 @@ class Landing extends Component {
 							</div>
 
 							<div className="col-3">
+
+								<div className="input-group">
+									<input className="form-control" placeholder="Search"></input>
+									<button className="btn btn-secondary"><i className="fas fa-search"></i></button>
+								</div>
+
 								<h6 className="text-center">Level</h6>
 									<select className="form-control" id="Options" onChange={this.billsSort}>
 										<option value="City">City</option>
