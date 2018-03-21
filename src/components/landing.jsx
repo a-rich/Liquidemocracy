@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { fetchDefaultBills, logoutUser, loginUser } from '../actions';
+import { fetchDefaultBills, fetchBills, logoutUser, loginUser } from '../actions';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
@@ -15,30 +15,33 @@ const ROOT_URL = 'http://localhost:5000';
 	of default bills if there isn't
 	a JWT stored in localStorage. 
 
-	If a JWT is found, user will be
-	pushed to home route.
 ***********************************/
 class Landing extends Component {
 	 constructor(props) {
 	    super(props);
-	    this.state = {option: "New"};
+	    this.state = {sort: "New",
+					  level: "Federal",
+					  filter: "All",
+					  type: "default"};
 	    this.billsSort = this.billsSort.bind(this);
+	    this.billsLevel = this.billsLevel.bind(this);
+	    this.billsFilter = this.billsFilter.bind(this);
   }
 
   	renderField(field) {
 		const { touched , error }  = field.meta;
-		const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+		const className = `form-control ${touched && error ? 'border border-danger' : ''}`;
 		let type;
 
 		return (
-				<div className={ className }>
+				<div className="form-group">
 					<input
-						className="form-control"
+						className={ className }
 						type={field.type}
 						placeholder={field.label}
 						{...field.input}
 					/>
-					<div className="text-help">
+					<div className="text-help text-danger">
 					{touched ? error : ''}
 					</div>
 				</div>
@@ -47,7 +50,13 @@ class Landing extends Component {
 
   	// Get the list of bills into reducer.	
 	componentDidMount() {
-			this.props.fetchDefaultBills(this.state.option);
+			if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
+				this.props.fetchDefaultBills(this.state.sort);
+			}
+			else
+			{
+				this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+			}
 		}
 
 	logout() {
@@ -89,7 +98,21 @@ class Landing extends Component {
 		accordingly. 
 	*/
 	billsSort(e) {
-		this.setState({option: e.target.value});
+		this.setState({sort: e.target.value}, () => {
+			this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+		});
+	}
+
+	billsLevel(e) {
+		this.setState({level: e.target.value}, () => {
+			this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+		});
+	}
+
+	billsFilter(e) {
+		this.setState({filter: e.target.value}, () => {
+			this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+		});
 	}
 
 	/*
@@ -178,7 +201,7 @@ class Landing extends Component {
 							</div>
 
 							<h6 className="text-center">Level</h6>
-								<select className="form-control" id="Options" onChange={this.billsSort}>
+								<select className="form-control" id="Options">
 									<option disabled value="City">City</option>
 									<option disabled value="County">County</option>
 									<option disabled value="State">State</option>
@@ -187,18 +210,18 @@ class Landing extends Component {
 								</select>
 
 							<h6 className="text-center">Filter</h6>
-								<select className="form-control" id="Options" onChange={this.billsSort}>
+								<select className="form-control" id="Options">
 									<option disabled value="Recommended">Recommended</option>
 									<option disabled value="Actionable">Actionable</option>
 									<option value="All">All</option>
 								</select>
 
 							<h6 className="text-center">Sort</h6>
-								<select className="form-control" id="Options" onChange={this.billsSort}>
-									<option value="Recommended">Recommended</option>
+								<select className="form-control" id="Options" onChange={this.billsSort} value={this.props.value}>
+									<option disabled value="Recommended">Recommended</option>
 									<option value="New">New</option>
-									<option value="Time Until Vote">Time Until Vote</option>
-									<option value="Popular">Popular</option>
+									<option disabled value="Time Until Vote">Time Until Vote</option>
+									<option disabled value="Popular">Popular</option>
 								</select>
 						</div>
 					
@@ -219,10 +242,10 @@ class Landing extends Component {
 						 	Profile
 						 </div>
 						 <div className="nav-item" style={{color: '#ffffff'}}>
-						 	Active Votes
+						 	Delegates
 						 </div>
 						 <div className="nav-item" style={{color: '#ffffff'}}>
-						 	Settings
+						 	Delegations
 						 </div>
 						 <div className="nav-item" 
 						 	  style={{color: '#ffffff', cursor:'pointer'}} 
@@ -247,7 +270,7 @@ class Landing extends Component {
 								</div>
 
 								<h6 className="text-center">Level</h6>
-									<select className="form-control" id="Options" onChange={this.billsSort}>
+									<select className="form-control" id="Options" onChange={this.billsLevel} value={this.props.value}>
 										<option value="City">City</option>
 										<option value="County">County</option>
 										<option value="State">State</option>
@@ -256,14 +279,14 @@ class Landing extends Component {
 									</select>
 
 								<h6 className="text-center">Filter</h6>
-									<select className="form-control" id="Options" onChange={this.billsSort}>
+									<select className="form-control" id="Options" onChange={this.billsFilter} value={this.props.value}>
 										<option value="Recommended">Recommended</option>
 										<option value="Actionable">Actionable</option>
 										<option value="All">All</option>
 									</select>
 
 								<h6 className="text-center">Sort</h6>
-									<select className="form-control" id="Options" onChange={this.billsSort}>
+									<select className="form-control" id="Options" onChange={this.billsSort} value={this.props.value}>
 										<option value="Recommended">Recommended</option>
 										<option value="New">New</option>
 										<option value="Time Until Vote">Time Until Vote</option>
@@ -311,5 +334,5 @@ export default reduxForm({
 	validate,
 	form: 'LoginForm'
 })(
-connect(mapStateToProps, {fetchDefaultBills, logoutUser, loginUser})(Landing)
+connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser})(Landing)
 );

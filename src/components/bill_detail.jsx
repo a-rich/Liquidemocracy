@@ -15,13 +15,13 @@ class BillDetail extends Component {
 
   	renderField(field) {
 		const { touched , error }  = field.meta;
-		const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+		const className = `form-control ${touched && error ? 'border border-danger' : ''}`;
 		let type;
 
 		return (
-				<div className={ className }>
+				<div className="form-group">
 					<input
-						className="form-control"
+						className={ className }
 						type={field.type}
 						placeholder={field.label}
 						{...field.input}
