@@ -114,7 +114,7 @@ class SignUp extends Component {
 		}
 		else {
 			this.props.loginUser(values);
-			alert('Account Created.');
+			alert('A verification link has been sent to your email.');
 			this.props.history.push("/");
 		}
 	})

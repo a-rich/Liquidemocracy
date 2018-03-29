@@ -236,17 +236,17 @@ class Landing extends Component {
 					<div className="container-fluid">
 						<nav className="navbar bg-primary">
 					 
-					 	<Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
+					 	<Link className="navbar-brand active" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
 	                	
-	                	<div className="nav-item" style={{color: '#ffffff'}}>
+	                	<Link className="nav-item" style={{color: '#ffffff'}} to="/profile">
 						 	Profile
-						 </div>
-						 <div className="nav-item" style={{color: '#ffffff'}}>
+						 </Link>
+						 <Link className="nav-item" style={{color: '#ffffff'}} to="/delegates">
 						 	Delegates
-						 </div>
-						 <div className="nav-item" style={{color: '#ffffff'}}>
+						 </Link>
+						 <Link className="nav-item" style={{color: '#ffffff'}} to="/delegations">
 						 	Delegations
-						 </div>
+						 </Link>
 						 <div className="nav-item" 
 						 	  style={{color: '#ffffff', cursor:'pointer'}} 
 						 	  onClick={() => this.logout()}>

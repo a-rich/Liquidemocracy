@@ -9,6 +9,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SignUp from './components/sign_up';
 import Landing from './components/landing';
 import BillDetail from './components/bill_detail';
+import Delegations from './components/delegations';
+import Delegates from './components/delegates';
+import Profile from './components/profile';
 import promise from 'redux-promise';
 
 import reducers from './reducers';
@@ -32,6 +35,9 @@ ReactDOM.render(
   	  		<Switch>
   	  			<Route path="/signup" component={SignUp} />
             <Route path="/bill/:id" component={BillDetail} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/delegations" component={Delegations} />
+            <Route path="/delegates" component={Delegates} />
   	  			<Route path="/" component={Landing} />
   	  		</Switch>
   	  	</div>
