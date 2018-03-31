@@ -7,6 +7,7 @@ export const FETCH_BILLS = 'fetch_bills';
 export const FETCH_BILL = 'fetch_bill';
 export const LOGIN_USER = 'login_user';
 export const LOGOUT_USER = 'logout_user';
+export const FETCH_PROFILE = 'fetch_profile';
 
 const ROOT_URL = 'http://localhost:5000/api';
 
@@ -73,5 +74,24 @@ export function logoutUser() {
 	return {
 		type: LOGOUT_USER,
 		payload: {isUserLoggedIn: false}
+	}
+}
+
+export function fetchProfile() {
+	let token = localStorage.getItem("jwt");
+	let profile;
+
+	const headers = {
+		headers: {
+		'Content-Type': 'application/json',
+		'Authorization': `Bearer ${token}`
+		}
+	}
+
+	const request = axios.get(`${ROOT_URL}/profile/`, headers).then((response) => profile = response.data);
+
+	return {
+		type: FETCH_PROFILE,
+		payload: request
 	}
 }
