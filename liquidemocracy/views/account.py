@@ -45,7 +45,6 @@ def create_user():
 
         try:
             send_email(email, subject, html)
-            print('\nafter send email\n')
             return jsonify(msg='Sent account confirmation link to email.')
         except Exception as e:
             print(e)
