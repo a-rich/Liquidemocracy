@@ -14,7 +14,7 @@ def send_email(user_email, subject, html):
     msg['Subject'] = subject
 
     try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp.gmail.com', 465)
         server.starttls()
         server.login('liquidemocracy.app@gmail.com', "NxTQj*hTBX7,%|@6")
         print('\nAbout to send email\n')
