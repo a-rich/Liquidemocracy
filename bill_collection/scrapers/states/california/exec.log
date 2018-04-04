@@ -1,0 +1,326 @@
+
+
+############################################################################
+[2018-03-15 17:36:42.846435]:  requesting from California state web page - https://leginfo.legislature.ca.gov
+##############################################################################
+[2018-03-15 17:36:42.846448]:  requesting bills from chamber A[2018-03-15 17:36:43.458845]:  requesting bills from chamber S[2018-03-15 17:36:43.846947]: collected 431 bill IDs
+[2018-03-15 17:36:43.846966]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB84
+[2018-03-15 17:36:49.161048]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB91
+[2018-03-15 17:36:49.462507]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB157
+[2018-03-15 17:36:49.779170]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB166
+[2018-03-15 17:36:50.132462]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB171
+[2018-03-15 17:36:50.434805]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB180
+[2018-03-15 17:36:50.734441]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB183
+[2018-03-15 17:36:52.346355]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB186
+[2018-03-15 17:36:52.660370]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB193
+[2018-03-15 17:36:52.956124]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB216
+[2018-03-15 17:36:53.268675]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB222
+[2018-03-15 17:36:58.572725]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB235
+[2018-03-15 17:36:58.879274]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB251
+[2018-03-15 17:36:59.230503]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB271
+[2018-03-15 17:36:59.567973]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB315
+[2018-03-15 17:36:59.931768]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB359
+[2018-03-15 17:37:00.294672]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB375
+[2018-03-15 17:37:05.732224]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB386
+[2018-03-15 17:37:06.040182]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB417
+[2018-03-15 17:37:06.352628]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB425
+[2018-03-15 17:37:06.713154]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB613
+[2018-03-15 17:37:07.021986]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB668
+[2018-03-15 17:37:12.344244]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB697
+[2018-03-15 17:37:18.219327]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB724
+[2018-03-15 17:37:23.526758]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB779
+[2018-03-15 17:37:33.943609]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB802
+[2018-03-15 17:37:34.245785]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB807
+[2018-03-15 17:37:34.559608]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB814
+[2018-03-15 17:37:34.869633]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB855
+[2018-03-15 17:37:35.170352]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB880
+[2018-03-15 17:37:35.503354]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB887
+[2018-03-15 17:37:35.845988]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB939
+[2018-03-15 17:37:36.293723]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB981
+[2018-03-15 17:37:36.701670]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1017
+[2018-03-15 17:37:42.017338]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1062
+[2018-03-15 17:37:42.322299]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1080
+[2018-03-15 17:37:42.623072]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1116
+[2018-03-15 17:37:42.944426]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1151
+[2018-03-15 17:37:43.242210]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1162
+[2018-03-15 17:37:43.560791]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1167
+[2018-03-15 17:37:43.858227]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1168
+[2018-03-15 17:37:44.157021]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1184
+[2018-03-15 17:37:44.498157]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1217
+[2018-03-15 17:37:44.822379]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1283
+[2018-03-15 17:37:45.135572]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1290
+[2018-03-15 17:37:45.436976]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1292
+[2018-03-15 17:37:45.747492]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1330
+[2018-03-15 17:37:46.057066]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1337
+[2018-03-15 17:37:46.362204]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1368
+[2018-03-15 17:37:46.666384]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1372
+[2018-03-15 17:37:52.054312]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1425
+[2018-03-15 17:37:57.459514]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1433
+[2018-03-15 17:37:57.837610]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1437
+[2018-03-15 17:37:58.248103]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1441
+[2018-03-15 17:38:03.765605]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1446
+[2018-03-15 17:38:14.272512]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1529
+[2018-03-15 17:38:14.653000]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1534
+[2018-03-15 17:38:16.831184]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1560
+[2018-03-15 17:38:17.220398]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1564
+[2018-03-15 17:38:22.697501]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1578
+[2018-03-15 17:38:23.084618]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1603
+[2018-03-15 17:38:23.477281]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1678
+[2018-03-15 17:38:23.872197]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1680
+[2018-03-15 17:38:24.243194]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1698
+[2018-03-15 17:38:24.624714]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1739
+[2018-03-15 17:38:25.007872]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1743
+[2018-03-15 17:38:27.246984]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1746
+[2018-03-15 17:38:27.617661]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1747
+[2018-03-15 17:38:28.017212]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1755
+[2018-03-15 17:38:28.429335]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1767
+[2018-03-15 17:38:28.808869]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1776
+[2018-03-15 17:38:39.280956]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1784
+[2018-03-15 17:38:39.679984]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1785
+[2018-03-15 17:38:45.056704]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1789
+[2018-03-15 17:38:45.432890]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1798
+[2018-03-15 17:38:45.815359]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1801
+[2018-03-15 17:38:51.269450]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1803
+[2018-03-15 17:38:51.648403]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1858
+[2018-03-15 17:38:52.025033]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1861
+[2018-03-15 17:38:52.411471]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1862
+[2018-03-15 17:38:52.796517]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1864
+[2018-03-15 17:38:53.196968]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1871
+[2018-03-15 17:38:53.570007]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1872
+[2018-03-15 17:38:53.954137]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1876
+[2018-03-15 17:38:54.395355]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1881
+[2018-03-15 17:38:54.791010]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1887
+[2018-03-15 17:38:55.172789]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1888
+[2018-03-15 17:38:55.571651]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1894
+[2018-03-15 17:39:00.950452]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1895
+[2018-03-15 17:39:11.415339]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1899
+[2018-03-15 17:39:11.798664]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1900
+[2018-03-15 17:39:12.250634]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1904
+[2018-03-15 17:39:12.637156]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1911
+[2018-03-15 17:39:13.022615]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1913
+[2018-03-15 17:39:13.409704]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1919
+[2018-03-15 17:39:19.117655]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1920
+[2018-03-15 17:39:20.193502]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1927
+[2018-03-15 17:39:20.600799]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1930
+[2018-03-15 17:39:21.019839]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1934
+[2018-03-15 17:39:21.411169]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1936
+[2018-03-15 17:39:21.788886]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1940
+[2018-03-15 17:39:22.175529]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1941
+[2018-03-15 17:39:22.546614]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1957
+[2018-03-15 17:39:22.956685]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1958
+[2018-03-15 17:39:23.346433]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1960
+[2018-03-15 17:39:23.727595]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1961
+[2018-03-15 17:39:29.112530]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1962
+[2018-03-15 17:39:29.495754]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1973
+[2018-03-15 17:39:29.897143]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1974
+[2018-03-15 17:39:31.678717]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1976
+[2018-03-15 17:39:37.063565]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1977
+[2018-03-15 17:39:37.479590]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1985
+[2018-03-15 17:39:37.876880]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1992
+[2018-03-15 17:39:38.264990]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1994
+[2018-03-15 17:39:38.647170]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB1998
+[2018-03-15 17:39:39.036642]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2000
+[2018-03-15 17:39:39.414158]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2004
+[2018-03-15 17:39:39.791989]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2005
+[2018-03-15 17:39:40.181589]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2006
+[2018-03-15 17:39:40.814585]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2009
+[2018-03-15 17:39:42.353940]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2014
+[2018-03-15 17:39:47.749157]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2016
+[2018-03-15 17:39:48.173241]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2018
+[2018-03-15 17:39:48.559655]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2031
+[2018-03-15 17:39:48.938979]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2034
+[2018-03-15 17:39:49.313248]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2052
+[2018-03-15 17:39:54.691733]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2067
+[2018-03-15 17:39:55.079501]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2072
+[2018-03-15 17:39:55.463031]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2076
+[2018-03-15 17:39:55.831005]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2078
+[2018-03-15 17:39:56.251026]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2080
+[2018-03-15 17:40:06.809825]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2095
+[2018-03-15 17:40:07.199165]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2100
+[2018-03-15 17:40:07.642048]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2103
+[2018-03-15 17:40:08.016833]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2105
+[2018-03-15 17:40:08.397604]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2106
+[2018-03-15 17:40:08.774154]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2112
+[2018-03-15 17:40:09.167216]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2113
+[2018-03-15 17:40:09.560983]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2114
+[2018-03-15 17:40:09.941583]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2119
+[2018-03-15 17:40:15.333354]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2121
+[2018-03-15 17:40:15.746432]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2133
+[2018-03-15 17:40:16.182444]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2136
+[2018-03-15 17:40:16.577820]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2151
+[2018-03-15 17:40:16.987331]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2153
+[2018-03-15 17:40:22.386796]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2157
+[2018-03-15 17:40:27.958730]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2161
+[2018-03-15 17:40:28.346818]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2162
+[2018-03-15 17:40:28.757262]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2166
+[2018-03-15 17:40:29.184506]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2169
+[2018-03-15 17:40:34.579923]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2171
+[2018-03-15 17:40:40.094579]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2173
+[2018-03-15 17:40:40.514091]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2176
+[2018-03-15 17:40:40.924128]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2177
+[2018-03-15 17:40:41.315661]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2183
+[2018-03-15 17:40:41.755571]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2197
+[2018-03-15 17:40:42.158136]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2198
+[2018-03-15 17:40:42.572298]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2201
+[2018-03-15 17:40:58.084540]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2207
+[2018-03-15 17:41:03.474828]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2209
+[2018-03-15 17:41:03.857777]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2219
+[2018-03-15 17:41:04.429572]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2222
+[2018-03-15 17:41:10.022246]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2228
+[2018-03-15 17:41:10.413951]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2230
+[2018-03-15 17:41:10.830655]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2236
+[2018-03-15 17:41:11.229549]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2239
+[2018-03-15 17:41:11.611300]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2243
+[2018-03-15 17:41:17.336683]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2252
+[2018-03-15 17:41:22.817123]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2269
+[2018-03-15 17:41:23.200452]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2271
+[2018-03-15 17:41:23.589691]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2285
+[2018-03-15 17:41:23.988560]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2289
+[2018-03-15 17:41:24.385692]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2291
+[2018-03-15 17:41:24.771076]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2292
+[2018-03-15 17:41:25.197464]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2294
+[2018-03-15 17:41:30.589166]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2301
+[2018-03-15 17:41:30.992036]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2309
+[2018-03-15 17:41:36.461869]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2315
+[2018-03-15 17:41:36.841572]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2319
+[2018-03-15 17:41:42.308509]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2323
+[2018-03-15 17:41:42.702994]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2326
+[2018-03-15 17:41:43.105125]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2327
+[2018-03-15 17:41:48.636702]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2331
+[2018-03-15 17:41:49.039821]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2349
+[2018-03-15 17:41:54.463714]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2350
+[2018-03-15 17:41:54.858215]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2354
+[2018-03-15 17:41:55.270897]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2360
+[2018-03-15 17:41:55.677842]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2367
+[2018-03-15 17:41:56.067045]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2386
+[2018-03-15 17:41:56.822775]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2389
+[2018-03-15 17:41:57.204745]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2408
+[2018-03-15 17:41:57.580287]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2441
+[2018-03-15 17:41:58.002801]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2444
+[2018-03-15 17:41:58.384954]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2448
+[2018-03-15 17:41:58.770123]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2461
+[2018-03-15 17:41:59.153641]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2476
+[2018-03-15 17:41:59.535372]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2507
+[2018-03-15 17:41:59.924617]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2514
+[2018-03-15 17:42:00.322400]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2539
+[2018-03-15 17:42:00.723239]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2543
+[2018-03-15 17:42:11.217828]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2550
+[2018-03-15 17:42:11.628600]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2561
+[2018-03-15 17:42:17.019381]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2562
+[2018-03-15 17:42:17.398829]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2584
+[2018-03-15 17:42:17.798073]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2601
+[2018-03-15 17:42:18.199194]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2605
+[2018-03-15 17:42:23.753669]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2609
+[2018-03-15 17:42:24.309914]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2622
+[2018-03-15 17:42:24.698396]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2623
+[2018-03-15 17:42:25.082352]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2626
+[2018-03-15 17:42:25.498352]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2635
+[2018-03-15 17:42:26.548331]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2637
+[2018-03-15 17:42:26.977350]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2639
+[2018-03-15 17:42:27.355803]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2660
+[2018-03-15 17:42:27.735504]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2674
+[2018-03-15 17:42:28.128837]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2683
+[2018-03-15 17:42:33.725396]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2689
+[2018-03-15 17:42:34.171120]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2702
+[2018-03-15 17:42:34.559516]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2704
+[2018-03-15 17:42:34.941561]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2728
+[2018-03-15 17:42:35.329473]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2735
+[2018-03-15 17:42:35.708869]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2744
+[2018-03-15 17:42:36.141816]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2746
+[2018-03-15 17:42:36.527737]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2758
+[2018-03-15 17:42:41.916763]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2763
+[2018-03-15 17:42:42.297763]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2772
+[2018-03-15 17:42:42.704104]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2781
+[2018-03-15 17:42:43.107796]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2830
+[2018-03-15 17:42:48.578974]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2855
+[2018-03-15 17:42:53.966697]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2858
+[2018-03-15 17:42:54.347738]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2872
+[2018-03-15 17:42:54.734188]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2895
+[2018-03-15 17:42:55.128441]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2905
+[2018-03-15 17:43:00.636717]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2915
+[2018-03-15 17:43:01.057509]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2935
+[2018-03-15 17:43:01.498250]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2941
+[2018-03-15 17:43:01.933603]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2944
+[2018-03-15 17:43:02.378493]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2949
+[2018-03-15 17:43:07.985636]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2963
+[2018-03-15 17:43:08.410309]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3042
+[2018-03-15 17:43:08.848454]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3043
+[2018-03-15 17:43:09.329262]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3046
+[2018-03-15 17:43:09.778391]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3048
+[2018-03-15 17:43:10.341453]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3057
+[2018-03-15 17:43:15.798061]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3076
+[2018-03-15 17:43:16.533601]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3083
+[2018-03-15 17:43:22.087049]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3114
+[2018-03-15 17:43:22.601096]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3122
+[2018-03-15 17:43:23.118350]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3127
+[2018-03-15 17:43:28.566676]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3128
+[2018-03-15 17:43:29.133288]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3152
+[2018-03-15 17:43:29.608115]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3170
+[2018-03-15 17:43:30.030726]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3200
+[2018-03-15 17:43:35.678728]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3254
+[2018-03-15 17:43:41.143578]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180ACA10
+[Unknown string format]: error occured while processing bills: 2018-03-15 17:43:41.596728
+writing 254 bills to JSON now
+[2018-03-15 17:43:41.627444]: collected info on 254 bills
+
+
+############################################################################
+[2018-04-02 11:49:47.131083]:  requesting from California state web page - https://leginfo.legislature.ca.gov
+##############################################################################
+[2018-04-02 11:49:47.131106]:  requesting bills from chamber A[2018-04-02 11:49:49.173411]:  requesting bills from chamber S[2018-04-02 11:49:49.478435]: collected 15 bill IDs
+[2018-04-02 11:49:49.478458]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2044
+[2018-04-02 11:49:49.871002]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2233
+[2018-04-02 11:49:50.838803]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2240
+[2018-04-02 11:49:51.138881]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2274
+[2018-04-02 11:49:51.437614]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2281
+[2018-04-02 11:49:51.728394]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2286
+[2018-04-02 11:49:57.033932]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2311
+[2018-04-02 11:49:57.330039]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2423
+[2018-04-02 11:49:58.003240]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2483
+[2018-04-02 11:49:58.298747]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2705
+[2018-04-02 11:49:58.640299]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2791
+[2018-04-02 11:49:58.927302]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2799
+[2018-04-02 11:49:59.222236]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3002
+[2018-04-02 11:49:59.530893]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3158
+[2018-04-02 11:49:59.865304]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180ACR153
+[Unknown string format]: error occured while processing bills: 2018-04-02 11:50:05.158290
+writing 14 bills to JSON now
+[2018-04-02 11:50:05.160535]: collected info on 14 bills
+
+
+############################################################################
+[2018-04-02 11:58:26.163090]:  requesting from California state web page - https://leginfo.legislature.ca.gov
+##############################################################################
+[2018-04-02 11:58:26.163104]:  requesting bills from chamber A[2018-04-02 11:58:31.635982]:  requesting bills from chamber S[2018-04-02 11:58:31.975654]: collected 15 bill IDs
+[2018-04-02 11:58:31.975669]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2044
+[2018-04-02 11:58:32.299255]: skipping bill AB-2044 -- no new info
+[2018-04-02 11:58:32.299265]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2233
+[2018-04-02 11:58:37.603706]: skipping bill AB-2233 -- no new info
+[2018-04-02 11:58:37.603716]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2240
+[2018-04-02 11:58:37.887365]: skipping bill AB-2240 -- no new info
+[2018-04-02 11:58:37.887376]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2274
+[2018-04-02 11:58:38.173768]: skipping bill AB-2274 -- no new info
+[2018-04-02 11:58:38.173778]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2281
+[2018-04-02 11:58:43.897069]: skipping bill AB-2281 -- no new info
+[2018-04-02 11:58:43.897079]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2286
+[2018-04-02 11:58:44.260815]: skipping bill AB-2286 -- no new info
+[2018-04-02 11:58:44.260825]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2311
+[2018-04-02 11:58:50.814026]: skipping bill AB-2311 -- no new info
+[2018-04-02 11:58:50.814037]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2423
+[2018-04-02 11:58:51.187080]: skipping bill AB-2423 -- no new info
+[2018-04-02 11:58:51.187091]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2483
+[2018-04-02 11:58:56.745270]: skipping bill AB-2483 -- no new info
+[2018-04-02 11:58:56.745281]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2705
+[2018-04-02 11:58:57.135565]: skipping bill AB-2705 -- no new info
+[2018-04-02 11:58:57.135579]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2791
+[2018-04-02 11:58:57.583052]: skipping bill AB-2791 -- no new info
+[2018-04-02 11:58:57.583063]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB2799
+[2018-04-02 11:58:57.947459]: skipping bill AB-2799 -- no new info
+[2018-04-02 11:58:57.947469]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3002
+[2018-04-02 11:58:58.327800]: skipping bill AB-3002 -- no new info
+[2018-04-02 11:58:58.327809]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180AB3158
+[2018-04-02 11:58:58.692820]: skipping bill AB-3158 -- no new info
+[2018-04-02 11:58:58.692830]: requesting bill from web page: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180ACR153
+[Unknown string format]: error occured while processing bills: 2018-04-02 11:59:04.066891
+writing 0 bills to JSON now
+[2018-04-02 11:59:04.067543]: collected info on 0 bills

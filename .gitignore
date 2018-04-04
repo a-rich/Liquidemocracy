@@ -1,0 +1,9 @@
+**.cache
+**.sw*
+**.pyc
+**.vim
+**env
+**liquidemocracy.egg-info
+**__pycache__
+**.json
+**document_term_matrix*.pkl
