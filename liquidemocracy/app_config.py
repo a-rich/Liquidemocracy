@@ -10,5 +10,5 @@ class DevelopmentConfig():
            "username": "heroku_x1mkjt4n",
            "password": "i7mrai4vnkf2r7klr7m3adb0i0",
            "host": "ds121238.mlab.com",
-           "port" "21238"
+           "port": "21238",
     }
