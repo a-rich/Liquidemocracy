@@ -17,9 +17,10 @@ def send_email(user_email, subject, html):
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login('liquidemocracy.app@gmail.com', "NxTQj*hTBX7,%|@6")
+        print('\nAbout to send email\n')
         server.sendmail('liquidemocracy.app@gmail.com', user_email, msg.as_string())
         print('\nSent email\n')
     except Exception as e:
-        return "Email error: " + str(e)
+        print("Email error:", str(e))
     finally:
         server.quit()
