@@ -20,6 +20,6 @@ def send_email(user_email, subject, html):
         server.sendmail('liquidemocracy.app@gmail.com', user_email, msg.as_string())
         print('\nSent email\n')
     except Exception as e:
-        return "Email error: " + e
+        return "Email error: " + str(e)
     finally:
         server.quit()
