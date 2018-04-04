@@ -18,6 +18,7 @@ def send_email(user_email, subject, html):
         server.starttls()
         server.login('liquidemocracy.app@gmail.com', "NxTQj*hTBX7,%|@6")
         server.sendmail('liquidemocracy.app@gmail.com', user_email, msg.as_string())
+        print('\nSent email\n')
     except Exception as e:
         print("Email error:", e)
     finally:
