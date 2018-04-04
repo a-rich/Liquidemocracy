@@ -55,10 +55,10 @@ contains all of these same bills. To minimize scraping time, one request is
 made for the zip file instead of requsting each XML in the table. Since the
 last modified data for each bill is included in the table, we can skip parsing
 a bill in the zip archive if the manifest entry (a datetime) for that bill is
->= the date in the table. Unfortunately, the California state bill page
-includes neither a zip archive nor a listing of last modified dates. As a
-consequence, the scraper must make an independent request to every single
-bill's web page making it the slowest scraper implemented thus far.
+greater than or equal to the date in the table. Unfortunately, the California
+state bill page includes neither a zip archive nor a listing of last modified
+dates. As a consequence, the scraper must make an independent request to every
+single bill's web page making it the slowest scraper implemented thus far.
 
 Bill data requirements
 -----------------------------
@@ -66,17 +66,17 @@ Bill data requirements
 *must* be a list containing a dictionary for each bill scraped. The following
 specifies the required format for these bill dictionaries:
 
-* *id*: The bill's unique ID
+* **id**: The bill's unique ID
 
-* *title*: A brief text description of the bill
+* **title**: A brief text description of the bill
 
-* *date*: May be either the date the bill was introduced, or the last modified
+* **date**: May be either the date the bill was introduced, or the last modified
   date
 
-* *authors*: The representatives sponsoring the bill -- may be 'N/A' if no
+* **authors**: The representatives sponsoring the bill -- may be 'N/A' if no
   authors found
 
-* *text*: The text body of the bill to be displayed to users
+* **text**: The text body of the bill to be displayed to users
 
 * *source*: The URL link to where this bill's data was collected from.
 

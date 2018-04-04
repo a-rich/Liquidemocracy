@@ -4,7 +4,7 @@ import sys
 import json
 import pandas as pd
 import itertools
-from nltk.stem import WordNetLemmatizer, SnowballStemmer
+#from nltk.stem import WordNetLemmatizer, SnowballStemmer
 from sklearn.externals import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -37,6 +37,7 @@ def clean_data(docs):
 
 if __name__ == '__main__':
 
+    """
     if os.path.exists('stemmed_data.json') and os.path.exists('labels.json'):
         docs = json.load(open('stemmed_data.json', 'r'))
         labels = json.load(open('labels.json', 'r'))
@@ -74,3 +75,4 @@ if __name__ == '__main__':
     dtm = vec.fit_transform(docs)
     joblib.dump(vec, 'vector_space_model.pkl')
     joblib.dump(dtm, 'document_term_matrix.pkl')
+    """

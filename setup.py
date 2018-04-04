@@ -8,7 +8,6 @@ setup(
     install_requires=[
         'flask', 'flask_cors', 'flask_jwt_simple', 'flask-mongoengine',
         'pytest-flask', 'python-dateutil', 'requests', 'beautifulsoup4',
-        'nltk', 'numpy', 'scipy', 'pandas', 'scikit-learn', 'slate',
-        'gunicorn',
+        'numpy', 'scipy', 'pandas', 'scikit-learn', 'slate', 'gunicorn',
         ],
 )
