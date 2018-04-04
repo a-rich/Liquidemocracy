@@ -6,5 +6,9 @@ class DevelopmentConfig():
     JWT_SECRET_KEY = ",o`qA#LI`*V_@+%C"
     JWT_EXPIRES = timedelta(days=365)
     MONGODB_SETTINGS = {
-           "db": "liquidemocracy"
+           "db": "heroku_x1mkjt4n",
+           "username": "heroku_x1mkjt4n",
+           "password": "i7mrai4vnkf2r7klr7m3adb0i0",
+           "host": "ds121238.mlab.com",
+           "port" "21238",
     }
