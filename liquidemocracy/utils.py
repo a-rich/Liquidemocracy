@@ -14,10 +14,13 @@ def send_email(user_email, subject, html):
     msg['Subject'] = subject
 
     try:
+        print('\nStart of send email...\n')
         server = smtplib.SMTP('smtp.gmail.com', 587)
+        print('\nCreated email server\n')
         server.starttls()
+        print('\nStarted email server\n')
         server.login('liquidemocracy.app@gmail.com', "NxTQj*hTBX7,%|@6")
-        print('\nAbout to send email\n')
+        print('\nLogged into email\n')
         server.sendmail('liquidemocracy.app@gmail.com', user_email, msg.as_string())
         print('\nSent email\n')
     except Exception as e:
