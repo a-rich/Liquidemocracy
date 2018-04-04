@@ -23,8 +23,14 @@ def create_user():
     county = req['county']
     state = req['state']
 
+    print('\nemail: {}\npassword: {}\nname: {}\ncity: {}\ncounty: {}\nstate: {}\n'.format(
+        email, password, name, city, county, state
+        ))
+
     if not User.exists(email):
+        print('\nUser does not already exist\n')
         ts = URLSafeTimedSerializer(app.config['SERIALIZATION_KEY'])
+        print('\nserializer created\n')
         token = ts.dumps(
                 {
                     'email': email,
@@ -34,17 +40,22 @@ def create_user():
                     'county': county,
                     'state': state
                 }, salt='account_creation_key')
+        print('\ntoken created\n')
         email_url = url_for(
                 'account.confirm_account_creation',
                 token=token,
                 _external=True)
+        print('\nemail url created\n')
         subject = 'Confirm your Liquidemocracy account'
         html = render_template(
                 'account_activation.html',
                 email_url=email_url)
+        print('\nhtml template created\n')
 
         try:
+            print('\nbefore send email\n')
             send_email(email, subject, html)
+            print('\nafter send email\n')
             return jsonify(msg='Sent account confirmation link to email.')
         except Exception as e:
             print(e)
