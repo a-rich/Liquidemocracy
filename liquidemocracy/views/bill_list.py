@@ -100,6 +100,8 @@ def default_bills():
     if category:
         categories = list(category)
 
+    print('categories is', categories)
+
     bills = Bill.objects(level='federal', category__in=categories).order_by('-date')
 
     return jsonify(bills=bills)
