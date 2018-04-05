@@ -7,9 +7,9 @@ bill_list = Blueprint('bill_list', __name__)
 
 all_levels = [
         'federal',
-        'stat',
-        'county',
-        'city'
+        'states',
+        'counties',
+        'cities'
         ]
 
 all_categories = [
