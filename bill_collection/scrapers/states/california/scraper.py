@@ -26,15 +26,21 @@ class Scraper():
                 datetime.now(), self.web_page))
         self.log.write('\n##############################################################################\n')
 
+        print('*** Requestng from the California state web page ***\n')
+
         base_page = self.web_page + "/faces/dailyUpdates.xhtml?house="
         chambers = ['A', 'S']
 
         unprocessed_bills = []
         for chamber in chambers:
+
             bills_page = base_page + chamber
 
             self.log.write('[{}]:  requesting bills from chamber {}'.format(
                     datetime.now(), chamber))
+
+            print('*** Request bills from the California state {} ***\n'.format(
+                        'Assembly' if chamber == 'A' else 'Senate'))
 
             # Get a listing of all the current bills in the different chambers
             page = requests.get(bills_page)
@@ -52,7 +58,12 @@ class Scraper():
 
         try:
             # Parse each bill
-            for bill in unprocessed_bills:
+            for i, bill in enumerate(unprocessed_bills):
+
+                if i % round(len(unprocessed_bills)/4) == 0:
+                    print('*** Processing {} of {} bills ***\n'.format(
+                        i, len(unprocessed_bills)))
+
                 s = ''
                 bill_id = bill[0]
                 self.log.write('[{}]: requesting bill from web page: {}\n'.format(

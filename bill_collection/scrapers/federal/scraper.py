@@ -28,6 +28,8 @@ class Scraper():
                 datetime.now(), self.web_page))
         self.log.write('\n##############################################################################\n')
 
+        print('*** Requesting from federal web page ***\n')
+
         def most_recent_bills():
             """
                 Find the most recent congress (e.g. 115th) and then find the
@@ -155,10 +157,20 @@ class Scraper():
 
         bills = []
         pages = most_recent_bills()
-        for page in pages:
+        for i, page in enumerate(pages):
+
+            if i % round(len(pages)/4) == 0:
+                print('*** Processing page {} of {} ***\n'.format(
+                    i, len(pages)))
+
             pairs, zip_file = bill_date_pairs(page)
 
-            for href, date in pairs:
+            for j, (href, date) in enumerate(pairs):
+
+                if j % round(len(pairs)/4) == 0:
+                    print('\t*** Processing bill {} of {} ***\n'.format(
+                        j, len(pairs)))
+
                 if href in self.manifest:
                     if date > parser.parse(self.manifest[href]):
                         bills.append(extract_info(zip_file, href, date))

@@ -20,6 +20,9 @@ all_data = {
 scrapers = glob('scrapers/**/scraper.py', recursive=True)
 
 for scraper in scrapers:
+
+    print('*** Running {} ***\n'.format(scraper))
+
     path_split = scraper.split('/')
     folder = '/'.join(path_split[:-1])
     scraper = path_split[-1]
@@ -55,6 +58,8 @@ json.dump(all_data, open('data.json', 'w'))
 ##############################################################################
 
 
+print('*** Classifying collected bills ***\n')
+
 origWD = os.getcwd()
 os.chdir('../bill_classifier')
 subprocess.call(['python3', 'classify_bills.py'])
@@ -66,6 +71,8 @@ os.unlink('data.json')
 ###             Insert bills into the database                             ###
 ##############################################################################
 
+
+print('*** Inserting bills into the Bill model ***\n')
 
 def insert_bill(bill, location, level):
     if type(bill['authors']) is list:
@@ -110,3 +117,5 @@ for level, _ in bills.items():
                 insert_bill(b, location, level)
 
 os.unlink('classified_bills.json')
+
+print('*** Finished bill collection and classification ***\n')
