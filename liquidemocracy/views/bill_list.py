@@ -79,7 +79,7 @@ def bills():
     categories = [category] if category else all_categories
 
     if bill_filter == 'recommended':
-        bills = recommender.recommended_bills(email, levels)
+        bills = recommender.recommend_bills(email, levels)
     else:
         bills = Bill.objects(level__in=levels, category__in=categories).order_by('-date')
 
