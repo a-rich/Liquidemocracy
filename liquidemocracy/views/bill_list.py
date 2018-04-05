@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_simple import jwt_required, create_jwt, get_jwt_identity
-from liquidemocracy.models import User
+from liquidemocracy.models import User, Bill
 
 bill_list = Blueprint('bill_list', __name__)
 
@@ -79,10 +79,13 @@ def default_bills():
     sort = req['options']['sort']
 
     #TODO: replace hard coded bills with a query to the Bill model
+    """
     bills = [
         {0: {'title': 'some bill', 'vote_date': '2018-06-01 12:00:00'}},
         {1: {'title': 'another bill', 'vote_date': '2018-07-04 12:00:00'}}
     ]
+    """
+    bills = Bill.objects(level='federal')
 
     return jsonify(bills=bills)
 
