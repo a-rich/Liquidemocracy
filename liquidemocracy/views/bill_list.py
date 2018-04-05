@@ -98,7 +98,7 @@ def default_bills():
                 ]
 
     if category:
-        categories = list(category)
+        categories = [category]
 
     print('categories is', categories)
 
