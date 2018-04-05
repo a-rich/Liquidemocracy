@@ -1,4 +1,3 @@
-import os
 import json
 import numpy as np
 from mongoengine import connect
@@ -60,19 +59,19 @@ def convert_bill_location(user_location, level):
 
     location = {'city': '', 'county': '', 'state': ''}
 
-    if level == 'state':
+    if level == 'states':
         location = {
                 'city': '',
                 'county': '',
                 'state': user_location['state']
                 }
-    elif level == 'county':
+    elif level == 'counties':
         location = {
                 'city': '',
                 'county': user_location['county'],
                 'state': ''
                 }
-    elif level == 'city':
+    elif level == 'cities':
         location = {
                 'city': user_location['city'],
                 'county': '',
@@ -81,20 +80,21 @@ def convert_bill_location(user_location, level):
 
     return location
 
-def find_interesting_bills(interests, user_location, filtered_levels):
+def find_interesting_bills(interests, user_location):
     """
         Query the Bill model for only those bills whose policy area is of
         interest to the user and is able to be voted on by the user.
     """
 
     recommended_bills = []
-    bill_locations = [convert_bill_location(user_location, level)
-            for level in levels]
-    recommended_bills += Bill.objects(
-            level__in=filtered_levels,
-            category__in=interests,
-            location__in=bill_locations
-            )
+    for policy_area in interests:
+        for level in levels:
+            bill_location = convert_bill_location(user_location, level)
+            recommended_bills += Bill.objects(
+                    level=level,
+                    category=policy_area,
+                    location=bill_location
+                    )
 
     return recommended_bills
 
@@ -149,27 +149,26 @@ def find_delegates(user, non_interests):
 
     return recommendations_map
 
-def recommend_bills(user_email, filtered_levels):
+classes = json.load(open('../bill_classifier/class_mapping.json', 'r'))
+levels = ['federal', 'state', 'county', 'city']
 
-    origWD = os.getcwd()
-    os.chdir('../../bill_classifier')
-    classes = json.load(open('class_mapping.json', 'r'))
-    os.chdir(origWD)
-    levels = ['federal', 'state', 'county', 'city']
-
-    try:
-        user = User.objects.get(email=user_email)
-    except Exception as e:
-        print(e)
-
+for i, user in enumerate(User.objects):
     user_location = convert_user_location(
             json.loads(user.residence.location.to_json()))
 
-    interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
-    #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
+    #interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
+    interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interests, non_interests = find_interests(interest_vector)
-    recommended_bills = find_interesting_bills(interests, user_location, filtered_levels)
+    recommended_bills = find_interesting_bills(interests, user_location)
+    potential_delegates = find_delegates(user, non_interests)
 
-    return recommended_bills
+    """
+    if user.name == 'Alex Richards':
+        print('{} is interested in: {}\n'.format(user.name, interests))
+        print('There are {} recommended bills that pertain to these policy areas.\n'.format(len(recommended_bills)))
 
-#potential_delegates = find_delegates(user, non_interests)
+        for policy_area, levels in potential_delegates.items():
+            print('These are the delegates recommended for voting on {} bills:'.format(policy_area))
+            for level, delegates in levels.items():
+                print('\t{}: {}'.format(level, [d.name for d in delegates]))
+    """

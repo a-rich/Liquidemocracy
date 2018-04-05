@@ -1,8 +1,37 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_simple import jwt_required, create_jwt, get_jwt_identity
 from liquidemocracy.models import User, Bill
+import sys, os
+sys.path.append('../../bill_recommender/')
+import recommender
 
 bill_list = Blueprint('bill_list', __name__)
+
+all_levels = [
+        'federal',
+        'stat',
+        'county',
+        'city'
+        ]
+
+all_categories = [
+            'Taxation',
+            'Health',
+            'Armed Forces and National Security',
+            'Foreign Trade and International Finance',
+            'International Affairs',
+            'Crime and Law Enforcement',
+            'Transportation and Public Works',
+            'Education',
+            'Energy',
+            'Agriculture and Food',
+            'Economics and Public Finance',
+            'Labor and Employment',
+            'Environmental Protection',
+            'Science, Technology, Communications',
+            'Immigration',
+            'Other'
+            ]
 
 @bill_list.route('/api/login/', methods=['POST'])
 def login():
@@ -38,31 +67,23 @@ def bills():
     """
 
     req = request.get_json()
-    level = req['options']['level']
-    bill_filter = req['options']['filter']
-    sort = req['options']['sort']
+    level = req['level']
+    bill_filter = req['filter']
+    category = req['category']
 
-    if level is not 'federal' or bill_filter is not 'all' \
-            or sort is 'recommended':
-        try:
-            user = User.objects.get(email=get_jwt_identity())
-        except Exception as e:
-            print(e)
+    try:
+        email=get_jwt_identity()
+    except Exception as e:
+        print(e)
+        return jsonify(error='Invalid credentials. Try loging in again.')
 
-    #TODO: log error
-    #TODO: replace hard coded bills with a query to the Bill model
-    bills = [
-        {0: {
-            'title': 'some bill',
-            'vote_date': '2018-06-01 12:00:00',
-            'level': 'city'
-            }},
-        {1: {
-            'title': 'another bill',
-            'vote_date': '2018-07-04 12:00:00',
-            'level': 'state'
-            }}
-    ]
+    levels= [level] if level else all_levels
+    categories = [category] if category else all_categories
+
+    if bill_filter == 'recommended':
+        bills = recommender.recommended_bills(email, levels)
+    else:
+        bills = Bill.objects(level__in=levels, category__in=categories).order_by('-date')
 
     return jsonify(bills=bills)
 
@@ -78,29 +99,7 @@ def default_bills():
     req = request.get_json()
     category = req['category']
 
-    categories = [
-                'Taxation',
-                'Health',
-                'Armed Forces and National Security',
-                'Foreign Trade and International Finance',
-                'International Affairs',
-                'Crime and Law Enforcement',
-                'Transportation and Public Works',
-                'Education',
-                'Energy',
-                'Agriculture and Food',
-                'Economics and Public Finance',
-                'Labor and Employment',
-                'Environmental Protection',
-                'Science, Technology, Communications',
-                'Immigration',
-                'Other'
-                ]
-
-    if category:
-        categories = [category]
-
-    print('categories is', categories)
+    categories = [category] if category else all_categories
 
     bills = Bill.objects(level='federal', category__in=categories).order_by('-date')
 
