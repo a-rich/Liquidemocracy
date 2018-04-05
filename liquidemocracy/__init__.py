@@ -12,7 +12,8 @@ from liquidemocracy.views.bill import bill
 def create_app():
     app = Flask(__name__)
     app.config.from_object('liquidemocracy.app_config.DevelopmentConfig')
-    CORS(app, resources=r"/api/*")
+    #CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(app, resources=r"/api/*", supports_credentials=True)
     jwt = JWTManager(app)
 
     db.init_app(app)
