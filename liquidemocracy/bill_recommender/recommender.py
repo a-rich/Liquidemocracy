@@ -62,19 +62,19 @@ def convert_bill_location(user_location, level):
 
     location = {'city': '', 'county': '', 'state': ''}
 
-    if level == 'state':
+    if level == 'states':
         location = {
                 'city': '',
                 'county': '',
                 'state': user_location['state']
                 }
-    elif level == 'county':
+    elif level == 'counties':
         location = {
                 'city': '',
                 'county': user_location['county'],
                 'state': ''
                 }
-    elif level == 'city':
+    elif level == 'cities':
         location = {
                 'city': user_location['city'],
                 'county': '',
@@ -166,7 +166,6 @@ def recommend_bills(user_email, filtered_levels):
     interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
     #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interests, non_interests = find_interests(interest_vector)
-    print('before find_interesting_bills() -- filtered_levels is', filtered_levels)
     recommended_bills = find_interesting_bills(interests, user_location, filtered_levels)
 
     return recommended_bills
