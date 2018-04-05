@@ -11,6 +11,8 @@ def find_interests(user):
         also a list of the remaining policy areas.
     """
 
+    global classes
+
     # Calculate L2 norm of the user's interest vector
     norm = np.linalg.norm(user, ord=2)
 
@@ -89,7 +91,7 @@ def find_interesting_bills(interests, user_location, filtered_levels):
 
     recommended_bills = []
     bill_locations = [convert_bill_location(user_location, level)
-            for level in levels]
+            for level in filtered_levels]
     recommended_bills += Bill.objects(
             level__in=filtered_levels,
             category__in=interests,
@@ -107,6 +109,8 @@ def find_delegates(user, non_interests):
         their residence location for that level of governance matches that of
         the user) and have demonstrated interest in the given policy area.
     """
+
+    global levels
 
     location_map = {level: [] for level in levels}
 
@@ -151,9 +155,6 @@ def find_delegates(user, non_interests):
 
 def recommend_bills(user_email, filtered_levels):
 
-    classes = json.load(open('/app/liquidemocracy/bill_classifier/class_mapping.json', 'r'))
-    levels = ['federal', 'state', 'county', 'city']
-
     try:
         user = User.objects.get(email=user_email)
     except Exception as e:
@@ -168,5 +169,8 @@ def recommend_bills(user_email, filtered_levels):
     recommended_bills = find_interesting_bills(interests, user_location, filtered_levels)
 
     return recommended_bills
+
+classes = json.load(open('/app/liquidemocracy/bill_classifier/class_mapping.json', 'r'))
+levels = ['federal', 'state', 'county', 'city']
 
 #potential_delegates = find_delegates(user, non_interests)
