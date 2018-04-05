@@ -151,10 +151,8 @@ def find_delegates(user, non_interests):
 
 def recommend_bills(user_email, filtered_levels):
 
-    origWD = os.getcwd()
-    os.chdir('../bill_classifier')
-    classes = json.load(open('class_mapping.json', 'r'))
-    os.chdir(origWD)
+    print('operating directoyr is', os.getcwd())
+    classes = json.load(open('bill_classifier/class_mapping.json', 'r'))
     levels = ['federal', 'state', 'county', 'city']
 
     try:
