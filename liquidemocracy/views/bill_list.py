@@ -76,16 +76,13 @@ def default_bills():
     """
 
     req = request.get_json()
-    sort = req['options']['sort']
+    options = req['options']
+    category = options['category']
 
-    #TODO: replace hard coded bills with a query to the Bill model
-    """
-    bills = [
-        {0: {'title': 'some bill', 'vote_date': '2018-06-01 12:00:00'}},
-        {1: {'title': 'another bill', 'vote_date': '2018-07-04 12:00:00'}}
-    ]
-    """
-    bills = Bill.objects(level='federal')
+    if category:
+        bills = Bill.objects(level='federal', category=category).order_by('-date')
+    else:
+        bills = Bill.objects(level='federal').order_by('-date')
 
     return jsonify(bills=bills)
 
