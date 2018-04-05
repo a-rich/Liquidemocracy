@@ -76,13 +76,31 @@ def default_bills():
     """
 
     req = request.get_json()
-    options = req['options']
-    category = options['category']
+    category = req['category']
+
+    categories = [
+                'Taxation',
+                'Health',
+                'Armed Forces and National Security',
+                'Foreign Trade and International Finance',
+                'International Affairs',
+                'Crime and Law Enforcement',
+                'Transportation and Public Works',
+                'Education',
+                'Energy',
+                'Agriculture and Food',
+                'Economics and Public Finance',
+                'Labor and Employment',
+                'Environmental Protection',
+                'Science, Technology, Communications',
+                'Immigration',
+                'Other'
+                ]
 
     if category:
-        bills = Bill.objects(level='federal', category=category).order_by('-date')
-    else:
-        bills = Bill.objects(level='federal').order_by('-date')
+        categories = list(category)
+
+    bills = Bill.objects(level='federal', category__in=categories).order_by('-date')
 
     return jsonify(bills=bills)
 
