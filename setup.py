@@ -10,7 +10,4 @@ setup(
         'pytest-flask', 'python-dateutil', 'requests', 'beautifulsoup4',
         'numpy', 'scipy', 'pandas', 'scikit-learn', 'slate', 'gunicorn',
         ],
-    dependency_links=[
-        'git+https://github.com/alkivi-sas/slate.git'
-        ]
 )
