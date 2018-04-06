@@ -120,21 +120,16 @@ def search():
         returns a list of these bills.
     """
 
-    query = request.get_json()['query']
+    req = request.get_json()
+    query = req['query']
+    category = req['category']
+    index = req['index']
+    limit = 100
 
-    #TODO: replace hard coded bills with a query to the Bill model
-    bills = [
-        {0: {
-            'title': 'some bill',
-            'vote_date': '2018-06-01 12:00:00',
-            'level': 'city'
-            }},
-        {1: {
-            'title': 'another bill',
-            'vote_date': '2018-07-04 12:00:00',
-            'level': 'state'
-            }}
-    ]
+    categories = [category] if category else all_categories
+
+    bills = Bill.objects(title__icontains=query, category__in=categories).only(
+            'id', 'title', 'category', 'level', 'date')[index:index+limit]
 
     return jsonify(bills=bills)
 
@@ -146,7 +141,6 @@ def view_bill(bill_id):
         'bill_id'.
     """
 
-    #TODO: replace hard coded bill with a query to the Bill model
     bill = Bill.objects(id=bill_id)
 
     return jsonify(bill=bill)
