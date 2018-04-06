@@ -5,7 +5,7 @@ import { fetchDefaultBills, fetchBills, logoutUser, loginUser } from '../actions
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
-const ROOT_URL = 'http://liquidemocracy.herokuapp.com';
+const ROOT_URL = 'https://liquidemocracy.herokuapp.com';
 
 /**********************************
 	Landing Page for Liquidemocracy
