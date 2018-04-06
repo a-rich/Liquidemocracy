@@ -84,7 +84,7 @@ def convert_bill_location(user_location, level):
     return location
 
 def find_interesting_bills(interests, user_location, filtered_levels, index,
-        limit):
+        limit, query=""):
     """
         Query the Bill model for only those bills whose policy area is of
         interest to the user and is able to be voted on by the user.
@@ -93,13 +93,23 @@ def find_interesting_bills(interests, user_location, filtered_levels, index,
     recommended_bills = []
     bill_locations = [convert_bill_location(user_location, level)
             for level in filtered_levels]
-    recommended_bills += Bill.objects(
-            level__in=filtered_levels,
-            category__in=interests,
-            location__in=bill_locations
-            ).order_by('-date').only(
-                    'id', 'title', 'category',
-                    'level', 'date')[index:index+limit]
+    if query:
+        recommended_bills += Bill.objects(
+                title__icontains=query,
+                level__in=filtered_levels,
+                category__in=interests,
+                location__in=bill_locations
+                ).order_by('-date').only(
+                        'id', 'title', 'category',
+                        'level', 'date')[index:index+limit]
+    else:
+        recommended_bills += Bill.objects(
+                level__in=filtered_levels,
+                category__in=interests,
+                location__in=bill_locations
+                ).order_by('-date').only(
+                        'id', 'title', 'category',
+                        'level', 'date')[index:index+limit]
 
     return recommended_bills
 
@@ -156,7 +166,7 @@ def find_delegates(user, non_interests):
 
     return recommendations_map
 
-def recommend_bills(user_email, filtered_levels, index, limit):
+def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
     try:
         user = User.objects.get(email=user_email)
@@ -170,7 +180,7 @@ def recommend_bills(user_email, filtered_levels, index, limit):
     #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interests, non_interests = find_interests(interest_vector)
     recommended_bills = find_interesting_bills(interests, user_location,
-            filtered_levels, index, limit)
+            filtered_levels, index, limit, query)
 
     return recommended_bills
 

@@ -55,6 +55,28 @@ def login():
         return jsonify(error='Invalid credentials. Please try again.')
 
 
+@bill_list.route('/api/bills/default/', methods=['POST'])
+def default_bills():
+    """
+        This endpoint queries the Bill model for all federal bills and returns
+        their 'title' and 'vote_date' in a list sorted by the order specified
+        in the 'sort' attribute.
+    """
+
+    req = request.get_json()
+    category = req['category']
+    index = req['index']
+    limit = 100
+
+    categories = [category] if category else all_categories
+
+    bills = Bill.objects(level='federal',
+            category__in=categories).order_by('-date').only(
+                    'id', 'title', 'category', 'level', 'date')[index:index+limit]
+
+    return jsonify(bills=bills)
+
+
 @bill_list.route('/api/bills/', methods=['POST'])
 @jwt_required
 def bills():
@@ -90,29 +112,7 @@ def bills():
     return jsonify(bills=bills)
 
 
-@bill_list.route('/api/bills/default/', methods=['POST'])
-def default_bills():
-    """
-        This endpoint queries the Bill model for all federal bills and returns
-        their 'title' and 'vote_date' in a list sorted by the order specified
-        in the 'sort' attribute.
-    """
-
-    req = request.get_json()
-    category = req['category']
-    index = req['index']
-    limit = 100
-
-    categories = [category] if category else all_categories
-
-    bills = Bill.objects(level='federal',
-            category__in=categories).order_by('-date').only(
-                    'id', 'title', 'category', 'level', 'date')[index:index+limit]
-
-    return jsonify(bills=bills)
-
-
-@bill_list.route('/api/bills/search/', methods=['POST'])
+@bill_list.route('/api/bills/search/default/', methods=['POST'])
 def search():
     """
         This endpoint queries the Bill model for bills having a title or
@@ -130,6 +130,37 @@ def search():
 
     bills = Bill.objects(title__icontains=query, category__in=categories).only(
             'id', 'title', 'category', 'level', 'date')[index:index+limit]
+
+    return jsonify(bills=bills)
+
+
+@bill_list.route('/api/bills/search/', methods=['POST'])
+@jwt_required
+def search():
+    """
+        This endpoint queries the Bill model for bills having a title or
+        keywords containing any space-separated substring of the query and
+        returns a list of these bills.
+    """
+
+    req = request.get_json()
+    query = req['query']
+    level = req['level']
+    category = req['category']
+    bill_filter = req['filter']
+    index = req['index']
+    limit = 100
+
+    levels= [level] if level else all_levels
+    categories = [category] if category else all_categories
+
+    if bill_filter == 'recommended':
+        bills = recommender.recommend_bills(email, levels, index, limit, query)
+    else:
+        bills = Bill.objects(title__icontains=query,
+                level__in=levels,
+                category__in=categories).only(
+                'id', 'title', 'category', 'level', 'date')[index:index+limit]
 
     return jsonify(bills=bills)
 
