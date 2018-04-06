@@ -113,7 +113,7 @@ def bills():
 
 
 @bill_list.route('/api/bills/search/default/', methods=['POST'])
-def search():
+def default_search():
     """
         This endpoint queries the Bill model for bills having a title or
         keywords containing any space-separated substring of the query and
