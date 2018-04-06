@@ -130,11 +130,6 @@ class BillDetail extends Component {
 			return <div>Loading...</div>
 		}
 
-<<<<<<< HEAD
-=======
-		console.log(this.props.bill.bill[0].title);
-
->>>>>>> df2a15a50894a4a21965eca0eb538130baf2fe31
 		if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
 		return (
 				<div className="container-fluid">
