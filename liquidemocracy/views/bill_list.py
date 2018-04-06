@@ -151,6 +151,12 @@ def search():
     index = req['index']
     limit = 100
 
+    try:
+        email=get_jwt_identity()
+    except Exception as e:
+        print(e)
+        return jsonify(error='Invalid credentials. Try loging in again.')
+
     levels= [level] if level else all_levels
     categories = [category] if category else all_categories
 
