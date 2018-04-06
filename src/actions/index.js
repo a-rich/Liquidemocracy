@@ -9,15 +9,22 @@ export const LOGIN_USER = 'login_user';
 export const LOGOUT_USER = 'logout_user';
 export const FETCH_PROFILE = 'fetch_profile';
 
-const ROOT_URL = 'http://localhost:5000/api';
+const ROOT_URL = 'http://liquidemocracy.herokuapp.com/api';
 
 export function fetchDefaultBills(sort) {
 	const bodyOption = {
-		options: {
-			sort: sort
+		category: "",
+		index: 0
+	}
+
+	const headers = {
+		headers: {
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*'
 		}
 	}
-	const request = axios.post(`${ROOT_URL}/bills/default/`, bodyOption);
+
+	const request = axios.post(`${ROOT_URL}/bills/default/`, bodyOption, headers);
 
 	return {
 		type: FETCH_DEFAULT_BILLS,
@@ -27,11 +34,11 @@ export function fetchDefaultBills(sort) {
 
 export function fetchBills(sort, filter, level, jwt) {
 	const bodyOption = {
-		options: {
 			level: level,
 			filter: filter,
-			sort: sort
-		}
+			sort: sort,
+			category: "",
+			index: 0
 	}
 
 	const headers = {

@@ -5,7 +5,7 @@ import { fetchDefaultBills, fetchBills, logoutUser, loginUser } from '../actions
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
-const ROOT_URL = 'http://localhost:5000';
+const ROOT_URL = 'http://liquidemocracy.herokuapp.com';
 
 /**********************************
 	Landing Page for Liquidemocracy
@@ -140,15 +140,13 @@ class Landing extends Component {
 		*/
 		return _.map(this.props.bills.bills, billArray => {
 			return _.map(billArray, bills => {
-				return _.map(bills, bill => {
-					return (
-							<li className="list-group-item" key={Object.keys(bills)}>
-								<Link to={`/bill/${Object.keys(bills)}`}>
-								{bill.title}
-								</Link>
-							</li>
-						);
-				})
+				return(
+						<li className="list-group-item" key={bills._id.$oid}>
+							<Link to={`/bill/${bills._id.$oid}`}>
+							{bills.title}
+							</Link>
+						</li>
+					);
 			})
 		})
 	}
@@ -160,7 +158,7 @@ class Landing extends Component {
 	if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
 		return (
 				<div className="container-fluid">
-					<nav className="navbar bg-primary">
+					<nav className="navbar bg-primary sticky-top">
 					 
 					 <Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
 	                

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError} from 'redux-form';
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:5000';
+const ROOT_URL = 'http://liquidemocracy.herokuapp.com';
 
 class BillDetail extends Component {
 	constructor(props) {
@@ -76,31 +76,31 @@ class BillDetail extends Component {
 			<div>
 				<div className="row no-gutters">
 					<div className="col">
-						<h5>Categories:</h5> {this.props.bill.categories.join(', ')}
+						<h5>Categories:</h5> {this.props.bill.bill[0].category}
 						<br />
 						<br />
-						<h5>Keywords:</h5> {this.props.bill.keywords.join(', ')}
+						<h5>Keywords:</h5>
 					</div>
 					<div className="col-6 text-center card">
-						<h1 className="card-header">{this.props.bill.title}</h1>
-						<div className="card-body">
-							{this.props.bill.description}
+						<h3 className="card-header">{this.props.bill.bill[0].title}</h3>
+						<div className="card-body" style={{'height':'300px', 'overflowY': 'auto'}}>
+							{this.props.bill.bill[0].text}
 							<br />
 						</div>
 						<div className="card-footer text-muted">
-							Vote Date: {this.props.bill.vote_info.vote_date}
+							Vote Date: {new Date(this.props.bill.bill[0].date.$date).toString()}
 						</div>
 					</div>
 					<div className="col">
 						<h4 className="text-center">Vote</h4>
 						<br />
 						<div className="text-center">
-							<b>Voter Count: </b>{this.props.bill.vote_info.voter_count}
+							<b>Voter Count: </b>{this.props.bill.bill[0].vote_info.voter_count}
 						</div>
 						<br />
 						<div className="text-center">
-							<span className="text-success">Yay: {this.props.bill.vote_info.yay} </span>
-							| <span className="text-danger">Nay: {this.props.bill.vote_info.nay}</span>
+							<span className="text-success">Yay: {this.props.bill.bill[0].vote_info.yay} </span>
+							| <span className="text-danger">Nay: {this.props.bill.bill[0].vote_info.nay}</span>
 						</div>
 						<br />
 						<div className="text-center">
@@ -129,6 +129,8 @@ class BillDetail extends Component {
 		if(!this.props.bill) {
 			return <div>Loading...</div>
 		}
+
+		console.log(this.props.bill.bill[0].title);
 
 		if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
 		return (
@@ -170,20 +172,20 @@ class BillDetail extends Component {
 					 
 					 	<Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
 	                	
-	                	<div className="nav-item" style={{color: '#ffffff'}}>
-						 	Profile
-						 </div>
-						 <div className="nav-item" style={{color: '#ffffff'}}>
-						 	Active Votes
-						 </div>
-						 <div className="nav-item" style={{color: '#ffffff'}}>
-						 	Settings
-						 </div>
-						 <div className="nav-item" 
-						 	  style={{color: '#ffffff', cursor:'pointer'}} 
-						 	  onClick={() => this.logout()}>
-						 	Log Out
-						 </div>
+	                	<Link className="nav-item" style={{color: '#ffffff'}} to="/profile">
+						 Profile
+						</Link>
+						<Link className="nav-item active" style={{color: '#ffffff'}} to="/delegates">
+						 Delegates
+						</Link>
+						<Link className="nav-item" style={{color: '#ffffff'}} to="/delegations">
+						 Delegations
+						</Link>
+						<div className="nav-item" 
+						 	 style={{color: '#ffffff', cursor:'pointer'}} 
+						 	 onClick={() => this.logout()}>
+						 Log Out
+						</div>
 						 	
 						</nav>
 						{this.renderBillDefaultDetail()}

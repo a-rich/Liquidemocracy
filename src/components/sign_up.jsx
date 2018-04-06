@@ -6,7 +6,7 @@ import { createAccount, loginUser } from '../actions';
 import axios from 'axios';
 import _ from 'lodash';
 
-const ROOT_URL = 'http://localhost:5000';
+const ROOT_URL = 'http://liquidemocracy.herokuapp.com';
 
 class SignUp extends Component {
 
@@ -107,7 +107,7 @@ class SignUp extends Component {
 		'Content-Type': 'application/json'
 	}}
 
-	const request = axios.post(`${ROOT_URL}/api/test_create_user/`, values, config)
+	const request = axios.post(`${ROOT_URL}/api/create_user/`, values, config)
 	.then( (response) => {
 		if(response.data.error) {
 			throw new error;
