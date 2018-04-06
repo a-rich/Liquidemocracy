@@ -97,8 +97,8 @@ def find_interesting_bills(interests, user_location, filtered_levels, index,
             level__in=filtered_levels,
             category__in=interests,
             location__in=bill_locations
-            ).only('id', 'title', 'category', 'level').order_by(
-                    '-date')[index:index+limit]
+            ).order_by('-date').only(
+                    'id', 'title', 'category', 'level')[index:index+limit]
 
     return recommended_bills
 

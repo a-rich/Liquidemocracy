@@ -84,9 +84,8 @@ def bills():
         bills = recommender.recommend_bills(email, levels, index, limit)
     else:
         bills = Bill.objects(level__in=levels,
-                category__in=categories).only(
-                        'id','title', 'category', 'level').order_by(
-                                '-date')[index:index+limit]
+                category__in=categories).order_by('-date').only(
+                        'id','title', 'category', 'level')[index:index+limit]
 
     return jsonify(bills=bills)
 
@@ -107,9 +106,8 @@ def default_bills():
     categories = [category] if category else all_categories
 
     bills = Bill.objects(level='federal',
-            category__in=categories).only(
-                    'id', 'title', 'category', 'level').order_by(
-                            '-date')[index:index+limit]
+            category__in=categories).order_by('-date').only(
+                    'id', 'title', 'category', 'level')[index:index+limit]
 
     return jsonify(bills=bills)
 
