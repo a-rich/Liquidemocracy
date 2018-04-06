@@ -85,7 +85,7 @@ def bills():
     else:
         bills = Bill.objects(level__in=levels,
                 category__in=categories).order_by('-date').only(
-                        'id','title', 'category', 'level')[index:index+limit]
+                        'id','title', 'category', 'level', 'date')[index:index+limit]
 
     return jsonify(bills=bills)
 
@@ -107,7 +107,7 @@ def default_bills():
 
     bills = Bill.objects(level='federal',
             category__in=categories).order_by('-date').only(
-                    'id', 'title', 'category', 'level')[index:index+limit]
+                    'id', 'title', 'category', 'level', 'date')[index:index+limit]
 
     return jsonify(bills=bills)
 
