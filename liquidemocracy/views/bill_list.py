@@ -139,45 +139,6 @@ def view_bill(bill_id):
     """
 
     #TODO: replace hard coded bill with a query to the Bill model
-    bill = {
-        'title': 'some bill',
-        'categories': ['technology', 'education'],
-        'keywords': ['generic', 'stuff'],
-        'description': "This is just a generic bill used as dummy data.",
-        'vote_info': {
-            'vote_date': '2018-06-01 12:00:00',
-            'yay': '17',
-            'nay': '12',
-            'voter_count': '53'
-        },
-        'discussion': {
-            0: {
-                'date': '2018-01-03 12:36:35.822487',
-                'vote_count': '4',
-                'text': 'This is bill is pointless.',
-                'children': {
-                    2: {
-                        'date': '2018-01-03 2:12:52.986234',
-                        'vote_count': '2',
-                        'text': 'I concur.',
-                        'children': {}
-                    }
-                }
-            },
-            1: {
-                'date': '2018-01-03 12:38:15.28763',
-                'vote_count': '0',
-                'text': 'I love this bill. We need more just like it.',
-                'children': {
-                    3: {
-                        'date': '2018-01-03 12:43:27.396273',
-                        'vote_count': '9',
-                        'text': 'You are the reason our country is going down the drain.',
-                        'children': {}
-                    }
-                }
-            }
-        }
-    }
+    bills = Bill.objects(id=bill_id)
 
     return jsonify(bill=bill)
