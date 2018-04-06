@@ -79,9 +79,9 @@ def bills():
     categories = [category] if category else all_categories
 
     if bill_filter == 'recommended':
-        bills = recommender.recommend_bills(email, levels)
+        bills = recommender.recommend_bills(email, levels)[:20]
     else:
-        bills = Bill.objects(level__in=levels, category__in=categories).order_by('-date')
+        bills = Bill.objects(level__in=levels, category__in=categories).order_by('-date')[:20]
 
     return jsonify(bills=bills)
 
@@ -99,7 +99,7 @@ def default_bills():
 
     categories = [category] if category else all_categories
 
-    bills = Bill.objects(level='federal', category__in=categories).order_by('-date')
+    bills = Bill.objects(level='federal', category__in=categories).order_by('-date')[:20]
 
     return jsonify(bills=bills)
 
