@@ -83,7 +83,8 @@ def convert_bill_location(user_location, level):
 
     return location
 
-def find_interesting_bills(interests, user_location, filtered_levels):
+def find_interesting_bills(interests, user_location, filtered_levels, index,
+        limit):
     """
         Query the Bill model for only those bills whose policy area is of
         interest to the user and is able to be voted on by the user.
@@ -96,7 +97,7 @@ def find_interesting_bills(interests, user_location, filtered_levels):
             level__in=filtered_levels,
             category__in=interests,
             location__in=bill_locations
-            )
+            ).only('title', 'category', 'level')[index:index+limit]
 
     return recommended_bills
 
@@ -153,7 +154,7 @@ def find_delegates(user, non_interests):
 
     return recommendations_map
 
-def recommend_bills(user_email, filtered_levels):
+def recommend_bills(user_email, filtered_levels, index, limit):
 
     try:
         user = User.objects.get(email=user_email)
@@ -166,7 +167,8 @@ def recommend_bills(user_email, filtered_levels):
     interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
     #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interests, non_interests = find_interests(interest_vector)
-    recommended_bills = find_interesting_bills(interests, user_location, filtered_levels)
+    recommended_bills = find_interesting_bills(interests, user_location,
+            filtered_levels, index, limit)
 
     return recommended_bills
 

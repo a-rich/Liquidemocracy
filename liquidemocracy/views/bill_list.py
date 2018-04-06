@@ -68,6 +68,8 @@ def bills():
     level = req['level']
     bill_filter = req['filter']
     category = req['category']
+    index = req['index']
+    limit = 100
 
     try:
         email=get_jwt_identity()
@@ -79,9 +81,11 @@ def bills():
     categories = [category] if category else all_categories
 
     if bill_filter == 'recommended':
-        bills = recommender.recommend_bills(email, levels)[:20]
+        bills = recommender.recommend_bills(email, levels, index, limit)
     else:
-        bills = Bill.objects(level__in=levels, category__in=categories).order_by('-date')[:20]
+        bills = Bill.objects(level__in=levels,
+                category__in=categories).order_by('-date').only(
+                        'title', 'category', 'level')[index:index+limit]
 
     return jsonify(bills=bills)
 
@@ -96,10 +100,14 @@ def default_bills():
 
     req = request.get_json()
     category = req['category']
+    index = req['index']
+    limit = 100
 
     categories = [category] if category else all_categories
 
-    bills = Bill.objects(level='federal', category__in=categories).order_by('-date')[:20]
+    bills = Bill.objects(level='federal',
+            category__in=categories).only(
+                    'title', 'category', 'level').order_by('-date')[index:index+limit]
 
     return jsonify(bills=bills)
 
