@@ -11,6 +11,6 @@ setup(
         'numpy', 'scipy', 'pandas', 'scikit-learn', 'slate', 'gunicorn',
         ],
     dependency_links=[
-        'https://github.com/alkivi-sas/slate/tree/python3'
+        'git+https://github.com/alkivi-sas/slate.git'
         ]
 )
