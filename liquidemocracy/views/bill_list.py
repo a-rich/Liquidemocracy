@@ -139,6 +139,6 @@ def view_bill(bill_id):
     """
 
     #TODO: replace hard coded bill with a query to the Bill model
-    bills = Bill.objects(id=bill_id)
+    bill = Bill.objects(id=bill_id)
 
     return jsonify(bill=bill)
