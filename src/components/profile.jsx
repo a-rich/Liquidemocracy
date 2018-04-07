@@ -69,9 +69,9 @@ class Profile extends Component {
 		{
 			this.props.initialize({email: this.props.profile.profile.email,
 								   name: this.props.profile.profile.name,
-								   county: this.props.profile.profile.residence.county,
-								   city: this.props.profile.profile.residence.city,
-								   state: this.props.profile.profile.residence.state});
+								   county: this.props.profile.profile.county,
+								   city: this.props.profile.profile.city,
+								   state: this.props.profile.profile.state});
 		}
 	}
 
@@ -81,7 +81,6 @@ class Profile extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 		const { handleSubmit, error } = this.props;
 		if(this.props.profile.profile == null) {
 			return (
