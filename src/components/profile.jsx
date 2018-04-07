@@ -81,6 +81,7 @@ class Profile extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 		const { handleSubmit, error } = this.props;
 		if(this.props.profile.profile == null) {
 			return (
