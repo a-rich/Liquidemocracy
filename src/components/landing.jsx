@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { fetchDefaultBills, fetchBills, logoutUser, loginUser } from '../actions';
 import { connect } from 'react-redux';
@@ -365,5 +365,5 @@ export default reduxForm({
 	validate,
 	form: 'LoginForm'
 })(
-connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser})(Landing)
+withRouter(connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser})(Landing))
 );
