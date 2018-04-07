@@ -9,7 +9,7 @@ export const LOGIN_USER = 'login_user';
 export const LOGOUT_USER = 'logout_user';
 export const FETCH_PROFILE = 'fetch_profile';
 
-const ROOT_URL = 'https://liquidemocracy.herokuapp.com/api';
+const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
 
 export function fetchDefaultBills(sort) {
 	const bodyOption = {

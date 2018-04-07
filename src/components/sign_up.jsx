@@ -6,7 +6,7 @@ import { createAccount, loginUser } from '../actions';
 import axios from 'axios';
 import _ from 'lodash';
 
-const ROOT_URL = 'https://liquidemocracy.herokuapp.com';
+const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
 
 class SignUp extends Component {
 
