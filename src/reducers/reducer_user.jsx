@@ -7,7 +7,7 @@ export default function(state = {user: {isUserLoggedIn: false}}, action) {
 			return { ...state, user: action.payload};
 		case LOGOUT_USER:
 		Object.keys(state).forEach(key => {
-            storage.removeItem(`persist:${key}`);
+            localStorage.removeItem(`persist:${key}`);
         });
         state = undefined;
 			return { ...state, user: action.payload};
