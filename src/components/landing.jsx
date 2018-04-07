@@ -216,22 +216,23 @@ class Landing extends Component {
 
 							<h6 className="text-center">Category</h6>
 								<select className="form-control" id="Options" onChange={this.billsCategory} value={this.props.value}>
+									<option value="All">All</option>
 									<option value="Taxation">Taxation</option>
-										<option value="Health">Health</option>
-										<option value="Armed Forces and National Security">Armed Forces and National Security</option>
-										<option value="Foreign Trade and International Finance">Foreign Trade and International Finance</option>
-										<option value="International Affairs">International Affairs</option>
-										<option value="Crime and Law Enforcement">Crime and Law Enforcement</option>
-										<option value="Transportation and Public Works">Transportation and Public Works</option>
-										<option value="Education">Education</option>
-										<option value="Energy">Energy</option>
-										<option value="Agriculture and Food">Agriculture and Food</option>
-										<option value="Economics and Public Finance">Economics and Public Finance</option>
-										<option value="Labor and Employement">Labor and Employement</option>
-										<option value="Environmental Protection">Environmental Protection</option>
-										<option value="Science, Technology, and Communications">Science, Technology, and Communications</option>
-										<option value="Immigration">Immigration</option>
-										<option value="Other">Other</option>
+									<option value="Health">Health</option>
+									<option value="Armed Forces and National Security">Armed Forces and National Security</option>
+									<option value="Foreign Trade and International Finance">Foreign Trade and International Finance</option>
+									<option value="International Affairs">International Affairs</option>
+									<option value="Crime and Law Enforcement">Crime and Law Enforcement</option>
+									<option value="Transportation and Public Works">Transportation and Public Works</option>
+									<option value="Education">Education</option>
+									<option value="Energy">Energy</option>
+									<option value="Agriculture and Food">Agriculture and Food</option>
+									<option value="Economics and Public Finance">Economics and Public Finance</option>
+									<option value="Labor and Employement">Labor and Employement</option>
+									<option value="Environmental Protection">Environmental Protection</option>
+									<option value="Science, Technology, and Communications">Science, Technology, and Communications</option>
+									<option value="Immigration">Immigration</option>
+									<option value="Other">Other</option>
 								</select>
 						</div>
 					
@@ -297,6 +298,7 @@ class Landing extends Component {
 
 								<h6 className="text-center">Category</h6>
 									<select className="form-control" id="Options" onChange={this.billsCategory} value={this.props.value}>
+										<option value="All">All</option>
 										<option value="Taxation">Taxation</option>
 										<option value="Health">Health</option>
 										<option value="Armed Forces and National Security">Armed Forces and National Security</option>
