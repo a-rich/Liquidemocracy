@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { fetchDefaultBills, fetchBills, logoutUser, loginUser } from '../actions';
 import { connect } from 'react-redux';
@@ -71,7 +71,7 @@ class Landing extends Component {
 		'Content-Type': 'application/json'
 	}}
 
-	const request = axios.post(`${ROOT_URL}/api/login/`, values, config)
+	axios.post(`${ROOT_URL}/api/login/`, values, config)
 	.then( (response) => {
 		if(response.data.error) {
 			throw new error;
@@ -85,7 +85,7 @@ class Landing extends Component {
 		throw new SubmissionError({_error: 'Failed to login.'});
 	});
 
-	return request;
+	
 	}
 
 	/*
@@ -365,5 +365,5 @@ export default reduxForm({
 	validate,
 	form: 'LoginForm'
 })(
-withRouter(connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser})(Landing))
+connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser})(Landing)
 );
