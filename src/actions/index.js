@@ -42,13 +42,18 @@ export function fetchDefaultBills(category) {
 export function fetchBills(category, filter, level, jwt) {
 
 	let c = "";
+	let l = "";
 
 	if(category != "All") {
 		c = category;
 	}
 
+	if(filter != "All") {
+		l = level;
+	}
+
 	const bodyOption = {
-			level: level,
+			level: l,
 			filter: filter,
 			category: c,
 			index: 0

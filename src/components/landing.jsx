@@ -71,7 +71,7 @@ class Landing extends Component {
 		'Content-Type': 'application/json'
 	}}
 
-	axios.post(`${ROOT_URL}/api/login/`, values, config)
+	const request = axios.post(`${ROOT_URL}/api/login/`, values, config)
 	.then( (response) => {
 		if(response.data.error) {
 			throw new error;
@@ -85,7 +85,7 @@ class Landing extends Component {
 		throw new SubmissionError({_error: 'Failed to login.'});
 	});
 
-	
+	return request;
 	}
 
 	/*
