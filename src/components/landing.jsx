@@ -97,6 +97,12 @@ class Landing extends Component {
 		filters actually filter bills 
 		accordingly. 
 	*/
+	defaultBillsCategory(e) {
+		this.setState({category: e.target.value}, () => {
+			this.props.fetchDefaultBills(this.state.category);
+		});
+	}
+
 	billsCategory(e) {
 		this.setState({category: e.target.value}, () => {
 			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
@@ -215,7 +221,7 @@ class Landing extends Component {
 								</select>
 
 							<h6 className="text-center">Category</h6>
-								<select className="form-control" id="Options" onChange={this.billsCategory} value={this.props.value}>
+								<select className="form-control" id="Options" onChange={this.defaultBillsCategory} value={this.props.value}>
 									<option value="All">All</option>
 									<option value="Taxation">Taxation</option>
 									<option value="Health">Health</option>
