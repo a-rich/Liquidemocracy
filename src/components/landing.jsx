@@ -23,6 +23,7 @@ class Landing extends Component {
 					  level: "Federal",
 					  filter: "All",
 					  type: "default"};
+		this.defaultBillsCategory = this.defaultBillsCategory.bind(this);
 	    this.billsCategory = this.billsCategory.bind(this);
 	    this.billsLevel = this.billsLevel.bind(this);
 	    this.billsFilter = this.billsFilter.bind(this);
