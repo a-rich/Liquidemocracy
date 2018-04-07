@@ -48,7 +48,7 @@ export function fetchBills(category, filter, level, jwt) {
 		c = category;
 	}
 
-	if(filter != "All") {
+	if(level != "All") {
 		l = level;
 	}
 
