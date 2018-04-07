@@ -50,7 +50,6 @@ export function fetchBills(category, filter, level, jwt) {
 	const bodyOption = {
 			level: level,
 			filter: filter,
-			sort: sort,
 			category: c,
 			index: 0
 	}
