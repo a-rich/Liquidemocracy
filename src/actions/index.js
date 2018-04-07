@@ -96,11 +96,6 @@ export function loginUser(values) {
 export function logoutUser() {
 	localStorage.removeItem("jwt");
 
-	Object.keys(state).forEach(key => {
-            storage.removeItem(`persist:${key}`);
-        });
-        state = undefined;
-
 	return {
 		type: LOGOUT_USER,
 		payload: {isUserLoggedIn: false}
