@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Field, reduxForm, SubmissionError, initialize } from 'redux-form';
 
-const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
+const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
 class Profile extends Component {
 	constructor(props) {
