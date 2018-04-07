@@ -67,6 +67,7 @@ class Profile extends Component {
 	handleInitialize() {
 		if(this.props.profile.profile != null)
 		{
+			console.log(this.props.profile.profile);
 			this.props.initialize({email: this.props.profile.profile.email,
 								   name: this.props.profile.profile.name,
 								   county: this.props.profile.profile.county,
