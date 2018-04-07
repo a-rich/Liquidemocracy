@@ -20,7 +20,7 @@ class Landing extends Component {
 	 constructor(props) {
 	    super(props);
 	    this.state = {category: "All",
-					  level: "Federal",
+					  level: "",
 					  filter: "All",
 					  type: "default"};
 		this.defaultBillsCategory = this.defaultBillsCategory.bind(this);
@@ -289,18 +289,18 @@ class Landing extends Component {
 
 								<h6 className="text-center">Level</h6>
 									<select className="form-control" id="Options" onChange={this.billsLevel} value={this.props.value}>
+										<option value="All">All</option>
 										<option value="City">City</option>
 										<option value="County">County</option>
 										<option value="State">State</option>
 										<option value="Federal">Federal</option>
-										<option value="All">All</option>
 									</select>
 
 								<h6 className="text-center">Filter</h6>
 									<select className="form-control" id="Options" onChange={this.billsFilter} value={this.props.value}>
+										<option value="All">All</option>
 										<option value="Recommended">Recommended</option>
 										<option value="Actionable">Actionable</option>
-										<option value="All">All</option>
 									</select>
 
 								<h6 className="text-center">Category</h6>
