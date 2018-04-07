@@ -15,7 +15,7 @@ export function fetchDefaultBills(category) {
 
 	let c = "";
 
-	if(category != "all") {
+	if(category != "All") {
 		c = category;
 	}
 
