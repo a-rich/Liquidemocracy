@@ -6,10 +6,6 @@ export default function(state = {user: {isUserLoggedIn: false}}, action) {
 		case LOGIN_USER:
 			return { ...state, user: action.payload};
 		case LOGOUT_USER:
-		Object.keys(state).forEach(key => {
-            localStorage.removeItem(`persist:${key}`);
-        });
-        state = undefined;
 			return { ...state, user: action.payload};
 		default:
 			return state;
