@@ -11,9 +11,16 @@ export const FETCH_PROFILE = 'fetch_profile';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
-export function fetchDefaultBills(sort) {
+export function fetchDefaultBills(category) {
+
+	let c = "";
+
+	if(category != "all") {
+		c = category;
+	}
+
 	const bodyOption = {
-		category: "",
+		category: c,
 		index: 0
 	}
 
