@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError} from 'redux-form';
 import axios from 'axios';
 
-const ROOT_URL = 'http://liquidemocracy.herokuapp.com';
+const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
 
 class BillDetail extends Component {
 	constructor(props) {
