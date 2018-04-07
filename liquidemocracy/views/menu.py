@@ -21,14 +21,12 @@ def profile():
     res = {
         'name': user.name,
         'email': user.email,
-        'residence': {
-            'city': user.city,
-            'county': user.county,
-            'state': user.state,
+        'city': user.residence.location.city,
+        'county': user.residence.location.county,
+        'state': user.residence.location.state,
         }
-    }
 
-    return jsonify(res=res)
+    return jsonify(res)
 
 
 @menu.route('/api/votes/active/', methods=['GET'])
