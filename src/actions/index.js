@@ -10,8 +10,6 @@ export const LOGOUT_USER = 'logout_user';
 export const FETCH_PROFILE = 'fetch_profile';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
-<<<<<<< HEAD
-=======
 
 export function fetchDefaultBills(category) {
 
@@ -20,7 +18,6 @@ export function fetchDefaultBills(category) {
 	if(category != "All") {
 		c = category;
 	}
->>>>>>> 02391122708780080797f0d3d25f8b7da49eb267
 
 	const bodyOption = {
 		category: c,
