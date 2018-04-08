@@ -153,6 +153,10 @@ class Landing extends Component {
 			work with. 
 		*/
 
+		if(Object.keys(this.props.bills.bills.bills).length == 0) {
+			return (<div>No results found.</div>);
+		}
+
 		return _.map(this.props.bills.bills, billArray => {
 			return _.map(billArray, bills => {
 				return(
