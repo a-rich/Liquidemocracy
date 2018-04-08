@@ -117,6 +117,7 @@ export function searchBills(query, category, index, level, filter) {
 
 	let c = "";
 	let l = "";
+	let token = localStorage.getItem("jwt");
 
 	if(category != "All") {
 		c = category;
@@ -136,7 +137,8 @@ export function searchBills(query, category, index, level, filter) {
 
 	const headers = {
 		headers: {
-		'Content-Type': 'application/json'
+		'Content-Type': 'application/json',
+		'Authorization': `Bearer ${token}`
 		}
 	}
 
