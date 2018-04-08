@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { fetchDefaultBills, fetchBills, logoutUser, loginUser } from '../actions';
+import { fetchDefaultBills, fetchBills, logoutUser, loginUser, searchBillsDefault } from '../actions';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
@@ -22,11 +22,14 @@ class Landing extends Component {
 	    this.state = {category: "All",
 					  level: "",
 					  filter: "All",
-					  type: "default"};
+					  type: "default",
+					  index: 0,
+					  query: ""};
 		this.defaultBillsCategory = this.defaultBillsCategory.bind(this);
 	    this.billsCategory = this.billsCategory.bind(this);
 	    this.billsLevel = this.billsLevel.bind(this);
 	    this.billsFilter = this.billsFilter.bind(this);
+	    this.handleQuery = this.handleQuery.bind(this);
   }
 
   	renderField(field) {
@@ -63,6 +66,10 @@ class Landing extends Component {
 	logout() {
 		this.props.logoutUser();
 		this.props.history.push("/");
+	}
+
+	handleQuery(e) {
+		this.setState({query: e.target.value});
 	}
 
 	onSubmit(values) {
@@ -201,8 +208,11 @@ class Landing extends Component {
 						<div className="col-3">
 
 							<div className="input-group">
-								<input className="form-control" placeholder="Search"></input>
-								<button className="btn btn-secondary"><i className="fas fa-search"></i></button>
+								<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
+								<button className="btn btn-secondary" 
+								onClick={() => this.props.searchBillsDefault(this.state.query, this.state.category, this.state.index)}>
+								<i className="fas fa-search"></i>
+								</button>
 							</div>
 
 							<h6 className="text-center">Level</h6>
@@ -365,5 +375,5 @@ export default reduxForm({
 	validate,
 	form: 'LoginForm'
 })(
-connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser})(Landing)
+connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser, searchBillsDefault})(Landing)
 );

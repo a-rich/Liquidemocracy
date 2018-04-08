@@ -8,6 +8,7 @@ export const FETCH_BILL = 'fetch_bill';
 export const LOGIN_USER = 'login_user';
 export const LOGOUT_USER = 'logout_user';
 export const FETCH_PROFILE = 'fetch_profile';
+export const SEARCH_DEFAULT_BILLS = 'search_default_bills';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
@@ -79,6 +80,34 @@ export function fetchBill(id) {
 
 	return {
 		type: FETCH_BILL,
+		payload: request
+	}
+}
+
+export function searchBillsDefault(query, category, index) {
+
+	let c = "";
+
+	if(category != "All") {
+		c = category;
+	}
+
+	const values = {
+		query: query,
+		category: c,
+		index: index
+	}
+
+	const headers = {
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	}
+
+	const request = axios.post(`${ROOT_URL}/bills/search/default/`, values, headers);
+
+	return {
+		type: SEARCH_DEFAULT_BILLS,
 		payload: request
 	}
 }
