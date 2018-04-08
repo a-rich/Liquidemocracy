@@ -155,9 +155,6 @@ class Landing extends Component {
 
 		return _.map(this.props.bills.bills, billArray => {
 			return _.map(billArray, bills => {
-				if(Object.keys(billArray).length == 0) {
-			return (<div>No result found</div>);
-		}
 				return(
 						<li className="list-group-item" key={bills._id.$oid}>
 							<Link to={`/bill/${bills._id.$oid}`}>
