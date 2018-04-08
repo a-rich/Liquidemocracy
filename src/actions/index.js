@@ -10,10 +10,20 @@ export const LOGOUT_USER = 'logout_user';
 export const FETCH_PROFILE = 'fetch_profile';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
+<<<<<<< HEAD
+=======
 
-export function fetchDefaultBills(sort) {
+export function fetchDefaultBills(category) {
+
+	let c = "";
+
+	if(category != "All") {
+		c = category;
+	}
+>>>>>>> 02391122708780080797f0d3d25f8b7da49eb267
+
 	const bodyOption = {
-		category: "",
+		category: c,
 		index: 0
 	}
 
@@ -32,12 +42,23 @@ export function fetchDefaultBills(sort) {
 	}
 }
 
-export function fetchBills(sort, filter, level, jwt) {
+export function fetchBills(category, filter, level, jwt) {
+
+	let c = "";
+	let l = "";
+
+	if(category != "All") {
+		c = category;
+	}
+
+	if(level != "All") {
+		l = level;
+	}
+
 	const bodyOption = {
-			level: level,
+			level: l,
 			filter: filter,
-			sort: sort,
-			category: "",
+			category: c,
 			index: 0
 	}
 

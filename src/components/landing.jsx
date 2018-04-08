@@ -19,11 +19,12 @@ const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
 class Landing extends Component {
 	 constructor(props) {
 	    super(props);
-	    this.state = {sort: "New",
-					  level: "Federal",
+	    this.state = {category: "All",
+					  level: "",
 					  filter: "All",
 					  type: "default"};
-	    this.billsSort = this.billsSort.bind(this);
+		this.defaultBillsCategory = this.defaultBillsCategory.bind(this);
+	    this.billsCategory = this.billsCategory.bind(this);
 	    this.billsLevel = this.billsLevel.bind(this);
 	    this.billsFilter = this.billsFilter.bind(this);
   }
@@ -51,11 +52,11 @@ class Landing extends Component {
   	// Get the list of bills into reducer.	
 	componentDidMount() {
 			if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
-				this.props.fetchDefaultBills(this.state.sort);
+				this.props.fetchDefaultBills(this.state.category);
 			}
 			else
 			{
-				this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+				this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
 			}
 		}
 
@@ -97,21 +98,27 @@ class Landing extends Component {
 		filters actually filter bills 
 		accordingly. 
 	*/
-	billsSort(e) {
-		this.setState({sort: e.target.value}, () => {
-			this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+	defaultBillsCategory(e) {
+		this.setState({category: e.target.value}, () => {
+			this.props.fetchDefaultBills(this.state.category);
+		});
+	}
+
+	billsCategory(e) {
+		this.setState({category: e.target.value}, () => {
+			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
 		});
 	}
 
 	billsLevel(e) {
 		this.setState({level: e.target.value}, () => {
-			this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
 		});
 	}
 
 	billsFilter(e) {
 		this.setState({filter: e.target.value}, () => {
-			this.props.fetchBills(this.state.sort, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
 		});
 	}
 
@@ -214,12 +221,25 @@ class Landing extends Component {
 									<option value="All">All</option>
 								</select>
 
-							<h6 className="text-center">Sort</h6>
-								<select className="form-control" id="Options" onChange={this.billsSort} value={this.props.value}>
-									<option disabled value="Recommended">Recommended</option>
-									<option value="New">New</option>
-									<option disabled value="Time Until Vote">Time Until Vote</option>
-									<option disabled value="Popular">Popular</option>
+							<h6 className="text-center">Category</h6>
+								<select className="form-control" id="Options" onChange={this.defaultBillsCategory} value={this.props.value}>
+									<option value="All">All</option>
+									<option value="Taxation">Taxation</option>
+									<option value="Health">Health</option>
+									<option value="Armed Forces and National Security">Armed Forces and National Security</option>
+									<option value="Foreign Trade and International Finance">Foreign Trade and International Finance</option>
+									<option value="International Affairs">International Affairs</option>
+									<option value="Crime and Law Enforcement">Crime and Law Enforcement</option>
+									<option value="Transportation and Public Works">Transportation and Public Works</option>
+									<option value="Education">Education</option>
+									<option value="Energy">Energy</option>
+									<option value="Agriculture and Food">Agriculture and Food</option>
+									<option value="Economics and Public Finance">Economics and Public Finance</option>
+									<option value="Labor and Employement">Labor and Employement</option>
+									<option value="Environmental Protection">Environmental Protection</option>
+									<option value="Science, Technology, and Communications">Science, Technology, and Communications</option>
+									<option value="Immigration">Immigration</option>
+									<option value="Other">Other</option>
 								</select>
 						</div>
 					
@@ -269,26 +289,39 @@ class Landing extends Component {
 
 								<h6 className="text-center">Level</h6>
 									<select className="form-control" id="Options" onChange={this.billsLevel} value={this.props.value}>
+										<option value="All">All</option>
 										<option value="City">City</option>
 										<option value="County">County</option>
 										<option value="State">State</option>
 										<option value="Federal">Federal</option>
-										<option value="All">All</option>
 									</select>
 
 								<h6 className="text-center">Filter</h6>
 									<select className="form-control" id="Options" onChange={this.billsFilter} value={this.props.value}>
+										<option value="All">All</option>
 										<option value="Recommended">Recommended</option>
 										<option value="Actionable">Actionable</option>
-										<option value="All">All</option>
 									</select>
 
-								<h6 className="text-center">Sort</h6>
-									<select className="form-control" id="Options" onChange={this.billsSort} value={this.props.value}>
-										<option value="Recommended">Recommended</option>
-										<option value="New">New</option>
-										<option value="Time Until Vote">Time Until Vote</option>
-										<option value="Popular">Popular</option>
+								<h6 className="text-center">Category</h6>
+									<select className="form-control" id="Options" onChange={this.billsCategory} value={this.props.value}>
+										<option value="All">All</option>
+										<option value="Taxation">Taxation</option>
+										<option value="Health">Health</option>
+										<option value="Armed Forces and National Security">Armed Forces and National Security</option>
+										<option value="Foreign Trade and International Finance">Foreign Trade and International Finance</option>
+										<option value="International Affairs">International Affairs</option>
+										<option value="Crime and Law Enforcement">Crime and Law Enforcement</option>
+										<option value="Transportation and Public Works">Transportation and Public Works</option>
+										<option value="Education">Education</option>
+										<option value="Energy">Energy</option>
+										<option value="Agriculture and Food">Agriculture and Food</option>
+										<option value="Economics and Public Finance">Economics and Public Finance</option>
+										<option value="Labor and Employement">Labor and Employement</option>
+										<option value="Environmental Protection">Environmental Protection</option>
+										<option value="Science, Technology, and Communications">Science, Technology, and Communications</option>
+										<option value="Immigration">Immigration</option>
+										<option value="Other">Other</option>
 									</select>
 							</div>
 					</div>

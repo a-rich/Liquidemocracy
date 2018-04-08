@@ -69,9 +69,9 @@ class Profile extends Component {
 		{
 			this.props.initialize({email: this.props.profile.profile.email,
 								   name: this.props.profile.profile.name,
-								   county: this.props.profile.profile.residence.county,
-								   city: this.props.profile.profile.residence.city,
-								   state: this.props.profile.profile.residence.state});
+								   county: this.props.profile.profile.county,
+								   city: this.props.profile.profile.city,
+								   state: this.props.profile.profile.state});
 		}
 	}
 
@@ -116,9 +116,9 @@ class Profile extends Component {
 					<div className="container-fluid">
 						<h4>Email: {this.props.profile.profile.email}</h4>
 						<h4>Name: {this.props.profile.profile.name}</h4>
-						<h4>County: {this.props.profile.profile.residence.county}</h4>
-						<h4>City: {this.props.profile.profile.residence.city}</h4>
-						<h4>State: {this.props.profile.profile.residence.state}</h4>
+						<h4>County: {this.props.profile.profile.county}</h4>
+						<h4>City: {this.props.profile.profile.city}</h4>
+						<h4>State: {this.props.profile.profile.state}</h4>
 
 						<button className="btn btn-warning" onClick={() => this.setState({editing: true})}>Edit</button>
 					</div>
