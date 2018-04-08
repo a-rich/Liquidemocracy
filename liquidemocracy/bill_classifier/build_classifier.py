@@ -42,6 +42,6 @@ for model_name, clf in classifiers:
     print('Took {} seconds to train and predict using {}'.format(time() - start, model_name))
     report = classification_report(y_test, predictions)
     print(report)
-    with open('reports.txt', 'a') as f:
-        f.write('############### {} ###############\n{}\n{}\n'.format(model_name, clf.get_params(), report))
-    joblib.dump(clf, 'classifier.pkl')
+    #with open('reports.txt', 'a') as f:
+     #   f.write('############### {} ###############\n{}\n{}\n'.format(model_name, clf.get_params(), report))
+    #joblib.dump(clf, 'classifier.pkl')
