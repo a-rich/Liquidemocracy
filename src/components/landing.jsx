@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { fetchDefaultBills, fetchBills, logoutUser, loginUser, searchBillsDefault } from '../actions';
+import { fetchDefaultBills, fetchBills, logoutUser, loginUser, searchBillsDefault, searchBills } from '../actions';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
@@ -298,8 +298,12 @@ class Landing extends Component {
 							<div className="col-3">
 
 								<div className="input-group">
-									<input className="form-control" placeholder="Search"></input>
-									<button className="btn btn-secondary"><i className="fas fa-search"></i></button>
+									<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
+									<button className="btn btn-secondary" 
+									onClick={() => 
+										this.props.searchBills(this.state.query, this.state.category, this.state.index, this.state.level, this.state.filter)}>
+								<i className="fas fa-search"></i>
+								</button>
 								</div>
 
 								<h6 className="text-center">Level</h6>
@@ -380,5 +384,5 @@ export default reduxForm({
 	validate,
 	form: 'LoginForm'
 })(
-connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser, searchBillsDefault})(Landing)
+connect(mapStateToProps, {fetchDefaultBills, fetchBills, logoutUser, loginUser, searchBillsDefault, searchBills})(Landing)
 );

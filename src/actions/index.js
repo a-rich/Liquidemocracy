@@ -9,6 +9,7 @@ export const LOGIN_USER = 'login_user';
 export const LOGOUT_USER = 'logout_user';
 export const FETCH_PROFILE = 'fetch_profile';
 export const SEARCH_DEFAULT_BILLS = 'search_default_bills';
+export const SEARCH_BILLS = 'search_bills';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
@@ -108,6 +109,41 @@ export function searchBillsDefault(query, category, index) {
 
 	return {
 		type: SEARCH_DEFAULT_BILLS,
+		payload: request
+	}
+}
+
+export function searchBills(query, category, index, level, filter) {
+
+	let c = "";
+	let l = "";
+
+	if(category != "All") {
+		c = category;
+	}
+
+	if(level != "All") {
+		c = level;
+	}
+
+	const values = {
+		query: query,
+		level: l,
+		filter: filter,
+		category: c,
+		index: index
+	}
+
+	const headers = {
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	}
+
+	const request = axios.post(`${ROOT_URL}/bills/search/`, values, headers);
+
+	return {
+		type: SEARCH_BILLS,
 		payload: request
 	}
 }
