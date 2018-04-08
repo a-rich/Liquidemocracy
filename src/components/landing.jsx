@@ -152,7 +152,7 @@ class Landing extends Component {
 			once there is a lot of bills to
 			work with. 
 		*/
-		if(Object.keys(this.props.bills.bills).length == 0) {
+		if(Object.keys(this.props.bills).length == 0) {
 			return (<div>No result found</div>);
 		}
 
