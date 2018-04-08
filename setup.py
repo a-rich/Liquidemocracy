@@ -1,5 +1,9 @@
 from setuptools import setup
 
+#TODO: figure out how to override PyPi installation of Slate in favore of this
+# forked version that doesn't have the relative import error:
+#    https://github.com/alkivi-sas/slate/tree/python3
+
 setup(
     name='liquidemocracy',
     packages=['liquidemocracy'],
