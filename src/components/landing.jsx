@@ -152,6 +152,10 @@ class Landing extends Component {
 			once there is a lot of bills to
 			work with. 
 		*/
+		if(this.prop.bills.bills.length == 0) {
+			return (<div>No result found</div>);
+		}
+
 		return _.map(this.props.bills.bills, billArray => {
 			return _.map(billArray, bills => {
 				return(
