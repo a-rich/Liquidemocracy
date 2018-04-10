@@ -309,10 +309,10 @@ class Landing extends Component {
 								<h6 className="text-center">Level</h6>
 									<select className="form-control" id="Options" onChange={this.billsLevel} value={this.props.value}>
 										<option value="All">All</option>
-										<option value="City">City</option>
-										<option value="County">County</option>
-										<option value="State">State</option>
-										<option value="Federal">Federal</option>
+										<option value="cities">City</option>
+										<option value="counties">County</option>
+										<option value="states">State</option>
+										<option value="federal">Federal</option>
 									</select>
 
 								<h6 className="text-center">Filter</h6>
