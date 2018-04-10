@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError} from 'redux-form';
 import axios from 'axios';
 
-const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
+const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
 class BillDetail extends Component {
 	constructor(props) {
@@ -54,7 +54,7 @@ class BillDetail extends Component {
 		'Content-Type': 'application/json'
 	}}
 
-	const request = axios.post(`${ROOT_URL}/api/login/`, values, config)
+	const request = axios.post(`${ROOT_URL}/login/`, values, config)
 	.then( (response) => {
 		if(response.data.error) {
 			throw new error;
