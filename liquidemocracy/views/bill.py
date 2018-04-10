@@ -86,8 +86,8 @@ def vote():
 
     bill = Bill.objects.get(id=bill_id)
 
-    if bill_id in user.cast_votes
-            or bill_id in [v.bill_id for v in user.delegated_votes]
+    if bill_id in user.cast_votes \
+            or bill_id in [v.bill_id for v in user.delegated_votes] \
             or bill.category in [c.category for c in user.delegated_categories]:
 
         return jsonify(msg='You have either cast or delegated a vote on this bill or otherwise delegated the category this bill belongs in to another user.')
