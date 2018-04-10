@@ -13,7 +13,7 @@ export const SEARCH_BILLS = 'search_bills';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
-export function fetchDefaultBills(category) {
+export function fetchDefaultBills(category, query) {
 
 	let c = "";
 
@@ -23,6 +23,7 @@ export function fetchDefaultBills(category) {
 
 	const bodyOption = {
 		category: c,
+		query: query
 		index: 0
 	}
 
@@ -41,7 +42,7 @@ export function fetchDefaultBills(category) {
 	}
 }
 
-export function fetchBills(category, filter, level, jwt) {
+export function fetchBills(category, filter, level, query, jwt) {
 
 	let c = "";
 	let l = "";
@@ -58,6 +59,7 @@ export function fetchBills(category, filter, level, jwt) {
 			level: l,
 			filter: filter,
 			category: c,
+			query: query
 			index: 0
 	}
 

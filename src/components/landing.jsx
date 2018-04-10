@@ -55,11 +55,11 @@ class Landing extends Component {
   	// Get the list of bills into reducer.	
 	componentDidMount() {
 			if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
-				this.props.fetchDefaultBills(this.state.category);
+				this.props.fetchDefaultBills(this.state.category, this.state.query);
 			}
 			else
 			{
-				this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+				this.props.fetchBills(this.state.category, this.state.filter, this.state.level, this.state.query, localStorage.getItem("jwt"));
 			}
 		}
 
