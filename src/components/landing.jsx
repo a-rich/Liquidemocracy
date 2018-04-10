@@ -107,25 +107,25 @@ class Landing extends Component {
 	*/
 	defaultBillsCategory(e) {
 		this.setState({category: e.target.value}, () => {
-			this.props.fetchDefaultBills(this.state.category);
+			this.props.fetchDefaultBills(this.state.category, this.state.query);
 		});
 	}
 
 	billsCategory(e) {
 		this.setState({category: e.target.value}, () => {
-			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, this.state.query, localStorage.getItem("jwt"));
 		});
 	}
 
 	billsLevel(e) {
 		this.setState({level: e.target.value}, () => {
-			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, this.state.query, localStorage.getItem("jwt"));
 		});
 	}
 
 	billsFilter(e) {
 		this.setState({filter: e.target.value}, () => {
-			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, localStorage.getItem("jwt"));
+			this.props.fetchBills(this.state.category, this.state.filter, this.state.level, this.state.query, localStorage.getItem("jwt"));
 		});
 	}
 
@@ -215,7 +215,7 @@ class Landing extends Component {
 							<div className="input-group">
 								<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
 								<button className="btn btn-secondary" 
-								onClick={() => this.props.searchBillsDefault(this.state.query, this.state.category, this.state.index)}>
+								onClick={() => this.props.fetchDefaultBills(this.state.query, this.state.category, this.state.index)}>
 								<i className="fas fa-search"></i>
 								</button>
 							</div>
@@ -301,7 +301,7 @@ class Landing extends Component {
 									<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
 									<button className="btn btn-secondary" 
 									onClick={() => 
-										this.props.searchBills(this.state.query, this.state.category, this.state.index, this.state.level, this.state.filter)}>
+										this.props.fetchBills(this.state.category, this.state.filter, this.state.level, this.state.query, localStorage.getItem("jwt"))}>
 								<i className="fas fa-search"></i>
 								</button>
 								</div>
