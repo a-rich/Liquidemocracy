@@ -252,7 +252,7 @@ class Landing extends Component {
 									<option value="Economics and Public Finance">Economics and Public Finance</option>
 									<option value="Labor and Employement">Labor and Employement</option>
 									<option value="Environmental Protection">Environmental Protection</option>
-									<option value="Science, Technology, and Communications">Science, Technology, and Communications</option>
+									<option value="Science, Technology, Communications">Science, Technology, Communications</option>
 									<option value="Immigration">Immigration</option>
 									<option value="Other">Other</option>
 								</select>
@@ -338,7 +338,7 @@ class Landing extends Component {
 										<option value="Economics and Public Finance">Economics and Public Finance</option>
 										<option value="Labor and Employement">Labor and Employement</option>
 										<option value="Environmental Protection">Environmental Protection</option>
-										<option value="Science, Technology, and Communications">Science, Technology, and Communications</option>
+										<option value="Science, Technology, Communications">Science, Technology, Communications</option>
 										<option value="Immigration">Immigration</option>
 										<option value="Other">Other</option>
 									</select>
