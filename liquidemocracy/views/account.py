@@ -1,7 +1,7 @@
 import datetime
 from flask import Blueprint, request, url_for, render_template, jsonify
 from flask import current_app as app
-from flask_jwt_simple import import jwt_required, get_jwt_identity
+from flask_jwt_simple import jwt_required, get_jwt_identity
 from liquidemocracy.models import User, InterestVector, Residence, Location
 from liquidemocracy.utils import send_email
 from itsdangerous import URLSafeTimedSerializer
