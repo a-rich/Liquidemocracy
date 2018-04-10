@@ -318,8 +318,8 @@ class Landing extends Component {
 								<h6 className="text-center">Filter</h6>
 									<select className="form-control" id="Options" onChange={this.billsFilter} value={this.props.value}>
 										<option value="All">All</option>
-										<option value="Recommended">Recommended</option>
-										<option value="Actionable">Actionable</option>
+										<option value="recommended">Recommended</option>
+										<option value="actionable">Actionable</option>
 									</select>
 
 								<h6 className="text-center">Category</h6>
