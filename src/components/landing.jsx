@@ -5,7 +5,7 @@ import { fetchDefaultBills, fetchBills, logoutUser, loginUser, searchBillsDefaul
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
 
-const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
+const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
 /**********************************
 	Landing Page for Liquidemocracy
@@ -78,7 +78,7 @@ class Landing extends Component {
 		'Content-Type': 'application/json'
 	}}
 
-	const request = axios.post(`${ROOT_URL}/api/login/`, values, config)
+	const request = axios.post(`${ROOT_URL}/login/`, values, config)
 	.then( (response) => {
 		if(response.data.error) {
 			throw new error;
