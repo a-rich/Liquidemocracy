@@ -33,10 +33,6 @@ class BillDetail extends Component {
 			);
 	}
 
-	componentWillReceiveProps(nextProps) {
-		this.fetchBill(nextProps.params.id);
-	}
-
 	componentDidMount() {
 		if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
 			this.setState({button: "disabled"});
