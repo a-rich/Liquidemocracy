@@ -46,7 +46,7 @@ def delegate():
 
 @active_votes.route('/api/votes/active/', methods=['GET'])
 @jwt_required
-def active_votes():
+def votes_active():
     """
         This endpoint returns the data for the active votes view. This includes
         'delegations' (just 'people' -- note: 'legislation' is the same data as
