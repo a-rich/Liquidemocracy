@@ -65,6 +65,16 @@ class Delegate(db.EmbeddedDocument):
     bills = db.ListField(db.EmbeddedDocumentField(DelegatedBill))
     categories = db.ListField(db.StringField())
 
+class DelegatedVote(db.EmbeddedDocument):
+    delegate = db.ObjectIdField(required=True)
+    delegator = db.ObjectIdField(required=True)
+    bill_id = db.ObjectIDField(required=True)
+
+class DelegatedCategory(db.EmbeddedDocument):
+    delegate = db.ObjectIdField(required=True)
+    delegator = db.ObjectIdField(required=True)
+    category = db.StringField(required=True)
+
 class User(db.Document):
     email = db.EmailField(required=True)
     password = db.StringField(required=True)
@@ -72,6 +82,11 @@ class User(db.Document):
     residence = db.EmbeddedDocumentField(Residence, required=True)
     interest_vector = db.EmbeddedDocumentField(InterestVector, required=True)
     delegates = db.ListField(db.EmbeddedDocumentField(Delegate))
+    delegated_votes = db.ListField(db.EmbeddedDocumentField(DelegatedVote))
+    received_votes = db.ListField(db.EmbeddedDocumentField(DelegatedVote))
+    cast_votes = db.ListField(db.ObjectIdField())
+    delegated_categories = db.ListField(db.EmbeddedDocumentField(DelegatedCategory))
+    received_categories = db.ListField(db.EmbeddedDocumentField(DelegatedCategory))
 
     @staticmethod
     def exists(email):

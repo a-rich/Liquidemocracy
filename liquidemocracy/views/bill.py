@@ -1,16 +1,19 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_simple import jwt_required, get_jwt_identity
-from liquidemocracy.models import User
+from liquidemocracy.models import User, DelegatedVote
 
 bill = Blueprint('bill', __name__)
 
-@bill.route('/api/bill/watch/<bill_id>/', methods=['GET'])
+@bill.route('/api/bill/watch/', methods=['GET'])
 @jwt_required
-def watch_bill(bill_id):
+def watch_bill():
     """
         This endpoint adds the bill identified by the request parameter
         'bill_id' to the user's watched bills.
     """
+
+    req = request.get_json()
+    bill_id = req['bill_id']
 
     try:
         user = User.objects.get(email=get_jwt_identity())
@@ -79,12 +82,37 @@ def vote():
     try:
         user = User.objects.get(email=get_jwt_identity())
     except Exception as e:
-        print(e)
         return jsonify(error='Failure: no user {} in the database.'.format(get_jwt_identity()))
 
-    #TODO: update 'votes' for bill and 'voted on bills' for user
+    bill = Bill.objects.get(id=bill_id)
 
-    return jsonify(msg='User {} voted \'{}\' on bill with ID={}'.format(get_jwt_identity(), vote, bill_id))
+    if bill_id in user.cast_votes
+            or bill_id in [v.bill_id for v in user.delegated_votes]
+            or bill.category in [c.category for c in user.delegated_categories]:
+
+        return jsonify(msg='You have either cast or delegated a vote on this bill or otherwise delegated the category this bill belongs in to another user.')
+
+    vote_weight = 0
+    delegating_users = []
+    for received_vote in user.received_votes:
+        if bill_id == received_vote.bill_id:
+            delegating_users.append(received_vote.delegator)
+            vote_weight += 1
+    for received_category in user.received_categories:
+        if bill.category == received_categories
+            and received_category.delegator not in delegating_users:
+                vote_weight += 1
+
+    if vote == 'yay':
+        bill.vote_info.yay += vote_weight
+    elif vote == 'nay':
+        bill.vote_info.nay += vote_weight
+
+    user.cast_votes.append(bill_id)
+
+    return jsonify(msg='User {} voted \'{}\' on bill with ID={} with a vote weight {}'.format(
+        get_jwt_identity(), vote, bill_id, vote_weight))
+
 
 @bill.route('/api/retrieve_delegates/', methods=['GET'])
 @jwt_required
@@ -102,7 +130,7 @@ def retrieve_delegates():
 
     delegates = [{d.user_id: d.name} for d in user.delegates]
 
-    return jsonify(delegates=delegates)
+    return jsonify(delegates)
 
 
 @bill.route('/api/bill/delegate/', methods=['POST'])
@@ -114,14 +142,24 @@ def delegate():
 
     req = request.get_json()
     bill_id = req['bill_id']
-    delegate = req['delegate']
+    delegate_id = req['delegate']
 
     try:
         user = User.objects.get(email=get_jwt_identity())
     except Exception as e:
-        print(e)
-        return jsonify(error='Failure: no user {} in the database.'.format(get_jwt_identity()))
+        return jsonify(msg='Failure: no user {} in the database.'.format(get_jwt_identity()))
 
-    #TODO: get user's delegate and allocate a vote to them for the given bill
+    try:
+        delegate = User.objects.get(id=delegate_id)
+    except Exception as e:
+        return jsonify(msg='Failure: no user {} in the database.'.format(delegate_id))
 
-    return jsonify(msg='User {} delegated a vote for bill with ID={} to user with ID={}'.format(get_jwt_identity(), bill_id, "ObjectId('5a4d51db98bfd522c1a72e49')"))
+    delegated_vote = DelegatedVote(
+            delegator=user,
+            delegate=delegate,
+            bill_id=bill_id)
+
+    user.delegated_votes.append(delegated_vote)
+    delegate.received_votes.append(delegated_vote)
+
+    return jsonify(msg='success')
