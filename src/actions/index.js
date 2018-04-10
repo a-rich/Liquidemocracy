@@ -23,7 +23,7 @@ export function fetchDefaultBills(category, query) {
 
 	const bodyOption = {
 		category: c,
-		query: query
+		query: query,
 		index: 0
 	}
 
@@ -59,7 +59,7 @@ export function fetchBills(category, filter, level, query, jwt) {
 			level: l,
 			filter: filter,
 			category: c,
-			query: query
+			query: query,
 			index: 0
 	}
 
