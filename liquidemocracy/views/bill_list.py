@@ -87,6 +87,9 @@ def bills():
     """
 
     req = request.get_json()
+
+    print('\n{}\n'.format(req))
+
     level = req['level']
     bill_filter = req['filter']
     category = req['category']
