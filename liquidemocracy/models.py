@@ -68,7 +68,7 @@ class Delegate(db.EmbeddedDocument):
 class DelegatedVote(db.EmbeddedDocument):
     delegate = db.ObjectIdField(required=True)
     delegator = db.ObjectIdField(required=True)
-    bill_id = db.ObjectIDField(required=True)
+    bill_id = db.ObjectIdField(required=True)
 
 class DelegatedCategory(db.EmbeddedDocument):
     delegate = db.ObjectIdField(required=True)
