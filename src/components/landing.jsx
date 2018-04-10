@@ -215,7 +215,7 @@ class Landing extends Component {
 							<div className="input-group">
 								<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
 								<button className="btn btn-secondary" 
-								onClick={() => this.props.fetchDefaultBills(this.state.query, this.state.category, this.state.index)}>
+								onClick={() => this.props.fetchDefaultBills(this.state.category, this.state.query, this.state.index)}>
 								<i className="fas fa-search"></i>
 								</button>
 							</div>
