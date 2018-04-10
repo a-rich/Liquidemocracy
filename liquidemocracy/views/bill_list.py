@@ -31,6 +31,8 @@ all_categories = [
             'Other'
             ]
 
+limit = 100
+
 @bill_list.route('/api/login/', methods=['POST'])
 def login():
     """
@@ -64,15 +66,23 @@ def default_bills():
     """
 
     req = request.get_json()
+    query = req['query']
     category = req['category']
     index = req['index']
-    limit = 100
 
     categories = [category] if category else all_categories
 
-    bills = Bill.objects(level='federal',
-            category__in=categories).order_by('-date').only(
-                    'id', 'title', 'category', 'level', 'date')[index:index+limit]
+    if query:
+        bills = Bill.objects(
+                title__icontains=query,
+                level='federal',
+                category__in=categories).order_by('-date').only(
+                'id', 'title', 'category', 'level', 'date')[index:index+limit]
+    else:
+        bills = Bill.objects(
+                level='federal',
+                category__in=categories).order_by('-date').only(
+                'id', 'title', 'category', 'level', 'date')[index:index+limit]
 
     return jsonify(bills=bills)
 
@@ -87,72 +97,11 @@ def bills():
     """
 
     req = request.get_json()
-
-    print('\n{}\n'.format(req))
-
+    query = req['query']
     level = req['level']
     bill_filter = req['filter']
     category = req['category']
     index = req['index']
-    limit = 100
-
-    try:
-        email=get_jwt_identity()
-    except Exception as e:
-        print(e)
-        return jsonify(error='Invalid credentials. Try loging in again.')
-
-    levels= [level] if level else all_levels
-    categories = [category] if category else all_categories
-
-    if bill_filter == 'recommended':
-        bills = recommender.recommend_bills(email, levels, index, limit)
-    else:
-        bills = Bill.objects(level__in=levels,
-                category__in=categories).order_by('-date').only(
-                        'id','title', 'category', 'level', 'date')[index:index+limit]
-
-    return jsonify(bills=bills)
-
-
-@bill_list.route('/api/bills/search/default/', methods=['POST'])
-def default_search():
-    """
-        This endpoint queries the Bill model for bills having a title or
-        keywords containing any space-separated substring of the query and
-        returns a list of these bills.
-    """
-
-    req = request.get_json()
-    query = req['query']
-    category = req['category']
-    index = req['index']
-    limit = 100
-
-    categories = [category] if category else all_categories
-
-    bills = Bill.objects(title__icontains=query, category__in=categories).only(
-            'id', 'title', 'category', 'level', 'date')[index:index+limit]
-
-    return jsonify(bills=bills)
-
-
-@bill_list.route('/api/bills/search/', methods=['POST'])
-@jwt_required
-def search():
-    """
-        This endpoint queries the Bill model for bills having a title or
-        keywords containing any space-separated substring of the query and
-        returns a list of these bills.
-    """
-
-    req = request.get_json()
-    query = req['query']
-    level = req['level']
-    category = req['category']
-    bill_filter = req['filter']
-    index = req['index']
-    limit = 100
 
     try:
         email=get_jwt_identity()
@@ -165,11 +114,17 @@ def search():
 
     if bill_filter == 'recommended':
         bills = recommender.recommend_bills(email, levels, index, limit, query)
-    else:
-        bills = Bill.objects(title__icontains=query,
+    elif query:
+        bills = Bill.objects(
+                title__icontains=query,
                 level__in=levels,
-                category__in=categories).only(
-                'id', 'title', 'category', 'level', 'date')[index:index+limit]
+                category__in=categories).order_by('-date').only(
+                    'id', 'title', 'category', 'level', 'date')[index:index+limit]
+    else:
+        bills = Bill.objects(
+                level__in=levels,
+                category__in=categories).order_by('-date').only(
+                    'id','title', 'category', 'level', 'date')[index:index+limit]
 
     return jsonify(bills=bills)
 
