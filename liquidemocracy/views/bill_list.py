@@ -68,7 +68,7 @@ def default_bills():
     req = request.get_json()
     query = req['query']
     category = req['category']
-    index = req['index']
+    index = req['index'] * limit
 
     categories = [category] if category else all_categories
 
@@ -101,7 +101,7 @@ def bills():
     level = req['level']
     bill_filter = req['filter']
     category = req['category']
-    index = req['index']
+    index = req['index'] * limit
 
     try:
         email=get_jwt_identity()
