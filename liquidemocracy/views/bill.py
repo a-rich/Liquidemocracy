@@ -99,7 +99,7 @@ def vote():
             delegating_users.append(received_vote.delegator)
             vote_weight += 1
     for received_category in user.received_categories:
-        if bill.category == received_categories
+        if bill.category == received_category \
             and received_category.delegator not in delegating_users:
                 vote_weight += 1
 
