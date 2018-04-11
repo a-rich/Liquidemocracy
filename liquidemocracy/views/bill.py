@@ -156,7 +156,7 @@ def delegate():
 
     delegated_vote = DelegatedVote(
             delegator=user.id,
-            delegate=delegate,
+            delegate=delegate_id,
             bill_id=bill_id)
 
     print('\nBEFORE\nUsers delegated votes: {}\nDelegates received votes: {}\n'.format(
