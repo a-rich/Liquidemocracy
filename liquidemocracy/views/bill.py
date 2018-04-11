@@ -166,4 +166,7 @@ def delegate():
     print('\nAFTER\nUsers delegated votes: {}\nDelegates received votes: {}\n'.format(
         user.delegated_votes, delegate.received_votes))
 
+    user.save()
+    delegate.save()
+
     return jsonify(msg='success')
