@@ -159,7 +159,11 @@ def delegate():
             delegate=delegate,
             bill_id=bill_id)
 
+    print('\nBEFORE\nUsers delegated votes: {}\nDelegates received votes: {}\n'.format(
+        user.delegated_votes, delegate.received_votes))
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
+    print('\nAFTER\nUsers delegated votes: {}\nDelegates received votes: {}\n'.format(
+        user.delegated_votes, delegate.received_votes))
 
     return jsonify(msg='success')
