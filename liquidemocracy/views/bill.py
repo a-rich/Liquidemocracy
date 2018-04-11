@@ -110,6 +110,8 @@ def vote():
 
     user.cast_votes.append(bill_id)
 
+    user.save()
+
     return jsonify(msg='User {} voted \'{}\' on bill with ID={} with a vote weight {}'.format(
         get_jwt_identity(), vote, bill_id, vote_weight))
 
@@ -159,12 +161,8 @@ def delegate():
             delegate=delegate_id,
             bill_id=bill_id)
 
-    print('\nBEFORE\nUsers delegated votes: {}\nDelegates received votes: {}\n'.format(
-        user.delegated_votes, delegate.received_votes))
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
-    print('\nAFTER\nUsers delegated votes: {}\nDelegates received votes: {}\n'.format(
-        user.delegated_votes, delegate.received_votes))
 
     user.save()
     delegate.save()
