@@ -155,7 +155,7 @@ def delegate():
         return jsonify(msg='Failure: no user {} in the database.'.format(delegate_id))
 
     delegated_vote = DelegatedVote(
-            delegator=user,
+            delegator=user.id,
             delegate=delegate,
             bill_id=bill_id)
 
