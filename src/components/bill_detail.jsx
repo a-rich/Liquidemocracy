@@ -50,6 +50,11 @@ class BillDetail extends Component {
 
 	voteYay() {
 
+		if(this.state.button == "disabled")
+		{
+			return;
+		}
+
 		const token = localStorage.getItem("jwt");
 
 		const value = {
@@ -68,6 +73,11 @@ class BillDetail extends Component {
 	}
 
 	voteNay() {
+
+		if(this.state.button == "disabled")
+		{
+			return;
+		}
 
 		const token = localStorage.getItem("jwt");
 
