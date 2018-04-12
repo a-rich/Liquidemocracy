@@ -24,6 +24,8 @@
     border-radius: 50%;
     width: 120px;
     height: 120px;
+    margin: auto;
+    display: block;
     animation: spin 2s linear infinite;
 }
 
