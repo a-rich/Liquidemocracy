@@ -138,7 +138,7 @@ class Landing extends Component {
 		if(!this.props.bills.bills)
 		{
 			return (
-					<div>Loading...</div>
+					<div className="Loader"></div>
 				)
 		}
 
