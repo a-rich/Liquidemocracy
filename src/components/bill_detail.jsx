@@ -71,12 +71,19 @@ class BillDetail extends Component {
 
 		const token = localStorage.getItem("jwt");
 
+		const value = {
+			'bill_id': this.props.match.params.id,
+			'vote': 'nay'
+		}
+
 		const headers = {
 		headers: {
 		'Content-Type': 'application/json',
 		'Authorization': `Bearer ${token}`
 			}
 		}
+
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
 	}
 
 	onSubmit(values) {
