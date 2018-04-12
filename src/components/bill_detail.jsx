@@ -40,6 +40,7 @@ class BillDetail extends Component {
 		else {
 			this.setState({button: ""});
 		}
+		console.log(this.props.match.params.id);
 		this.props.fetchBill(this.props.match.params.id);	
 	}
 
