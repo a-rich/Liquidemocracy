@@ -85,7 +85,6 @@ class Landing extends Component {
 		}
 		else {
 			this.props.loginUser(values);
-			//window.location.reload();
 		}
 	})
 	.catch(error => {

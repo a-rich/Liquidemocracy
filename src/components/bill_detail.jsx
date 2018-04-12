@@ -40,13 +40,43 @@ class BillDetail extends Component {
 		else {
 			this.setState({button: ""});
 		}
-		console.log(this.props.match.params.id);
 		this.props.fetchBill(this.props.match.params.id);	
 	}
 
 	logout() {
 		this.props.logoutUser();
-		this.props.history.push("/");
+		window.location.reload();
+	}
+
+	voteYay() {
+
+		const token = localStorage.getItem("jwt");
+
+		const value = {
+			'bill_id': this.props.match.params.id,
+			'vote': 'yay'
+		}
+
+		const headers = {
+		headers: {
+		'Content-Type': 'application/json',
+		'Authorization': `Bearer ${token}`
+			}
+		}
+
+		axios.post(`${ROOT_URL}/bill/vote/`, value, config);
+	}
+
+	voteNay() {
+
+		const token = localStorage.getItem("jwt");
+
+		const headers = {
+		headers: {
+		'Content-Type': 'application/json',
+		'Authorization': `Bearer ${token}`
+			}
+		}
 	}
 
 	onSubmit(values) {
@@ -62,7 +92,6 @@ class BillDetail extends Component {
 		}
 		else {
 			this.props.loginUser(values);
-			this.props.history.push("/");
 		}
 	})
 	.catch(error => {
@@ -99,8 +128,9 @@ class BillDetail extends Component {
 						</div>
 						<br />
 						<div className="text-center">
-							<button className={`btn btn-success col-3 ${this.state.button}`}>Yay</button>
-							<button className={`btn btn-danger col-3 ${this.state.button}`}>Nay</button>
+							<button onClick={this.voteYay()} className={`btn btn-success col-3 ${this.state.button}`}>Yay</button>
+							<button onClick={this.voteNay()} className={`btn btn-danger col-3 ${this.state.button}`}>Nay</button>
+							<div className="error_message"></div>
 						</div>
 						<br />
 						<div className="text-center">

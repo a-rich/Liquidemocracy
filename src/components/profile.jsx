@@ -77,7 +77,7 @@ class Profile extends Component {
 
 	logout() {
 		this.props.logoutUser();
-		this.props.history.push("/");
+		window.location.reload();
 	}
 
 	render() {
