@@ -173,7 +173,7 @@ class Landing extends Component {
 	render() {
 	const { handleSubmit, error } = this.props;
 
-	if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
+	if(localStorage.getItem("jwt") == null) {
 		return (
 				<div className="container-fluid">
 					<nav className="navbar bg-primary sticky-top">

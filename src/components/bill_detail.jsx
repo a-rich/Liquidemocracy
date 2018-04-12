@@ -34,7 +34,7 @@ class BillDetail extends Component {
 	}
 
 	componentDidMount() {
-		if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
+		if(localStorage.getItem("jwt") == null) {
 			this.setState({button: "disabled"});
 		}
 		else {
@@ -162,7 +162,7 @@ class BillDetail extends Component {
 			return <div>Loading...</div>
 		}
 
-		if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
+		if(localStorage.getItem("jwt") == null) {
 		return (
 				<div className="container-fluid">
 					<nav className="navbar bg-primary">
