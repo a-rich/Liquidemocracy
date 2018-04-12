@@ -54,7 +54,7 @@ class Landing extends Component {
 
   	// Get the list of bills into reducer.	
 	componentDidMount() {
-			if(localStorage.getItem("jwt") == null || this.props.user.user.isUserLoggedIn == false) {
+			if(localStorage.getItem("jwt") == null) {
 				this.props.fetchDefaultBills(this.state.category, this.state.query);
 			}
 			else
