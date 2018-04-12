@@ -154,7 +154,7 @@ export function searchBills(query, category, index, level, filter) {
 
 export function loginUser(values) {
 	axios.post(`${ROOT_URL}/login/`, values)
-	.then((response) => localStorage.setItem("jwt", response.data.jwt));
+	.then((response) => {localStorage.setItem("jwt", response.data.jwt); window.location.reload()});
 
 	return {
 		type: LOGIN_USER,

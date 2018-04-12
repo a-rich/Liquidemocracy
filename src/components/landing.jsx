@@ -65,7 +65,7 @@ class Landing extends Component {
 
 	logout() {
 		this.props.logoutUser();
-		this.props.history.push("/");
+		window.location.reload();
 	}
 
 	handleQuery(e) {
@@ -85,7 +85,7 @@ class Landing extends Component {
 		}
 		else {
 			this.props.loginUser(values);
-			this.props.history.push("/");
+			//window.location.reload();
 		}
 	})
 	.catch(error => {
