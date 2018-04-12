@@ -64,7 +64,7 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, config);
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
 	}
 
 	voteNay() {
@@ -128,8 +128,8 @@ class BillDetail extends Component {
 						</div>
 						<br />
 						<div className="text-center">
-							<button onClick={this.voteYay()} className={`btn btn-success col-3 ${this.state.button}`}>Yay</button>
-							<button onClick={this.voteNay()} className={`btn btn-danger col-3 ${this.state.button}`}>Nay</button>
+							<button onClick={() => this.voteYay()} className={`btn btn-success col-3 ${this.state.button}`}>Yay</button>
+							<button onClick={() => this.voteNay()} className={`btn btn-danger col-3 ${this.state.button}`}>Nay</button>
 							<div className="error_message"></div>
 						</div>
 						<br />
