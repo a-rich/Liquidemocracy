@@ -84,7 +84,7 @@ class Profile extends Component {
 		const { handleSubmit, error } = this.props;
 		if(this.props.profile.profile == null) {
 			return (
-					<div>Loading...</div>
+					<div className="Loader"></div>
 				)
 		}
 
