@@ -75,20 +75,14 @@ class BillDetail extends Component {
 		return (
 			<div>
 				<div className="row no-gutters">
-					<div className="col">
-						<h5>Categories:</h5> {this.props.bill.bill[0].category}
-						<br />
-						<br />
-						<h5>Keywords:</h5>
-					</div>
-					<div className="col-6 text-center card">
+					<div className="col-10 text-center card">
 						<h3 className="card-header">{this.props.bill.bill[0].title}</h3>
+						<p className="card-header">Categories: {this.props.bill.bill[0].category} 
+						                           <br />
+						                           Vote Date: {new Date(this.props.bill.bill[0].date.$date).toString()}</p>
 						<div className="card-body" style={{'height':'300px', 'overflowY': 'auto'}}>
 							{this.props.bill.bill[0].text}
 							<br />
-						</div>
-						<div className="card-footer text-muted">
-							Vote Date: {new Date(this.props.bill.bill[0].date.$date).toString()}
 						</div>
 					</div>
 					<div className="col">
