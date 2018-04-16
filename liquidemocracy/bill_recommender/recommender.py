@@ -94,8 +94,6 @@ def find_interesting_bills(interests, user_location, filtered_levels, index,
     bill_locations = [convert_bill_location(user_location, level)
             for level in filtered_levels]
 
-    print("\nbill_locations: {}\n".format(bill_locations))
-
     if query:
         recommended_bills += Bill.objects(
                 title__icontains=query,
@@ -106,8 +104,6 @@ def find_interesting_bills(interests, user_location, filtered_levels, index,
                         'id', 'title', 'category',
                         'level', 'date')[index:index+limit]
     else:
-        print("\nabout to query bill model for non-query recommended bills\n")
-        """
         recommended_bills += Bill.objects(
                 level__in=filtered_levels,
                 category__in=interests,
@@ -115,14 +111,6 @@ def find_interesting_bills(interests, user_location, filtered_levels, index,
                 ).order_by('-date').only(
                         'id', 'title', 'category',
                         'level', 'date')[index:index+limit]
-        """
-        recommended_bills += Bill.objects(
-                level__in=filtered_levels,
-                category__in=interests
-                ).order_by('-date').only(
-                        'id', 'title', 'category',
-                        'level', 'date')[index:index+limit]
-        print("\nQueried bills: {}\n".format(recommended_bills))
 
     return recommended_bills
 
@@ -181,9 +169,6 @@ def find_delegates(user, non_interests):
 
 def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
-    print("\nuser_email: {}\nfiltered_levels: {}\nindex: {}\nlimit: {}\nquery: {}\n".format(
-        user_email, filtered_levels, index, limit, query))
-
     try:
         user = User.objects.get(email=user_email)
     except Exception as e:
@@ -192,13 +177,9 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
     user_location = convert_user_location(
             json.loads(user.residence.location.to_json()))
 
-    print("\nuser_location: {}\n".format(user_location))
-
     interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
     #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interests, non_interests = find_interests(interest_vector)
-
-    print("\ninterests: {}\nnon_interests: {}\n".format(interests, non_interests))
 
     recommended_bills = find_interesting_bills(interests, user_location,
             filtered_levels, index, limit, query)
