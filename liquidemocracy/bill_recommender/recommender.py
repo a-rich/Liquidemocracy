@@ -107,10 +107,18 @@ def find_interesting_bills(interests, user_location, filtered_levels, index,
                         'level', 'date')[index:index+limit]
     else:
         print("\nabout to query bill model for non-query recommended bills\n")
+        """
         recommended_bills += Bill.objects(
                 level__in=filtered_levels,
                 category__in=interests,
                 location__in=bill_locations
+                ).order_by('-date').only(
+                        'id', 'title', 'category',
+                        'level', 'date')[index:index+limit]
+        """
+        recommended_bills += Bill.objects(
+                level__in=filtered_levels,
+                category__in=interests
                 ).order_by('-date').only(
                         'id', 'title', 'category',
                         'level', 'date')[index:index+limit]
