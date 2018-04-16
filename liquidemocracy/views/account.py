@@ -200,7 +200,8 @@ def update_profile():
                     state.lower(), location.state.lower()))
 
                 print("\nlast update: {}\nstr(last update): {}\nnow: {}\nparsed last update: {}\n".format(
-                    last_update, str(last_update), str(now), dateutil.parser.parse(last_update)))
+                    last_update, str(last_update), str(now),
+                    dateutil.parser.parse(str(last_update))))
         #user.update(city=city, county=county, state=state)
 
     #user.update(name=name)
