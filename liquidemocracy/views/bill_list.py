@@ -123,6 +123,7 @@ def bills():
     else:
 
         categories = ['Environmental Protection', 'Energy', 'Science, Technology, Communications']
+        print("\nAbout to do a basic bill query for {} bills in the following categories:\n{}\n".format(levels, categories))
 
         bills = Bill.objects(
                 level__in=levels,
