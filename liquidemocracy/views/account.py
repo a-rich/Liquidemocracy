@@ -173,7 +173,7 @@ def update_profile():
                         'new_email': email
                     }, salt='update_email_key')
             email_url = url_for(
-                    'profile.confirm_update_email',
+                    'account.confirm_update_email',
                     token=token,
                     _external=True)
             subject = 'Confirm updating your Liquidemocracy email'
