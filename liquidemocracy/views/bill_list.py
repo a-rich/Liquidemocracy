@@ -121,6 +121,9 @@ def bills():
                 category__in=categories).order_by('-date').only(
                     'id', 'title', 'category', 'level', 'date')[index:index+limit]
     else:
+
+        categories = ['Environmental Protection', 'Energy', 'Science, Technology, Communications']
+
         bills = Bill.objects(
                 level__in=levels,
                 category__in=categories).order_by('-date').only(
