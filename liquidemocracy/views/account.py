@@ -1,4 +1,5 @@
 import datetime
+import dateutil
 from flask import Blueprint, request, url_for, render_template, jsonify
 from flask import current_app as app
 from flask_jwt_simple import jwt_required, get_jwt_identity
@@ -187,10 +188,22 @@ def update_profile():
         else:
             print('This email is already in use.')
 
-    # if city, county, and state haven't changed in the last 6 months:
-    user.update(city=city, county=county, state=state)
+    last_update = user.residence.last_update
+    location = user.residence.location
+    now = datetime.datetime.now()
+    if city.lower() != location.city.lower() \
+            or county.lower() != location.county.lower() \
+            or state.lower() != location.state.lower():
+                print("\nnew city: {}  --  old city: {}\nnew county: {}  -- old county: {}\nnew state: {}  --  old state: {}\n".format(
+                    city.lower(), location.city.lower(),
+                    county.lower(), location.county.lower(),
+                    state.lower(), location.state.lower()))
 
-    user.update(name=name)
+                print("\nlast update: {}\nstr(last update): {}\nnow: {}\nparsed last update: {}\n".format(
+                    last_update, str(last_update), str(now), dateutil.parser.parse(last_update)))
+        #user.update(city=city, county=county, state=state)
+
+    #user.update(name=name)
 
     return jsonify(msg='Successfully updated user profile information.')
 
