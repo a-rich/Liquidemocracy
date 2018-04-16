@@ -173,7 +173,8 @@ def find_delegates(user, non_interests):
 
 def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
-    print("\nuser_location: {}\nfiltered_levels: {}\nindex: {}\nlimit: {}\nquery: {}\n".format(user_location, filtered_levels, index, limit, query))
+    print("\nuser_email: {}\nfiltered_levels: {}\nindex: {}\nlimit: {}\nquery: {}\n".format(
+        user_email, filtered_levels, index, limit, query))
 
     try:
         user = User.objects.get(email=user_email)
