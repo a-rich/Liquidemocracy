@@ -70,7 +70,7 @@ class BillDetail extends Component {
 	}
 
 	componentDidMount() {
-		if(localStorage.getItem("jwt") == null || this.props.profile.profile.email == null) {
+		if(localStorage.getItem("jwt") == null || this.props.profile == null) {
 			this.setState({button: "disabled"});
 		}
 		else {
