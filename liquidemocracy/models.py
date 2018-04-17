@@ -33,10 +33,6 @@ class Bill(db.Document):
     location = db.EmbeddedDocumentField(Location, required=True)
     level = db.StringField(required=True)
 
-class DelegatedBill(db.EmbeddedDocument):
-    bill = db.ReferenceField(Bill, required=True)
-    vote = db.StringField(default='None', required=True)
-
 class InterestVector(db.EmbeddedDocument):
     taxation = db.IntField(default=0, required=True)
     health = db.IntField(default=0, required=True)
@@ -59,10 +55,14 @@ class Residence(db.EmbeddedDocument):
     location = db.EmbeddedDocumentField(Location, required=True)
     last_update = db.DateTimeField(required=True)
 
+class CastVote(db.EmbeddedDocument):
+    bill_id = db.ObjectIdField(required=True)
+    vote = db.StringField(default='None', required=True)
+
 class Delegate(db.EmbeddedDocument):
     user_id = db.ObjectIdField(required=True)
     name = db.StringField(required=True)
-    bills = db.ListField(db.EmbeddedDocumentField(DelegatedBill))
+    bills = db.ListField(db.EmbeddedDocumentField(CastVote))
     categories = db.ListField(db.StringField())
 
 class DelegatedVote(db.EmbeddedDocument):
@@ -81,10 +81,10 @@ class User(db.Document):
     name = db.StringField(required=True)
     residence = db.EmbeddedDocumentField(Residence, required=True)
     interest_vector = db.EmbeddedDocumentField(InterestVector, required=True)
+    cast_votes = db.ListField(db.EmbeddedDocumentField(CastVote))
     delegates = db.ListField(db.EmbeddedDocumentField(Delegate))
     delegated_votes = db.ListField(db.EmbeddedDocumentField(DelegatedVote))
     received_votes = db.ListField(db.EmbeddedDocumentField(DelegatedVote))
-    cast_votes = db.ListField(db.ObjectIdField())
     delegated_categories = db.ListField(db.EmbeddedDocumentField(DelegatedCategory))
     received_categories = db.ListField(db.EmbeddedDocumentField(DelegatedCategory))
 

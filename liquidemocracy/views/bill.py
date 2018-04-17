@@ -79,45 +79,58 @@ def vote():
     bill_id = req['bill_id']
     vote = req['vote']
 
-    try:
-        user = User.objects.get(email=get_jwt_identity())
-    except Exception as e:
-        return jsonify(error='Failure: no user {} in the database.'.format(get_jwt_identity()))
-
+    user = User.objects.get(email=get_jwt_identity())
     bill = Bill.objects.get(id=bill_id)
 
-    if bill.id in user.cast_votes:
-        return jsonify(msg='You have already cast a vote on this bill.')
-
-    vote_weight = 1
-    delegating_users = []
-    for received_vote in user.received_votes:
-        if bill.id == received_vote.bill_id:
-            delegating_users.append(received_vote.delegator)
-            vote_weight += 1
-    for received_category in user.received_categories:
-        if bill.category == received_category \
-            and received_category.delegator not in delegating_users:
+    def calc_vote_weight():
+        vote_weight = 1
+        delegating_users = []
+        for received_vote in user.received_votes:
+            if bill.id == received_vote.bill_id:
+                delegating_users.append(received_vote.delegator)
                 vote_weight += 1
+        for received_category in user.received_categories:
+            if bill.category == received_category \
+                and received_category.delegator not in delegating_users:
+                    vote_weight += 1
 
-    if vote == 'yay':
-        bill.vote_info.yay += vote_weight
-    elif vote == 'nay':
-        bill.vote_info.nay += vote_weight
-    bill.save()
+        return vote_weight
 
-    for d in user.delegated_votes:
-        if bill.id == d.bill_id:
-            delegate = User.objects.get(id=d.delegate)
-            delegate.received_votes.remove(d)
-            user.delegated_votes.remove(d)
-            delegate.save()
+    def cast_vote(vote_weight, vote_type='new', vote_obj=None):
+        if vote_type == 'new':
+            if vote == 'yay':
+                bill.vote_info.yay += vote_weight
+            elif vote == 'nay':
+                bill.vote_info.nay += vote_weight
+            new_vote = CastVote(bill_id=bill.id, vote=vote)
+            user.cast_votes.append(new_vote)
+        elif vote_type == 'change':
+            if vote == 'yay':
+                bill.vote_info.nay -= vote_weight
+                bill.vote_info.yay += vote_weight
+            elif vote == 'nay':
+                bill.vote_info.yay -= vote_weight
+                bill.vote_info.nay += vote_weight
+            vote_obj.vote = vote
 
-    user.cast_votes.append(bill_id)
-    user.save()
+        bill.save()
+        user.save()
 
-    return jsonify(msg='User {} voted \'{}\' on bill with ID={} with a vote weight {}'.format(
-        get_jwt_identity(), vote, bill_id, vote_weight))
+    for v in user.cast_votes:
+        if bill.id == v.bill_id:
+            if v.vote == vote:
+                print('\nYou have already cast a vote on this bill.\n')
+                return jsonify(msg='You have already cast a vote on this bill.')
+            else:
+                print('\nYou are changing your vote on this bill.\n')
+                vote_weight = calc_vote_weight()
+                cast_vote(vote_weight, vote_type='change', vote_obj=v)
+                return jsonify(msg='You changed your vote on this bill.')
+
+    vote_weight = calc_vote_weight()
+    cast_vote(vote_weight, vote_type='new')
+
+    return jsonify(msg='You cast a new vote on this bill.')
 
 
 @bill.route('/api/retrieve_delegates/', methods=['GET'])
@@ -150,15 +163,8 @@ def delegate():
     bill_id = req['bill_id']
     delegate_id = req['delegate']
 
-    try:
-        user = User.objects.get(email=get_jwt_identity())
-    except Exception as e:
-        return jsonify(msg='Failure: no user {} in the database.'.format(get_jwt_identity()))
-
-    try:
-        delegate = User.objects.get(id=delegate_id)
-    except Exception as e:
-        return jsonify(msg='Failure: no user {} in the database.'.format(delegate_id))
+    user = User.objects.get(email=get_jwt_identity())
+    delegate = User.objects.get(id=delegate_id)
 
     delegated_vote = DelegatedVote(
             delegator=user.id,
