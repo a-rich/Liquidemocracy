@@ -194,10 +194,6 @@ def update_profile():
     if city.lower() != location.city.lower() \
             or county.lower() != location.county.lower() \
             or state.lower() != location.state.lower():
-                print("\nnew city: {}  --  old city: {}\nnew county: {}  -- old county: {}\nnew state: {}  --  old state: {}\n".format(
-                    city.lower(), location.city.lower(),
-                    county.lower(), location.county.lower(),
-                    state.lower(), location.state.lower()))
 
                 then = dateutil.parser.parse(str(user.residence.last_update))
                 now = datetime.datetime.now()
@@ -208,7 +204,7 @@ def update_profile():
                     user.update(residence=residence)
                     msg['residence_update'] = 'Successfully updated residence'
                 else:
-                    msg['residence_update'] = 'Cannot update residence for another {} days'.format(180 - (now - then))
+                    msg['residence_update'] = 'Cannot update residence for another {} days'.format(180 - (now - then).days)
 
     user.update(name=name)
     msg['name_update'] = 'Successfully updated name'
