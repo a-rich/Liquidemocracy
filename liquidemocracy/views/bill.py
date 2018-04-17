@@ -91,9 +91,7 @@ def vote():
 
     vote_weight = 1
     delegating_users = []
-    print("\bill.id: {}\n".format(bill.id))
     for received_vote in user.received_votes:
-        print("\nReceived vote -- bill.id: {}\n".format(received_vote.bill_id))
         if bill.id == received_vote.bill_id:
             delegating_users.append(received_vote.delegator)
             vote_weight += 1
@@ -106,8 +104,14 @@ def vote():
         bill.vote_info.yay += vote_weight
     elif vote == 'nay':
         bill.vote_info.nay += vote_weight
-
     bill.save()
+
+    for d in user.delegated_votes:
+        if bill.id == d.bill_id:
+            delegate = User.objects.get(id=d.delegate)
+            delegate.update_one(pull__received_votes=d)
+            user.update_one(pull__delegated_votes=d)
+            delegate.save()
 
     user.cast_votes.append(bill_id)
     user.save()
