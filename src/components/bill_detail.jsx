@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchBill, logoutUser, loginUser } from '../actions';
+import { fetchBill, logoutUser, loginUser, fetchProfile } from '../actions';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError} from 'redux-form';
 import axios from 'axios';
@@ -26,7 +26,8 @@ class BillDetail extends Component {
 	    super(props);
 	    this.state = {button: "",
 	                  showModal: false,
-	                  delegate: ""};
+	                  delegate: "",
+	                  email: ""};
 
     	this.handleOpenModal = this.handleOpenModal.bind(this);
     	this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -61,14 +62,22 @@ class BillDetail extends Component {
 			);
 	}
 
+	componentWillMount() {
+		if(localStorage.getItem("jwt") != null)
+		{
+			this.props.fetchProfile();
+		}
+	}
+
 	componentDidMount() {
 		if(localStorage.getItem("jwt") == null) {
 			this.setState({button: "disabled"});
 		}
 		else {
-			this.setState({button: ""});
+			this.setState({button: "", email: this.props.profile.profile.email});
 		}
-		this.props.fetchBill(this.props.match.params.id);	
+		
+		this.props.fetchBill(this.props.match.params.id, this.state.email);	
 	}
 
 	logout() {
@@ -307,5 +316,5 @@ export default reduxForm({
 	validate,
 	form: 'LoginForm'
 })(
-connect(mapStateToProps, {fetchBill, logoutUser, loginUser})(BillDetail)
+connect(mapStateToProps, {fetchBill, logoutUser, loginUser, fetchProfile})(BillDetail)
 );
