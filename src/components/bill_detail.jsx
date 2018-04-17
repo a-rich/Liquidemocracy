@@ -74,6 +74,7 @@ class BillDetail extends Component {
 			this.setState({button: "disabled"});
 		}
 		else {
+			console.log(this.props);
 			this.setState({button: "", email: this.props.profile.profile.email});
 		}
 		
