@@ -115,15 +115,22 @@ def vote():
             vote_obj.vote = vote
 
         bill.save()
+        print("\nInterest vector (before): {}\n".format(str(user.interest_vector)))
+        reformatted = '_'.join([word.lower() for word in bill.category.split()])
+        print("\nBill category: {}\ncategory (reformatted): {}\n".format(
+            bill.category, reformatted))
+        vector_dict = user.interest_vector.to_json()
+        vector_dict[reformatted] += 3
+        vector_mongo = vector_dict.to_mongo()
+        user.interest_vector = vector_mongo
+        print("\nInterest vector (after): {}\n".format(str(user.interest_vector)))
         user.save()
 
     for v in user.cast_votes:
         if bill.id == v.bill_id:
             if v.vote == vote:
-                print('\nYou have already cast a vote on this bill.\n')
                 return jsonify(msg='You have already cast a vote on this bill.')
             else:
-                print('\nYou are changing your vote on this bill.\n')
                 vote_weight = calc_vote_weight(vote)
                 cast_vote(vote_weight, vote_type='change', vote_obj=v)
                 return jsonify(msg='You changed your vote on this bill.')
@@ -166,6 +173,7 @@ def delegate():
 
     user = User.objects.get(email=get_jwt_identity())
     delegate = User.objects.get(id=delegate_id)
+    bill = Bill.objects.get(id=bill_id)
 
     delegated_vote = DelegatedVote(
             delegator=user.id,
@@ -175,6 +183,15 @@ def delegate():
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
 
+    print("\nInterest vector (before): {}\n".format(str(user.interest_vector)))
+    reformatted = '_'.join([word.lower() for word in bill.category.split()])
+    print("\nBill category: {}\ncategory (reformatted): {}\n".format(
+        bill.category, reformatted))
+    vector_dict = user.interest_vector.to_json()
+    vector_dict[reformatted] -= 1
+    vector_mongo = vector_dict.to_mongo()
+    user.interest_vector = vector_mongo
+    print("\nInterest vector (after): {}\n".format(str(user.interest_vector)))
     user.save()
     delegate.save()
 
