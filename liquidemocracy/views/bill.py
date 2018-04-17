@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_simple import jwt_required, get_jwt_identity
-from liquidemocracy.models import User, DelegatedVote
+from liquidemocracy.models import User, DelegatedVote, Bill
 
 bill = Blueprint('bill', __name__)
 
