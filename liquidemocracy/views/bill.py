@@ -82,11 +82,12 @@ def vote():
     user = User.objects.get(email=get_jwt_identity())
     bill = Bill.objects.get(id=bill_id)
 
-    def calc_vote_weight():
+    def calc_vote_weight(vote):
         vote_weight = 1
         delegating_users = []
         for received_vote in user.received_votes:
-            if bill.id == received_vote.bill_id:
+            if bill.id == received_vote.cast_vote.bill_id:
+                received_vote.cast_vote.vote = vote
                 delegating_users.append(received_vote.delegator)
                 vote_weight += 1
         for received_category in user.received_categories:
@@ -123,11 +124,11 @@ def vote():
                 return jsonify(msg='You have already cast a vote on this bill.')
             else:
                 print('\nYou are changing your vote on this bill.\n')
-                vote_weight = calc_vote_weight()
+                vote_weight = calc_vote_weight(vote)
                 cast_vote(vote_weight, vote_type='change', vote_obj=v)
                 return jsonify(msg='You changed your vote on this bill.')
 
-    vote_weight = calc_vote_weight()
+    vote_weight = calc_vote_weight(vote)
     cast_vote(vote_weight, vote_type='new')
 
     return jsonify(msg='You cast a new vote on this bill.')
@@ -169,7 +170,7 @@ def delegate():
     delegated_vote = DelegatedVote(
             delegator=user.id,
             delegate=delegate_id,
-            bill_id=bill_id)
+            cast_vote=CastVote(bill_id=bill_id))
 
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
