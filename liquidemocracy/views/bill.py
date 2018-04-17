@@ -86,7 +86,7 @@ def vote():
 
     bill = Bill.objects.get(id=bill_id)
 
-    print("bill id (parameter): {}\nbill id (object): {}\nuser.cast_votes: {}\n".format(bill_id, bill.id, user.cast_voted))
+    print("bill id (parameter): {}\nbill id (object): {}\nuser.cast_votes: {}\n".format(bill_id, bill.id, user.cast_votes))
 
     if bill_id in user.cast_votes \
             or bill_id in [v.bill_id for v in user.delegated_votes] \
