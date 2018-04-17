@@ -86,21 +86,15 @@ def vote():
 
     bill = Bill.objects.get(id=bill_id)
 
-    print("\ntype(bill_id): {}\ntype(bill.id): {}\nuser.cast_votes: {}\n".format(type(bill_id),
-        type(bill.id), user.cast_votes))
-
-    if bill.id in user.cast_votes \
-            or bill.id in [v.bill_id for v in user.delegated_votes] \
-            or bill.category in [c.category for c in user.delegated_categories]:
-
-        print("bill {} is in cast votes or otherwise delegated already".format(bill_id))
-
-        return jsonify(msg='You have either cast or delegated a vote on this bill or otherwise delegated the category this bill belongs in to another user.')
+    if bill.id in user.cast_votes:
+        return jsonify(msg='You have already cast a vote on this bill.')
 
     vote_weight = 1
     delegating_users = []
+    print("\bill.id: {}\n".format(bill.id))
     for received_vote in user.received_votes:
-        if bill_id == received_vote.bill_id:
+        print("\nReceived vote -- bill.id: {}\n".format(received_vote.bill_id))
+        if bill.id == received_vote.bill_id:
             delegating_users.append(received_vote.delegator)
             vote_weight += 1
     for received_category in user.received_categories:
