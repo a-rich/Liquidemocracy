@@ -108,9 +108,9 @@ def vote():
     print("bill.vote_info before: {}".format(bill.vote_info.yay))
 
     if vote == 'yay':
-        bill.vote_info.yay += vote_weight
+        bill.vote_info.modify(inc__yay=vote_weight)
     elif vote == 'nay':
-        bill.vote_info.nay += vote_weight
+        bill.vote_info.modify(inc__nay=vote_weight)
 
     print("bill.vote_info after: {}".format(bill.vote_info.yay))
 
