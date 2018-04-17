@@ -117,7 +117,7 @@ def vote():
         bill.save()
         print("\nInterest vector (before): {}\n".format(str(user.interest_vector.to_json())))
         reformatted = '_'.join([word.lower() for word in bill.category.split()])
-        vector_dict = user.interest_vector.to_json()
+        vector_dict = dict(user.interest_vector.to_json())
         vector_dict[reformatted] += 3
         vector_mongo = vector_dict.to_mongo()
         user.interest_vector = vector_mongo
@@ -183,7 +183,7 @@ def delegate():
 
     print("\nInterest vector (before): {}\n".format(str(user.interest_vector.to_json())))
     reformatted = '_'.join([word.lower() for word in bill.category.split()])
-    vector_dict = user.interest_vector.to_json()
+    vector_dict = dict(user.interest_vector.to_json())
     vector_dict[reformatted] -= 1
     vector_mongo = vector_dict.to_mongo()
     user.interest_vector = vector_mongo
