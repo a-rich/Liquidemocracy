@@ -89,8 +89,8 @@ def vote():
     print("\ntype(bill_id): {}\ntype(bill.id): {}\nuser.cast_votes: {}\n".format(type(bill_id),
         type(bill.id), user.cast_votes))
 
-    if bill_id in user.cast_votes \
-            or bill_id in [v.bill_id for v in user.delegated_votes] \
+    if bill.id in user.cast_votes \
+            or bill.id in [v.bill_id for v in user.delegated_votes] \
             or bill.category in [c.category for c in user.delegated_categories]:
 
         print("bill {} is in cast votes or otherwise delegated already".format(bill_id))
