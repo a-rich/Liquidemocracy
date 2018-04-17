@@ -183,14 +183,14 @@ def update_profile():
                     email_url=email_url)
             try:
                 send_email(email, subject, html)
+                msg['email_update'] = 'Sent confirmation link to new email'
             except Exception as e:
                 print(e)
         else:
-            print('This email is already in use.')
+            msg['email_update'] = 'This email is already in use'
 
-    last_update = user.residence.last_update
+
     location = user.residence.location
-    now = datetime.datetime.now()
     if city.lower() != location.city.lower() \
             or county.lower() != location.county.lower() \
             or state.lower() != location.state.lower():
@@ -199,14 +199,21 @@ def update_profile():
                     county.lower(), location.county.lower(),
                     state.lower(), location.state.lower()))
 
-                print("\nlast update: {}\nstr(last update): {}\nnow: {}\nparsed last update: {}\n".format(
-                    last_update, str(last_update), str(now),
-                    dateutil.parser.parse(str(last_update))))
-        #user.update(city=city, county=county, state=state)
+                then = dateutil.parser.parse(str(user.residence.last_update))
+                now = datetime.datetime.now()
 
-    #user.update(name=name)
+                if now - then > 180:
+                    location = Location(city=city, county=county, state=state)
+                    residence = Residence(location=location, last_update=now)
+                    user.update(residence=residence)
+                    msg['residence_update'] = 'Successfully updated residence'
+                else:
+                    msg['residence_update'] = 'Cannot update residence for another {} days'.format(180 - (now - then))
 
-    return jsonify(msg='Successfully updated user profile information.')
+    user.update(name=name)
+    msg['name_update'] = 'Successfully updated name'
+
+    return jsonify(msg=msg)
 
 
 @account.route('/api/profile/update/<token>/', methods=['GET'])
