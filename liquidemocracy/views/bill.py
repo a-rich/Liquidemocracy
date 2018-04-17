@@ -178,17 +178,23 @@ def delegate():
             cast_vote=CastVote(bill_id=bill_id))
 
     for d in user.delegated_votes:
-        print("\nd.delegate: {}\ndelegate_id: {}\nd.cast_vote.bill_id: {}\nbill_id: {}\n".format(d.delegate, delegate_id, d.cast_vote.bill_id, bill_id))
         if d.delegate == delegate.id \
                 and d.cast_vote.bill_id == bill.id:
             return jsonify(msg='Already delegated this vote.')
         elif d.cast_vote.bill_id == bill.id:
+            print("\nuser.delegated_votes (before): {}\n".format(str(user.delegated_votes)))
             user.delegated_votes.remove(d)
+            print("\nuser.delegated_votes (after): {}\n".format(str(user.delegated_votes)))
+            print("\ndelegate of bill: {}\n".format(d.delegate))
             old_delegate = User.objects.get(id=d.delegate)
+            print("\nold_delegate\n".format(old_delegate.id))
             for d_1 in old_delegate.received_votes:
+                print("\nold_delegate's delegate bill: {}\n".format(d_1.cast_vote.bill_id))
                 if d_1.cast_vote.bill_id == bill.id \
                         and d_1.delegator == user.id:
+                    print("\nold_delegate.received_votes (before): {}\n".format(str(old_delegate.received_votes)))
                     old_delegate.received_votes.remove(d_1)
+                    print("\nold_delegate.received_votes (after): {}\n".format(str(old_delegate.received_votes)))
                     break
 
     user.delegated_votes.append(delegated_vote)
