@@ -139,7 +139,7 @@ def view_bill(bill_id):
     req = request.get_json()
     user_email = req['email']
 
-    bill = Bill.objects(id=bill_id)
+    bill = Bill.objects.get(id=bill_id)
 
     if user_email:
         print("\nbill.category: {}\n".format(bill.category))
