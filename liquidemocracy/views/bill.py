@@ -105,14 +105,14 @@ def vote():
             and received_category.delegator not in delegating_users:
                 vote_weight += 1
 
-    print("bill.vote_info before: {}".format(bill.vote_info))
+    print("bill.vote_info before: {}".format(bill.vote_info.yay))
 
     if vote == 'yay':
         bill.vote_info.yay += vote_weight
     elif vote == 'nay':
         bill.vote_info.nay += vote_weight
 
-    print("bill.vote_info after: {}".format(bill.vote_info))
+    print("bill.vote_info after: {}".format(bill.vote_info.yay))
 
     bill.save()
 
