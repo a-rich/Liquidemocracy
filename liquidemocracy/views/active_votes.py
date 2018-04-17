@@ -22,17 +22,11 @@ def search_delegates():
 @jwt_required
 def delegate():
     """
-        This endpoint accepts a delegation type of either 'bill' or 'category',
-        the ID of the bill or category, and the ID of the user who will receive
-        this delegation.
     """
 
     req = request.get_json()
-    delegation_type = req['type']
-    delegation_id = req['delegation_id']
-    user_id = req['user_id']
 
-    return jsonify(msg='Delegating {} with ID={} to {}'.format(delegation_type, delegation_id, user_id))
+    return jsonify()
 
 
 @active_votes.route('/api/votes/active/', methods=['GET'])
