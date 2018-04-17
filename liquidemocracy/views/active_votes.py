@@ -13,7 +13,9 @@ def search_delegates():
         of the query.
     """
 
-    return jsonify(User.objects.get(email=request.get_json()['query']))
+    user = User.objects.get(email=request.get_json()['query']).only('id', 'name')
+
+    return jsonify()
 
 
 @active_votes.route('/api/delegate/', methods=['POST'])
