@@ -177,6 +177,11 @@ def delegate():
             delegate=delegate_id,
             cast_vote=CastVote(bill_id=bill_id))
 
+    for d in user.delegated_votes:
+        if d == delegated_vote:
+            print("\nEQUAL!\n")
+    print("\nNOT EQUAL!\n")
+
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
 

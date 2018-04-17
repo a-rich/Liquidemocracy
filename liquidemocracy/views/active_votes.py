@@ -5,9 +5,9 @@ from liquidemocracy.models import *
 
 active_votes = Blueprint('active_votes', __name__)
 
-@active_votes.route('/api/delegates/search/<query>/', methods=['GET'])
+@active_votes.route('/api/delegates/search/', methods=['GET'])
 @jwt_required
-def search_delegates(query):
+def search_delegates():
     """
         This endpoint queries the User model for all space delimited substrings
         of the query.
