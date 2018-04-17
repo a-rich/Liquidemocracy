@@ -12,8 +12,9 @@ def search_delegates():
         This endpoint queries the User model for all space delimited substrings
         of the query.
     """
-
-    user = User.objects(email=request.get_json()['query']).only('id', 'name')
+    email = request.get_json()['query']
+    print("\nemail: {}\n".format(email))
+    user = User.objects(email=email).only('id', 'name')
 
     return jsonify()
 
