@@ -13,18 +13,7 @@ def search_delegates(query):
         of the query.
     """
 
-    results = [
-        {
-            'user_id': "ObjectId('5a4d51db98bfd522c1a72e49')",
-            'name': 'Alex Richards'
-        },
-        {
-            'user_id': "ObjectId('5a4e6cab98bfd51b98a47219')",
-            'name': 'Alex Trebek'
-        }
-    ]
-
-    return jsonify(results=results)
+    return jsonify(User.objects.get(email=request.get_json()['query']))
 
 
 @active_votes.route('/api/delegate/', methods=['POST'])
