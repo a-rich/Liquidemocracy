@@ -213,6 +213,8 @@ def update_profile():
     user.update(name=name)
     msg['name_update'] = 'Successfully updated name'
 
+    print("msg={}".format(msg))
+
     return jsonify(msg=msg)
 
 
