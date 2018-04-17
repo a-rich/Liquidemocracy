@@ -179,7 +179,7 @@ def delegate():
 
     for d in user.delegated_votes:
         print("\nd.delegate: {}\ndelegate_id: {}\nd.cast_vote.bill_id: {}\nbill_id: {}\n".format(d.delegate, delegate_id, d.cast_vote.bill_id, bill_id))
-        if d.delegate == delegate_id \
+        if d.delegate == delegate.id \
                 and d.cast_vote.bill_id == bill.id:
             return jsonify(msg='Already delegated this vote.')
         elif d.cast_vote.bill_id == bill.id:
