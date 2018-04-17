@@ -31,6 +31,7 @@
     "lodash": "^3.10.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-modal": "^3.3.2",
     "react-redux": "^4.4.8",
     "react-router": "^2.0.1",
     "react-router-dom": "^4.0.0",

@@ -4,14 +4,42 @@ import { fetchBill, logoutUser, loginUser } from '../actions';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError} from 'redux-form';
 import axios from 'axios';
+import ReactModal from 'react-modal';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
+
+const delegates = 
+	[
+		{'id': '12345', 'name': 'Bob Smith'},
+		{'id': '123456', 'name': 'Joe John'},
+		{'id': '123245', 'name': 'Bob Smith'},
+		{'id': '12322456', 'name': 'Joe John'},
+		{'id': '1233345', 'name': 'Bob Smith'},
+		{'id': '12344456', 'name': 'Joe John'},
+		{'id': '1236645', 'name': 'Bob Smith'},
+		{'id': '12347756', 'name': 'Joe John'}
+	]
+;
 
 class BillDetail extends Component {
 	constructor(props) {
 	    super(props);
-	    this.state = {button: ""};
+	    this.state = {button: "",
+	                  showModal: false,
+	                  delegate: ""};
+
+    	this.handleOpenModal = this.handleOpenModal.bind(this);
+    	this.handleCloseModal = this.handleCloseModal.bind(this);
   }
+
+    handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+  
+     handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+  
 
   	renderField(field) {
 		const { touched , error }  = field.meta;
@@ -122,7 +150,7 @@ class BillDetail extends Component {
 		return (
 			<div>
 				<div className="row no-gutters">
-					<div className="col-10 text-center card">
+					<div className="col-9 text-center card">
 						<h3 className="card-header">{this.props.bill.bill[0].title}</h3>
 						<p className="card-header">Categories: {this.props.bill.bill[0].category} 
 						                           <br />
@@ -150,8 +178,28 @@ class BillDetail extends Component {
 							<div className="error_message"></div>
 						</div>
 						<br />
+						<ReactModal 
+				           isOpen={this.state.showModal}
+				           contentLabel="List of Delegates"
+				           onRequestClose={this.handleCloseModal}
+				           shouldCloseOnOverlayClick={false}
+				           ariaHideApp={false}
+				           className="Modal"
+				        >
+				        <div className="container-fluid text-center">
+				          <h3 className="text-center">List of Delegates</h3>
+				          <ul className="list-group delegate_list">
+				          	{ _.map(delegates, delegate => {
+				          		return(<li key={delegate.id} onClick={() => this.setState({delegate: delegate.name})} className="list-group-item">{delegate.name}</li>);
+				          	})}
+				          </ul>
+				          <button className="btn btn-success" onClick={this.handleCloseModal}>Submit</button>
+				          <button className="btn btn-danger" onClick={this.handleCloseModal}>Cancel</button>
+				        </div>
+				        </ReactModal>
 						<div className="text-center">
-							<button className={`btn btn-info ${this.state.button}`}>Delegate?</button>
+							<button onClick={this.handleOpenModal} 
+							        className={`btn btn-info ${this.state.button}`}>Delegate?</button>
 						</div>
 					</div>
 				</div>
