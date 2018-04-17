@@ -77,7 +77,7 @@ class Profile extends Component {
 
 	logout() {
 		this.props.logoutUser();
-		window.location.reload();
+		window.location.assign('https://liquidemocracy.herokuapp.com');
 	}
 
 	render() {
