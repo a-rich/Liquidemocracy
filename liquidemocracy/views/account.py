@@ -162,6 +162,7 @@ def update_profile():
     city = req['city']
     county = req['county']
     state = req['state']
+    msg = {}
 
     user = User.objects.get(email=get_jwt_identity())
 
