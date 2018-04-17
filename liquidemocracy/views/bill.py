@@ -109,8 +109,8 @@ def vote():
     for d in user.delegated_votes:
         if bill.id == d.bill_id:
             delegate = User.objects.get(id=d.delegate)
-            delegate.update_one(pull__received_votes=d)
-            user.update_one(pull__delegated_votes=d)
+            delegate.received_votes.remove(d)
+            user.delegated_votes.remove(d)
             delegate.save()
 
     user.cast_votes.append(bill_id)
