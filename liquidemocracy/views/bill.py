@@ -86,6 +86,9 @@ def vote():
 
     bill = Bill.objects.get(id=bill_id)
 
+    print("\ntype(bill_id): {}\ntype(bill.id): {}\nuser.cast_votes: {}\n".format(type(bill_id),
+        type(bill.id), user.cast_votes))
+
     if bill_id in user.cast_votes \
             or bill_id in [v.bill_id for v in user.delegated_votes] \
             or bill.category in [c.category for c in user.delegated_categories]:
@@ -105,15 +108,10 @@ def vote():
             and received_category.delegator not in delegating_users:
                 vote_weight += 1
 
-    print("bill.vote_info before: {}".format(bill.vote_info.yay))
-
     if vote == 'yay':
         bill.vote_info.yay += vote_weight
-
     elif vote == 'nay':
         bill.vote_info.nay += vote_weight
-
-    print("bill.vote_info after: {}".format(bill.vote_info.yay))
 
     bill.save()
 
