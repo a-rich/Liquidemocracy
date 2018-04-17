@@ -18,6 +18,24 @@
 	display: flex;
 }
 
+.Modal {
+	background-color: #ADD8E6;
+	padding: 10px;
+	margin: auto;
+	margin-top: 10%;
+	width: 300px;
+	height: 300px;
+}
+
+li:active {
+	background-color: #b3d9ff;
+}
+
+.delegate_list {
+	height: 200px;
+	overflow-y: auto;
+}
+
 .Loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
