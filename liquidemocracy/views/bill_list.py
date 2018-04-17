@@ -129,8 +129,8 @@ def bills():
     return jsonify(bills=bills)
 
 
-@bill_list.route('/api/bills/', methods=['POST'])
-def view_bill():
+@bill_list.route('/api/bills/<bill_id>/', methods=['POST'])
+def view_bill(bill_id):
     """
         This endpoint returns the Bill matching the request parameter
         'bill_id'.
@@ -138,7 +138,6 @@ def view_bill():
 
     req = request.get_json()
     user_email = req['email']
-    bill_id = req['bill_id']
 
     bill = Bill.objects(id=bill_id)
 
