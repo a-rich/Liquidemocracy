@@ -12,6 +12,7 @@ class Delegates extends Component {
 	logout() {
 		this.props.logoutUser();
 		window.location.assign('https://liquidemocracy.herokuapp.com');
+	}
 
 	render() {
 		return (
