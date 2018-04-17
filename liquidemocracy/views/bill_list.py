@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_simple import jwt_required, create_jwt, get_jwt_identity
-from liquidemocracy.models import User, Bill
+from liquidemocracy.models import *
 import liquidemocracy.bill_recommender.recommender as recommender
 
 bill_list = Blueprint('bill_list', __name__)

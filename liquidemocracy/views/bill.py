@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_simple import jwt_required, get_jwt_identity
-from liquidemocracy.models import User, DelegatedVote, Bill
+from liquidemocracy.models import *
 
 bill = Blueprint('bill', __name__)
 
@@ -108,8 +108,9 @@ def vote():
     elif vote == 'nay':
         bill.vote_info.nay += vote_weight
 
-    user.cast_votes.append(bill_id)
+    bill.save()
 
+    user.cast_votes.append(bill_id)
     user.save()
 
     return jsonify(msg='User {} voted \'{}\' on bill with ID={} with a vote weight {}'.format(

@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_simple import jwt_required, get_jwt_identity
 from flask import current_app as app
-from liquidemocracy.models import User
+from liquidemocracy.models import *
 
 active_votes = Blueprint('active_votes', __name__)
 
