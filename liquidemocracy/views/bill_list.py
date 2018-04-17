@@ -129,13 +129,24 @@ def bills():
     return jsonify(bills=bills)
 
 
-@bill_list.route('/api/bills/<bill_id>/', methods=['GET'])
-def view_bill(bill_id):
+@bill_list.route('/api/bills/', methods=['POST'])
+def view_bill():
     """
         This endpoint returns the Bill matching the request parameter
         'bill_id'.
     """
 
+    req = request.get_json()
+    user_email = req['email']
+    bill_id = req['bill_id']
+
     bill = Bill.objects(id=bill_id)
+
+    if user_email:
+        user = User.objects.get(email=user_email)
+        reformatted = '_'.join([word.lower() for word in bill.category.split()])
+        vector_dict = user.interest_vector.to_mongo()
+        vector_dict[reformatted] += 1
+        user.interest_vector = InterestVector(**vector_dict.to_dict())
 
     return jsonify(bill=bill)
