@@ -5,7 +5,7 @@ from liquidemocracy.models import *
 
 active_votes = Blueprint('active_votes', __name__)
 
-@active_votes.route('/api/delegates/search/', methods=['GET'])
+@active_votes.route('/api/delegates/search/', methods=['POST'])
 @jwt_required
 def search_delegates():
     """

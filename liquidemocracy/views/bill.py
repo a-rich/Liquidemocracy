@@ -178,9 +178,17 @@ def delegate():
             cast_vote=CastVote(bill_id=bill_id))
 
     for d in user.delegated_votes:
-        if d == delegated_vote:
-            print("\nEQUAL!\n")
-    print("\nNOT EQUAL!\n")
+        if d.delegate == delegate_id \
+                and d.cast_vote.bill_id == bill_id:
+            return jsonify(msg='Already delegated this vote.')
+        elif d.cast_vote.bill_id == bill_id:
+            user.delegated_votes.remove(d)
+            old_delegate = User.objects.get(id=d.delegate)
+            for d_1 in old_delegate.received_votes:
+                if d_1.cast_vote.bill_id == bill_id \
+                        and d_1.delegator == user.id:
+                    old_delegate.received_votes.remove(d_1)
+                    break
 
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
