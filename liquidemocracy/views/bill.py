@@ -117,10 +117,12 @@ def vote():
         bill.save()
         print("\nInterest vector (before): {}\n".format(str(user.interest_vector.to_json())))
         reformatted = '_'.join([word.lower() for word in bill.category.split()])
-        vector_dict = dict(user.interest_vector.to_json())
+        vector_dict = user.interest_vector.to_mongo()
         vector_dict[reformatted] += 3
-        vector_mongo = vector_dict.to_mongo()
-        user.interest_vector = vector_mongo
+        min_val = vector_dict[min(vector_dict, key=vector_dict.get)]
+        for k in vector_dict.keys():
+            vector_dict[k] -= min_val
+        user.interest_vector = InterestVector(str(vector_dict.to_dict()))
         print("\nInterest vector (after): {}\n".format(str(user.interest_vector.to_json())))
         user.save()
 
@@ -183,11 +185,14 @@ def delegate():
 
     print("\nInterest vector (before): {}\n".format(str(user.interest_vector.to_json())))
     reformatted = '_'.join([word.lower() for word in bill.category.split()])
-    vector_dict = dict(user.interest_vector.to_json())
+    vector_dict = user.interest_vector.to_mongo()
     vector_dict[reformatted] -= 1
-    vector_mongo = vector_dict.to_mongo()
-    user.interest_vector = vector_mongo
+    min_val = vector_dict[min(vector_dict, key=vector_dict.get)]
+    for k in vector_dict.keys():
+        vector_dict[k] -= min_val
+    user.interest_vector = InterestVector(str(vector_dict.to_dict()))
     print("\nInterest vector (after): {}\n".format(str(user.interest_vector.to_json())))
+
     user.save()
     delegate.save()
 
