@@ -202,7 +202,7 @@ def update_profile():
                 then = dateutil.parser.parse(str(user.residence.last_update))
                 now = datetime.datetime.now()
 
-                if now - then > 180:
+                if (now - then).days > 180:
                     location = Location(city=city, county=county, state=state)
                     residence = Residence(location=location, last_update=now)
                     user.update(residence=residence)
