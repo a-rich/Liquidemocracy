@@ -94,7 +94,7 @@ def vote():
 
         return jsonify(msg='You have either cast or delegated a vote on this bill or otherwise delegated the category this bill belongs in to another user.')
 
-    vote_weight = 0
+    vote_weight = 1
     delegating_users = []
     for received_vote in user.received_votes:
         if bill_id == received_vote.bill_id:
@@ -108,9 +108,10 @@ def vote():
     print("bill.vote_info before: {}".format(bill.vote_info.yay))
 
     if vote == 'yay':
-        bill.vote_info.modify(inc__yay=vote_weight)
+        bill.vote_info.yay += vote_weight
+
     elif vote == 'nay':
-        bill.vote_info.modify(inc__nay=vote_weight)
+        bill.vote_info.nay += vote_weight
 
     print("bill.vote_info after: {}".format(bill.vote_info.yay))
 
