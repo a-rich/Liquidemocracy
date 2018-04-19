@@ -78,8 +78,19 @@ export function fetchBills(category, filter, level, query, jwt) {
 	}
 }
 
-export function fetchBill(id) {
-	const request = axios.get(`${ROOT_URL}/bills/${id}`);
+export function fetchBill(id, email) {
+
+	const headers = {
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	}
+
+	const email = {
+		email: email
+	}
+
+	const request = axios.post(`${ROOT_URL}/bills/${id}`, email, headers);
 
 	return {
 		type: FETCH_BILL,
