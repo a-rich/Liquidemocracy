@@ -226,11 +226,7 @@ class BillDetail extends Component {
 		const { handleSubmit, error } = this.props;
 
 		if(!this.props.bill) {
-			return <div className="Loader"></div>
-		}
-
-		if(localStorage.getItem("jwt") != null && !this.props.profile.profile)
-		{
+			
 			return <div className="Loader"></div>
 		}
 
