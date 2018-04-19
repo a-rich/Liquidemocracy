@@ -86,11 +86,11 @@ export function fetchBill(id, email) {
 		}
 	}
 
-	const email = {
+	const emailbody = {
 		email: email
 	}
 
-	const request = axios.post(`${ROOT_URL}/bills/${id}`, email, headers);
+	const request = axios.post(`${ROOT_URL}/bills/${id}/`, emailbody, headers);
 
 	return {
 		type: FETCH_BILL,

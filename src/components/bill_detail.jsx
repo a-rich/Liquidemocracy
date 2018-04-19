@@ -62,21 +62,13 @@ class BillDetail extends Component {
 			);
 	}
 
-	componentWillMount() {
-		if(localStorage.getItem("jwt") != null)
-		{
-			this.props.fetchProfile();
-		}
-	}
-
 	componentDidMount() {
 		if(localStorage.getItem("jwt") == null) {
 			this.setState({button: "disabled"});
 		}
 		else {
-			this.setState({button: "", email: this.state.email});
+			this.setState({button: ""});
 		}
-
 		this.props.fetchBill(this.props.match.params.id, this.state.email);	
 	}
 
@@ -160,12 +152,12 @@ class BillDetail extends Component {
 			<div>
 				<div className="row no-gutters">
 					<div className="col-9 text-center card">
-						<h3 className="card-header">{this.props.bill.bill[0].title}</h3>
-						<p className="card-header">Categories: {this.props.bill.bill[0].category} 
+						<h3 className="card-header">{this.props.bill.bill.title}</h3>
+						<p className="card-header">Categories: {this.props.bill.bill.category} 
 						                           <br />
-						                           Vote Date: {new Date(this.props.bill.bill[0].date.$date).toString()}</p>
+						                           Vote Date: {new Date(this.props.bill.bill.date.$date).toString()}</p>
 						<div className="card-body" style={{'height':'300px', 'overflowY': 'auto'}}>
-							{this.props.bill.bill[0].text}
+							{this.props.bill.bill.text}
 							<br />
 						</div>
 					</div>
@@ -173,12 +165,12 @@ class BillDetail extends Component {
 						<h4 className="text-center">Vote</h4>
 						<br />
 						<div className="text-center">
-							<b>Voter Count: </b>{this.props.bill.bill[0].vote_info.voter_count}
+							<b>Voter Count: </b>{this.props.bill.bill.vote_info.voter_count}
 						</div>
 						<br />
 						<div className="text-center">
-							<span className="text-success">Yay: {this.props.bill.bill[0].vote_info.yay} </span>
-							| <span className="text-danger">Nay: {this.props.bill.bill[0].vote_info.nay}</span>
+							<span className="text-success">Yay: {this.props.bill.bill.vote_info.yay} </span>
+							| <span className="text-danger">Nay: {this.props.bill.bill.vote_info.nay}</span>
 						</div>
 						<br />
 						<div className="text-center">
@@ -229,10 +221,6 @@ class BillDetail extends Component {
 			return <div className="Loader"></div>
 		}
 
-		if(localStorage.getItem("jwt") != null && !this.props.profile.profile) {
-			return <div className="Loader"></div>
-		}
-
 		if(localStorage.getItem("jwt") == null) {
 		return (
 				<div className="container-fluid">
@@ -261,6 +249,7 @@ class BillDetail extends Component {
 						</form>
 					</div>
 					</nav>
+					{console.log(this.props.bill.bill.title)}
 					{this.renderBillDefaultDetail()}
 				</div>
 			)
