@@ -62,6 +62,13 @@ class BillDetail extends Component {
 			);
 	}
 
+	componentWillMount() {
+		if(localStorage.getItem("jwt") != null)
+		{
+			this.props.fetchProfile();
+		}
+	}
+
 	componentDidMount() {
 		if(localStorage.getItem("jwt") == null) {
 			this.setState({button: "disabled"});
@@ -69,6 +76,7 @@ class BillDetail extends Component {
 		else {
 			this.setState({button: ""});
 		}
+
 		this.props.fetchBill(this.props.match.params.id, this.state.email);	
 	}
 
@@ -221,6 +229,11 @@ class BillDetail extends Component {
 			return <div className="Loader"></div>
 		}
 
+		if(localStorage.getItem("jwt") != null && !this.props.profile.profile)
+		{
+			return <div className="Loader"></div>
+		}
+
 		if(localStorage.getItem("jwt") == null) {
 		return (
 				<div className="container-fluid">
@@ -249,7 +262,6 @@ class BillDetail extends Component {
 						</form>
 					</div>
 					</nav>
-					{console.log(this.props.bill.bill.title)}
 					{this.renderBillDefaultDetail()}
 				</div>
 			)
@@ -302,7 +314,8 @@ function validate(values) {
 
 function mapStateToProps(state) {
 	return {bill: state.bills.bill,
-			user: state.user};
+			user: state.user,
+		    profile: state.profile};
 }
 
 export default reduxForm({
