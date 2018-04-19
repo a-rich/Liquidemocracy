@@ -90,7 +90,7 @@ export function fetchBill(id, email) {
 		email: email
 	}
 
-	const request = axios.post(`${ROOT_URL}/bills/${id}`, emailbody, headers);
+	const request = axios.post(`${ROOT_URL}/bills/${id}/`, emailbody, headers);
 
 	return {
 		type: FETCH_BILL,
