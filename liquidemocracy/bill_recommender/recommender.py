@@ -177,8 +177,8 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
     user_location = convert_user_location(
             json.loads(user.residence.location.to_json()))
 
-    interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
-    #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
+    #interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
+    interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interests, non_interests = find_interests(interest_vector)
 
     recommended_bills = find_interesting_bills(interests, user_location,
