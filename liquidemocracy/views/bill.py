@@ -116,7 +116,7 @@ def vote():
 
         bill.save()
 
-        reformatted = '_'.join([word.lower() for word in bill.category.split()])
+        reformatted = '_'.join([word.lower().replace(',', '') for word in bill.category.split()])
         vector_dict = user.interest_vector.to_mongo()
         print("\nBill.category: {}\nReformatted: {}\nvector_dict[reformatted]: {}\n".format(
             bill.category, reformatted, vector_dict[reformatted]))
@@ -197,7 +197,7 @@ def delegate():
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
 
-    reformatted = '_'.join([word.lower() for word in bill.category.split()])
+    reformatted = '_'.join([word.lower().replace(',', '') for word in bill.category.split()])
     vector_dict = user.interest_vector.to_mongo()
     vector_dict[reformatted] -= 1
     min_val = vector_dict[min(vector_dict, key=vector_dict.get)]
