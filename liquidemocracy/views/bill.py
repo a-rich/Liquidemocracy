@@ -117,8 +117,11 @@ def vote():
         bill.save()
 
         reformatted = '_'.join([word.lower() for word in bill.category.split()])
+        print("\nBill.category: {}\nReformatted: {}\nvector_dict[reformatted]: {}\n".format(
+            bill.category, reformatted, vector_dict[reformatted]))
         vector_dict = user.interest_vector.to_mongo()
         vector_dict[reformatted] += 3
+        print("\nvector_dict[reformatted]: {}\n".format(vector_dict[reformatted]))
         user.interest_vector = InterestVector(**vector_dict.to_dict())
 
         user.save()
