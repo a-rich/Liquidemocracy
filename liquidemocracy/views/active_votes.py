@@ -65,7 +65,7 @@ def delegate():
                     break
 
     user.delegated_categories.append(delegated_category)
-    delegate.received_votes.append(delegated_category)
+    delegate.received_categories.append(delegated_category)
     for d in user.delegates:
         if d.user_id == delegate.id:
             d.categories.append(category)
