@@ -106,7 +106,7 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then(() => location.reload());
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
 	}
 
 	voteNay() {
@@ -130,7 +130,7 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then(() => location.reload());
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
 	}
 
 	onSubmit(values) {
