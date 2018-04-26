@@ -87,8 +87,10 @@ def vote():
         delegating_users = []
         for received_vote in user.received_votes:
             if bill.id == received_vote.cast_vote.bill_id:
+                print("Vote before:", received_vote.cast_vote.vote)
                 received_vote.cast_vote.vote = vote
-                received_vote.cast_vote.save()
+                print("Vote after:", received_vote.cast_vote.vote)
+                received_vote.save()
                 delegating_users.append(received_vote.delegator)
                 vote_weight += 1
         for received_category in user.received_categories:
@@ -114,6 +116,7 @@ def vote():
                 bill.vote_info.yay -= vote_weight
                 bill.vote_info.nay += vote_weight
             vote_obj.vote = vote
+            vote_obj.save()
 
         bill.save()
 
