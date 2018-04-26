@@ -88,8 +88,18 @@ def vote():
         for received_vote in user.received_votes:
             if bill.id == received_vote.cast_vote.bill_id:
                 delegator = User.objects.get(id=received_vote.delegator)
-                print("\ndelegated_votes: {}\n\ndelegates: {}\n".format(delegator.delegated_votes, delegator.delegates))
                 received_vote.cast_vote.vote = vote
+                for d in delegator.delegates:
+                    if str(d.user_id) == str(received_vote.delegate):
+                        print("\nmatch\n")
+                        for b in d.bills:
+                            if str(b.bill_id) == str(bill.id):
+                                print("\nmatch again\n")
+                                b.vote = vote
+                for d in delegator.delegated_votes:
+                    if str(d.delegate) == str(user.id):
+                        print("\n2 match\n")
+
                 delegator.save()
                 delegating_users.append(received_vote.delegator)
                 vote_weight += 1
