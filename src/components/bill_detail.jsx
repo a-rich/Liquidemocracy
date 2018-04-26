@@ -98,7 +98,7 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then(() => location.window.refresh());
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then(() => location.window.reload());
 	}
 
 	voteNay() {
@@ -122,7 +122,7 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then(() => location.window.refresh());
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then(() => location.window.reload());
 	}
 
 	onSubmit(values) {
