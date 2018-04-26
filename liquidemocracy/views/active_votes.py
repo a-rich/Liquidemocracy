@@ -70,7 +70,7 @@ def delegate():
         if d.user_id == delegate.id:
             d.categories.append(delegated_category)
 
-    reformatted = '_'.join([word.lower().replace(',', '') for word in bill.category.split()])
+    reformatted = '_'.join([word.lower().replace(',', '') for word in category.split()])
     vector_dict = user.interest_vector.to_mongo()
     vector_dict[reformatted] -= 1
     min_val = vector_dict[min(vector_dict, key=vector_dict.get)]
