@@ -68,7 +68,7 @@ def delegate():
     delegate.received_votes.append(delegated_category)
     for d in user.delegates:
         if d.user_id == delegate.id:
-            d.categories.append(delegated_category)
+            d.categories.append(category)
 
     reformatted = '_'.join([word.lower().replace(',', '') for word in category.split()])
     vector_dict = user.interest_vector.to_mongo()
@@ -81,7 +81,7 @@ def delegate():
     user.save()
     delegate.save()
 
-    return jsonify()
+    return jsonify(msg="Success")
 
 
 @active_votes.route('/api/votes/active/', methods=['GET'])
