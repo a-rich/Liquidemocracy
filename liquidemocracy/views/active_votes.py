@@ -17,7 +17,7 @@ def search_delegate():
 
     return jsonify(user)
 
-@active_votes.route('/api/delegate/add/', method=['POST'])
+@active_votes.route('/api/delegate/add/', methods=['POST'])
 @jwt_required
 def add_delegate():
     """
