@@ -162,7 +162,7 @@ class BillDetail extends Component {
 						<h3 className="card-header">{this.props.bill.bill.title}</h3>
 						<p className="card-header">Categories: {this.props.bill.bill.category} 
 						                           <br />
-						                           Vote Date: {new Date(this.props.bill.bill.date.$date).toString()}</p>
+						                           Introduced Date: {new Date(this.props.bill.bill.date.$date).toString()}</p>
 						<div className="card-body" style={{'height':'300px', 'overflowY': 'auto'}}>
 							{this.props.bill.bill.text}
 							<br />
