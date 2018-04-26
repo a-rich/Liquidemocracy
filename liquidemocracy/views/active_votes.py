@@ -28,6 +28,7 @@ def add_delegate():
     delegate = User.objects.get(id=req['delegate_id'])
     delegate_obj = Delegate(user_id=delegate.id, name=delegate.name)
     user.delegates.append(delegate_obj)
+    user.save()
 
     return jsonify(msg="Successfully added {} to {}'s delegates list".format(
             delegate.name, user.name))
