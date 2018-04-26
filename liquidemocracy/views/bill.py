@@ -172,10 +172,11 @@ def delegate():
     delegate = User.objects.get(id=delegate_id)
     bill = Bill.objects.get(id=bill_id)
 
+    cast_vote = CastVote(bill_id=bill_id)
     delegated_vote = DelegatedVote(
             delegator=user.id,
             delegate=delegate_id,
-            cast_vote=CastVote(bill_id=bill_id))
+            cast_vote=cast_vote)
 
     for d in user.delegated_votes:
         if d.delegate == delegate.id \
@@ -193,6 +194,9 @@ def delegate():
 
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
+    for d in user.delegates:
+        if d.user_id == delegate_id:
+            d.bills.append(cast_vote)
 
     reformatted = '_'.join([word.lower().replace(',', '') for word in bill.category.split()])
     vector_dict = user.interest_vector.to_mongo()
