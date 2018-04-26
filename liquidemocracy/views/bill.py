@@ -165,7 +165,7 @@ def retrieve_delegates():
         print(e)
         return jsonify(error='Failure: no user {} in the database.'.format(get_jwt_identity()))
 
-    delegates = [{d.user_id: d.name} for d in user.delegates]
+    delegates = [{str(d.user_id): d.name} for d in user.delegates]
 
     return jsonify(delegates)
 
