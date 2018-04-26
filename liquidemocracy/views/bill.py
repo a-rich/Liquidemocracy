@@ -91,16 +91,12 @@ def vote():
                 received_vote.cast_vote.vote = vote
                 for d in delegator.delegates:
                     if str(d.user_id) == str(received_vote.delegate):
-                        print("\nmatch\n")
                         for b in d.bills:
                             if str(b.bill_id) == str(bill.id):
-                                print("\nmatch again\n")
                                 b.vote = vote
                 for d in delegator.delegated_votes:
                     if str(d.delegate) == str(user.id):
-                        print("\n2 match\n")
                         if str(d.cast_vote.bill_id) == str(bill.id):
-                            print("\n2 match again\n")
                             d.cast_vote.vote = vote
 
                 delegator.save()
