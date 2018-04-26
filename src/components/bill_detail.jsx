@@ -183,7 +183,7 @@ class BillDetail extends Component {
 						<div className="text-center">
 							<button onClick={() => this.voteYay()} className={`btn btn-success col-3 ${this.state.button}`}>Yay</button>
 							<button onClick={() => this.voteNay()} className={`btn btn-danger col-3 ${this.state.button}`}>Nay</button>
-							<div className="error_message" style={{color: red}}>{this.state.vote_message}</div>
+							<div className="error_message" style={{color: '#ff0000'}}>{this.state.vote_message}</div>
 						</div>
 						<br />
 						<ReactModal 
