@@ -88,6 +88,7 @@ def vote():
         for received_vote in user.received_votes:
             if bill.id == received_vote.cast_vote.bill_id:
                 received_vote.cast_vote.vote = vote
+                received_vote.cast_vote.save()
                 delegating_users.append(received_vote.delegator)
                 vote_weight += 1
         for received_category in user.received_categories:
