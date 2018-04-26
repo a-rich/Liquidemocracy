@@ -5,9 +5,9 @@ from liquidemocracy.models import *
 
 active_votes = Blueprint('active_votes', __name__)
 
-@active_votes.route('/api/delegates/search/', methods=['POST'])
+@active_votes.route('/api/delegate/search/', methods=['POST'])
 @jwt_required
-def search_delegates():
+def search_delegate():
     """
         This endpoint queries the User model for all space delimited substrings
         of the query.
@@ -17,6 +17,20 @@ def search_delegates():
 
     return jsonify(user)
 
+@active_votes.route('/api/delegate/add/', method=['POST'])
+@jwt_required
+def add_delegate():
+    """
+    """
+
+    req = request.get_json()
+    user = User.objects.get(email=get_jwt_identity())
+    delegate = User.objects.get(id=req['delegate_id'])
+    delegate_obj = Delegate(user_id=delegate.id, name=delegate.name)
+    user.delegates.append(delegate_obj)
+
+    return jsonify(msg="Successfully added {} to {}'s delegates list".format(
+            delegate.name, user.name))
 
 @active_votes.route('/api/delegate/', methods=['POST'])
 @jwt_required
