@@ -87,7 +87,7 @@ def vote():
         delegating_users = []
         for received_vote in user.received_votes:
             if bill.id == received_vote.cast_vote.bill_id:
-                delegator = User.object.get(id=received_vote.delegator)
+                delegator = User.objects.get(id=received_vote.delegator)
                 print("\ndelegated_votes: {}\n\ndelegates: {}\n".format(delegator.delegated_votes, delegator.delegates))
                 received_vote.cast_vote.vote = vote
                 delegator.save()
