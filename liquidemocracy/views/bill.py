@@ -195,7 +195,8 @@ def delegate():
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
     for d in user.delegates:
-        if d.user_id == delegate_id:
+        print("d.user_id: {} -- delegate_id: {}".format(d.user_id, delegate_id))
+        if d.user_id == delegate.id:
             d.bills.append(cast_vote)
 
     reformatted = '_'.join([word.lower().replace(',', '') for word in bill.category.split()])
