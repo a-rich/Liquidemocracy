@@ -144,7 +144,7 @@ def view_bill(bill_id):
     if user_email:
         print("\nbill.category: {}\n".format(bill.category))
         user = User.objects.get(email=user_email)
-        reformatted = '_'.join([word.lower() for word in bill.category.split()])
+        reformatted = '_'.join([word.lower().replace(',', '') for word in bill.category.split()])
         vector_dict = user.interest_vector.to_mongo()
         vector_dict[reformatted] += 1
         user.interest_vector = InterestVector(**vector_dict.to_dict())
