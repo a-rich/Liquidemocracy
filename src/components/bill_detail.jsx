@@ -8,38 +8,41 @@ import ReactModal from 'react-modal';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
-const delegates = 
-	[
-		{'id': '12345', 'name': 'Bob Smith'},
-		{'id': '123456', 'name': 'Joe John'},
-		{'id': '123245', 'name': 'Bob Smith'},
-		{'id': '12322456', 'name': 'Joe John'},
-		{'id': '1233345', 'name': 'Bob Smith'},
-		{'id': '12344456', 'name': 'Joe John'},
-		{'id': '1236645', 'name': 'Bob Smith'},
-		{'id': '12347756', 'name': 'Joe John'}
-	]
-;
-
 class BillDetail extends Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {button: "",
 	                  showModal: false,
-	                  delegate: "",
+	                  delegates: [],
 	                  email: "",
-	                  vote_message: ""};
+	                  dele_id: ""};
 
     	this.handleOpenModal = this.handleOpenModal.bind(this);
     	this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
     handleOpenModal () {
-    this.setState({ showModal: true });
+    	this.setState({ showModal: true });
   }
   
      handleCloseModal () {
-    this.setState({ showModal: false });
+     	let token = localStorage.getItem("jwt");
+
+     	const headers = {
+		headers: {
+		'Content-Type': 'application/json',
+		'Authorization': `Bearer ${token}`
+			}
+		}
+
+		const values = {
+			delegate: this.state.dele_id,
+			bill_id: this.props.match.params.id
+		}
+
+		axios.post(`${ROOT_URL}/bill/delegate/`, values, headers);
+
+    	this.setState({ showModal: false });
   }
   
 
@@ -63,6 +66,24 @@ class BillDetail extends Component {
 			);
 	}
 
+	componentWillMount() {
+		if(localStorage.getItem("jwt") != null)
+		{
+			this.props.fetchProfile();
+
+			let token = localStorage.getItem("jwt");
+
+			const headers = {
+				headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+				}
+			}
+
+			axios.get(`${ROOT_URL}/retrieve_delegates/`, headers).then((response) => this.setState({delegates: response.data}));
+		}
+	}
+
 	componentDidMount() {
 		if(localStorage.getItem("jwt") == null) {
 			this.setState({button: "disabled"});
@@ -70,6 +91,7 @@ class BillDetail extends Component {
 		else {
 			this.setState({button: ""});
 		}
+
 		this.props.fetchBill(this.props.match.params.id, this.state.email);	
 	}
 
@@ -99,10 +121,7 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then((response) => 
-			{if(response.data.msg == "You have already cast a vote on this bill.")
-			{this.setState({vote_message: "You have already cast a vote on this bill."})}
-			else{location.reload()}});
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
 	}
 
 	voteNay() {
@@ -126,10 +145,11 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers).then((response) => 
-			{if(response.data.msg == "You have already cast a vote on this bill.")
-			{this.setState({vote_message: "You have already cast a vote on this bill."})}
-			else{location.reload()}});
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
+	}
+
+	setDelegateId(userId) {
+		this.setState({dele_id: userId[0]});
 	}
 
 	onSubmit(values) {
@@ -162,7 +182,7 @@ class BillDetail extends Component {
 						<h3 className="card-header">{this.props.bill.bill.title}</h3>
 						<p className="card-header">Categories: {this.props.bill.bill.category} 
 						                           <br />
-						                           Introduced Date: {new Date(this.props.bill.bill.date.$date).toString()}</p>
+						                           Vote Date: {new Date(this.props.bill.bill.date.$date).toString()}</p>
 						<div className="card-body" style={{'height':'300px', 'overflowY': 'auto'}}>
 							{this.props.bill.bill.text}
 							<br />
@@ -183,7 +203,7 @@ class BillDetail extends Component {
 						<div className="text-center">
 							<button onClick={() => this.voteYay()} className={`btn btn-success col-3 ${this.state.button}`}>Yay</button>
 							<button onClick={() => this.voteNay()} className={`btn btn-danger col-3 ${this.state.button}`}>Nay</button>
-							<div className="error_message" style={{color: '#ff0000'}}>{this.state.vote_message}</div>
+							<div className="error_message"></div>
 						</div>
 						<br />
 						<ReactModal 
@@ -197,8 +217,8 @@ class BillDetail extends Component {
 				        <div className="container-fluid text-center">
 				          <h3 className="text-center">List of Delegates</h3>
 				          <ul className="list-group delegate_list">
-				          	{ _.map(delegates, delegate => {
-				          		return(<li key={delegate.id} onClick={() => this.setState({delegate: delegate.name})} className="list-group-item">{delegate.name}</li>);
+				          	{ _.map(this.state.delegates, delegate => {
+				          		return(<li key={Object.keys(delegate)} onClick={() => this.setDelegateId(Object.keys(delegate))} className="list-group-item">{Object.values(delegate)}</li>);
 				          	})}
 				          </ul>
 				          <button className="btn btn-success" onClick={this.handleCloseModal}>Submit</button>
@@ -225,6 +245,7 @@ class BillDetail extends Component {
 		const { handleSubmit, error } = this.props;
 
 		if(!this.props.bill) {
+			
 			return <div className="Loader"></div>
 		}
 
@@ -256,7 +277,6 @@ class BillDetail extends Component {
 						</form>
 					</div>
 					</nav>
-					{console.log(this.props.bill.bill.title)}
 					{this.renderBillDefaultDetail()}
 				</div>
 			)
@@ -309,7 +329,8 @@ function validate(values) {
 
 function mapStateToProps(state) {
 	return {bill: state.bills.bill,
-			user: state.user};
+			user: state.user,
+		    profile: state.profile};
 }
 
 export default reduxForm({
