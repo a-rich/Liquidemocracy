@@ -24,7 +24,7 @@
 	margin: auto;
 	margin-top: 10%;
 	width: 300px;
-	height: 300px;
+	height: 400px;
 }
 
 li:active {
@@ -32,7 +32,7 @@ li:active {
 }
 
 .delegate_list {
-	height: 150px;
+	height: 200px;
 	overflow-y: auto;
 }
 
