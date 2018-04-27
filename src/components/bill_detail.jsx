@@ -16,7 +16,8 @@ class BillDetail extends Component {
 	                  delegates: [],
 	                  email: "",
 	                  dele_id: "",
-	                  name: ""};
+	                  name: "",
+	                  error_message: ""};
 
     	this.handleOpenModal = this.handleOpenModal.bind(this);
     	this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -122,7 +123,8 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers)
+		.then((response) => {if(response.data.msg == "You have already cast a vote on this bill."){this.setState(error_message: "You have already cast a vote on this bill.")}});
 	}
 
 	voteNay() {
@@ -146,7 +148,8 @@ class BillDetail extends Component {
 			}
 		}
 
-		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
+		axios.post(`${ROOT_URL}/bill/vote/`, value, headers)
+		.then(() => {if(response.data.msg == "You have already cast a vote on this bill."){this.setState(error_message: "You have already cast a vote on this bill.")}});
 	}
 
 	setDelegateId(userId, name) {
@@ -204,7 +207,7 @@ class BillDetail extends Component {
 						<div className="text-center">
 							<button onClick={() => this.voteYay()} className={`btn btn-success col-3 ${this.state.button}`}>Yay</button>
 							<button onClick={() => this.voteNay()} className={`btn btn-danger col-3 ${this.state.button}`}>Nay</button>
-							<div className="error_message"></div>
+							<div style={{color: '#ff0000'}}>{this.state.error_message}</div>
 						</div>
 						<br />
 						<ReactModal 
