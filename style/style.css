@@ -32,7 +32,7 @@ li:active {
 }
 
 .delegate_list {
-	height: 200px;
+	height: 300px;
 	overflow-y: auto;
 }
 

@@ -222,7 +222,7 @@ class BillDetail extends Component {
 				          		return(<li key={Object.keys(delegate)} onClick={() => this.setDelegateId(Object.keys(delegate),Object.values(delegate))} className="list-group-item">{Object.values(delegate)}</li>);
 				          	})}
 				          </ul>
-				          <div>Selected {this.state.name}</div>
+				          <div>Selected: {this.state.name}</div>
 				          <button className="btn btn-success" onClick={this.handleCloseModal}>Submit</button>
 				          <button className="btn btn-danger" onClick={this.handleCloseModal}>Cancel</button>
 				        </div>
