@@ -8,37 +8,41 @@ import ReactModal from 'react-modal';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
-const delegates = 
-	[
-		{'id': '12345', 'name': 'Bob Smith'},
-		{'id': '123456', 'name': 'Joe John'},
-		{'id': '123245', 'name': 'Bob Smith'},
-		{'id': '12322456', 'name': 'Joe John'},
-		{'id': '1233345', 'name': 'Bob Smith'},
-		{'id': '12344456', 'name': 'Joe John'},
-		{'id': '1236645', 'name': 'Bob Smith'},
-		{'id': '12347756', 'name': 'Joe John'}
-	]
-;
-
 class BillDetail extends Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {button: "",
 	                  showModal: false,
-	                  delegate: "",
-	                  email: ""};
+	                  delegates: [],
+	                  email: "",
+	                  dele_id: ""};
 
     	this.handleOpenModal = this.handleOpenModal.bind(this);
     	this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
     handleOpenModal () {
-    this.setState({ showModal: true });
+    	this.setState({ showModal: true });
   }
   
      handleCloseModal () {
-    this.setState({ showModal: false });
+     	let token = localStorage.getItem("jwt");
+
+     	const headers = {
+		headers: {
+		'Content-Type': 'application/json',
+		'Authorization': `Bearer ${token}`
+			}
+		}
+
+		const values = {
+			delegate: this.state.dele_id,
+			bill_id: this.props.match.params.id
+		}
+
+		axios.post(`${ROOT_URL}/bill/delegate/`, values, headers);
+
+    	this.setState({ showModal: false });
   }
   
 
@@ -66,6 +70,17 @@ class BillDetail extends Component {
 		if(localStorage.getItem("jwt") != null)
 		{
 			this.props.fetchProfile();
+
+			let token = localStorage.getItem("jwt");
+
+			const headers = {
+				headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+				}
+			}
+
+			axios.get(`${ROOT_URL}/retrieve_delegates/`, headers).then((response) => this.setState({delegates: response.data}));
 		}
 	}
 
@@ -133,6 +148,10 @@ class BillDetail extends Component {
 		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
 	}
 
+	setDelegateId(userId) {
+		this.setState({dele_id: userId[0]});
+	}
+
 	onSubmit(values) {
 
 	const config = { headers: {
@@ -198,8 +217,8 @@ class BillDetail extends Component {
 				        <div className="container-fluid text-center">
 				          <h3 className="text-center">List of Delegates</h3>
 				          <ul className="list-group delegate_list">
-				          	{ _.map(delegates, delegate => {
-				          		return(<li key={delegate.id} onClick={() => this.setState({delegate: delegate.name})} className="list-group-item">{delegate.name}</li>);
+				          	{ _.map(this.state.delegates, delegate => {
+				          		return(<li key={Object.keys(delegate)} onClick={() => this.setDelegateId(Object.keys(delegate))} className="list-group-item">{Object.values(delegate)}</li>);
 				          	})}
 				          </ul>
 				          <button className="btn btn-success" onClick={this.handleCloseModal}>Submit</button>
