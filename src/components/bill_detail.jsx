@@ -15,7 +15,8 @@ class BillDetail extends Component {
 	                  showModal: false,
 	                  delegates: [],
 	                  email: "",
-	                  dele_id: ""};
+	                  dele_id: "",
+	                  name: ""};
 
     	this.handleOpenModal = this.handleOpenModal.bind(this);
     	this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -148,8 +149,8 @@ class BillDetail extends Component {
 		axios.post(`${ROOT_URL}/bill/vote/`, value, headers);
 	}
 
-	setDelegateId(userId) {
-		this.setState({dele_id: userId[0]});
+	setDelegateId(userId, name) {
+		this.setState({dele_id: userId[0], name: name});
 	}
 
 	onSubmit(values) {
@@ -218,9 +219,10 @@ class BillDetail extends Component {
 				          <h3 className="text-center">List of Delegates</h3>
 				          <ul className="list-group delegate_list">
 				          	{ _.map(this.state.delegates, delegate => {
-				          		return(<li key={Object.keys(delegate)} onClick={() => this.setDelegateId(Object.keys(delegate))} className="list-group-item">{Object.values(delegate)}</li>);
+				          		return(<li key={Object.keys(delegate)} onClick={() => this.setDelegateId(Object.keys(delegate),Object.values(delegate))} className="list-group-item">{Object.values(delegate)}</li>);
 				          	})}
 				          </ul>
+				          <div>Selected {this.state.name}</div>
 				          <button className="btn btn-success" onClick={this.handleCloseModal}>Submit</button>
 				          <button className="btn btn-danger" onClick={this.handleCloseModal}>Cancel</button>
 				        </div>
