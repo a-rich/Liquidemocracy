@@ -46,8 +46,31 @@ class Profile extends Component {
 		}
 
 		axios.post(`${ROOT_URL}/profile/update/`, values, headers)
-		.then(this.setState({editing: false}, () => this.props.fetchProfile()));
-	}
+		.then((response) => 
+			{
+				if(response.data.msg.residence_update != null)
+				{
+					if(response.data.msg.residence_update.includes("Cannot update residence"))
+					{
+						alert(response.data.msg.residence_update);
+						window.location.reload();
+						return false;
+					}
+				}
+				else if(response.data.msg.email_update != null)
+				{
+					alert("Sent confirmation link to new email. You will be logged out and asked to login using new email.");
+					this.setState({editing: false});
+					this.logout();
+				}
+				else
+				{
+					alert("Name successfully updated.");
+					this.setState({editing: false}, () => this.props.fetchProfile());
+					window.location.reload();
+				}
+	});
+}
 
 	componentWillMount() {
 		this.props.fetchProfile();
@@ -88,7 +111,7 @@ class Profile extends Component {
 				)
 		}
 
-		if(this.state.editing == false)
+		if(this.state.editing = false)
 		{
 		return (
 				<div>
@@ -184,7 +207,7 @@ class Profile extends Component {
 									component={this.renderField}
 								/>
 								<button className="btn btn-success" type="submit">Save</button>
-								<button type="button" className="btn btn-danger" onClick={() => this.setState({editing: false})}>Cancel</button>
+								<button type="button" className="btn btn-danger" onClick={() => this.setState({editing: false}, () => window.location.reload())}>Cancel</button>
 							</form>
 						</div>
 					</div>
