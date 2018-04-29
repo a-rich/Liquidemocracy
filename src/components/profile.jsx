@@ -56,6 +56,11 @@ class Profile extends Component {
 						window.location.reload();
 						return false;
 					}
+					else
+					{
+						alert(response.data.msg.residence_update);
+						window.location.reload();
+					}
 				}
 				else if(response.data.msg.email_update != null)
 				{
