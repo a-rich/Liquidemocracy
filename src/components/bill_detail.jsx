@@ -28,6 +28,12 @@ class BillDetail extends Component {
   }
   
      handleCloseModal () {
+     	if(this.state.dele_id == "")
+     	{
+     		this.setState({ showModal: false });
+     		return;
+     	}
+
      	let token = localStorage.getItem("jwt");
 
      	const headers = {
