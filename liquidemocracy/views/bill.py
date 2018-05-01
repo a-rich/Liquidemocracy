@@ -115,7 +115,7 @@ def vote():
                 bill.vote_info.yay += vote_weight
             elif vote == 'nay':
                 bill.vote_info.nay += vote_weight
-            new_vote = CastVote(bill_id=bill.id, vote=vote)
+            new_vote = CastVote(bill_id=bill.id, bill_title=bill.title, vote=vote)
             user.cast_votes.append(new_vote)
         elif vote_type == 'change':
             if vote == 'yay':
@@ -184,7 +184,7 @@ def delegate():
     delegate = User.objects.get(id=delegate_id)
     bill = Bill.objects.get(id=bill_id)
 
-    cast_vote = CastVote(bill_id=bill_id)
+    cast_vote = CastVote(bill_id=bill_id, bill_title=bill.title)
     delegated_vote = DelegatedVote(
             delegator=user.id,
             delegate=delegate_id,
