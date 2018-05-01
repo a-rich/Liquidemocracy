@@ -57,6 +57,7 @@ class Residence(db.EmbeddedDocument):
 
 class CastVote(db.EmbeddedDocument):
     bill_id = db.ObjectIdField(required=True)
+    bill_title = db.StringField(required=True)
     vote = db.StringField(default='None', required=True)
 
 class Delegate(db.EmbeddedDocument):
