@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logoutUser } from '../actions';
+import { logoutUser, fetchProfile } from '../actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,7 +11,8 @@ class Delegates extends Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {query: "",
-	                  delegate: []};
+	                  delegate: [],
+	                  delegates: []};
 	    this.handleQuery = this.handleQuery.bind(this);
 	    this.retrieve_delegate = this.retrieve_delegate.bind(this);
 	    this.add_delegate = this.add_delegate.bind(this);
@@ -57,7 +58,21 @@ class Delegates extends Component {
 	}
 
 	componentWillMount() {
+		if(localStorage.getItem("jwt") != null)
+		{
+			this.props.fetchProfile();
 
+			let token = localStorage.getItem("jwt");
+
+			const headers = {
+				headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+				}
+			}
+
+			axios.get(`${ROOT_URL}/retrieve_delegates/`, headers).then((response) => this.setState({delegates: response.data}));
+		}
 	}
 
 	logout() {
@@ -106,6 +121,12 @@ class Delegates extends Component {
 									</li></ul>) : ""}
 						</div>
 						<div className="col-sm-8">
+							<h2 className="text-center">List of Delegates</h2>
+							<ul className="list-group">
+				          	{ _.map(this.state.delegates, delegate => {
+				          		return(<li key={Object.keys(delegate)} className="list-group-item">{Object.values(delegate)}</li>);
+				          	})}
+				          </ul>
 						</div>
 					</div>
 
@@ -115,4 +136,4 @@ class Delegates extends Component {
 
 }
 
-export default connect(null, {logoutUser})(Delegates);
+export default connect(null, {logoutUser, fetchProfile})(Delegates);
