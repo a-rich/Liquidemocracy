@@ -54,7 +54,7 @@ class Delegates extends Component {
 		}
 
 		axios.post(`${ROOT_URL}/delegate/add/`, values, headers)
-		.then(() => {alert("Added " + this.state.delegate[0].name + " to delegates list/"); window.location.reload();});
+		.then(() => {alert("Added " + this.state.delegate[0].name + " to delegates list"); window.location.reload();});
 	}
 
 	componentWillMount() {
