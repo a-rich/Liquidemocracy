@@ -33,6 +33,22 @@ def add_delegate():
     return jsonify(msg="Successfully added {} to {}'s delegates list".format(
             delegate.name, user.name))
 
+@active_votes.route('/api/delegate/remove/', methods=['POST'])
+@jwt_required
+def remove_delegate():
+    """
+    """
+
+    req = request.get_json()
+    user = User.objects.get(email=get_jwt_identity())
+    delegate = User.objects.get(id=req['delegate_id'])
+    delegate_obj = Delegate(user_id=delegate.id, name=delegate.name)
+    del user.delegates[delegate_obj]
+    user.save()
+
+    return jsonify(msg="Successfully removed {} from {}'s delegates list".format(
+            delegate.name, user.name))
+
 @active_votes.route('/api/category/delegate/', methods=['POST'])
 @jwt_required
 def delegate():
