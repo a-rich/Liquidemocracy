@@ -49,8 +49,7 @@ def remove_delegate():
     user.save()
     """
 
-    return jsonify(msg="Successfully removed {} from {}'s delegates list".format(
-            delegate.name, user.name))
+    return jsonify(msg="Successfully removed delegate")
 
 @active_votes.route('/api/category/delegate/', methods=['POST'])
 @jwt_required
