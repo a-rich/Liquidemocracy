@@ -11,7 +11,8 @@ setup(
     python_requires='~=3.5.2',
     install_requires=[
         'flask', 'flask_cors', 'flask_jwt_simple', 'flask-mongoengine',
-        'pytest-flask', 'python-dateutil', 'requests', 'beautifulsoup4',
-        'numpy', 'scipy', 'pandas', 'scikit-learn', 'slate', 'gunicorn',
+        'mongoengine','pytest-flask', 'python-dateutil', 'requests',
+        'beautifulsoup4', 'numpy', 'scipy', 'pandas', 'scikit-learn',
+        'slate', 'gunicorn',
         ],
 )

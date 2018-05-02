@@ -20,8 +20,6 @@ all_data = {
 scrapers = glob('scrapers/**/scraper.py', recursive=True)
 
 for scraper in scrapers:
-    if 'cities' not in scraper.split('/'):
-        continue
 
     print('*** Running {} ***\n'.format(scraper))
 

@@ -41,13 +41,6 @@ def remove_delegate():
 
     req = request.get_json()
     User.objects(email=get_jwt_identity()).update_one(pull__delegates__user_id=req['delegate_id'])
-    """
-    user = User.objects.get(email=get_jwt_identity())
-    delegate = User.objects.get(id=req['delegate_id'])
-    delegate_obj = Delegate(user_id=delegate.id, name=delegate.name)
-    del user.delegates[delegate_obj]
-    user.save()
-    """
 
     return jsonify(msg="Successfully removed delegate")
 

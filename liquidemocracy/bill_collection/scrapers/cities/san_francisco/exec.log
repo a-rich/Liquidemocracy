@@ -70,3 +70,58 @@
 [2018-04-02 11:57:02.430094]:  file LI012318.pdf has already been scraped
 [2018-04-02 11:57:02.430102]:  file LI010918.pdf has already been scraped
 [2018-04-02 11:57:02.430152]:  no new PDF documents to parse
+
+
+##############################################################################
+[2018-05-02 14:55:07.723962]:  requesting from SF city web page - http://sfbos.org/legislation-introduced
+##############################################################################
+[2018-05-02 14:55:25.785673]:  wrote LI042418.pdf to file
+[2018-05-02 14:55:25.785879]:  wrote LI041718.pdf to file
+[2018-05-02 14:55:25.786040]:  wrote LI041018.pdf to file
+[2018-05-02 14:55:25.786210]:  wrote LI040318.pdf to file
+[2018-05-02 14:55:25.786356]:  wrote LI032018.pdf to file
+[2018-05-02 14:55:25.786499]:  wrote LI031318.pdf to file
+[2018-05-02 14:55:25.786632]:  wrote LI030618.pdf to file
+[2018-05-02 14:55:25.786777]:  wrote LI022718.pdf to file
+[2018-05-02 14:55:25.786917]:  wrote LI021318.pdf to file
+[2018-05-02 14:55:25.787057]:  wrote LI020618.pdf to file
+[2018-05-02 14:55:25.787188]:  wrote LI013018.pdf to file
+[2018-05-02 14:55:25.787319]:  wrote LI012318.pdf to file
+[2018-05-02 14:55:25.787509]:  wrote LI010918.pdf to file
+
+
+##############################################################################
+[2018-05-02 14:56:34.696412]:  requesting from SF city web page - http://sfbos.org/legislation-introduced
+##############################################################################
+[2018-05-02 14:56:36.693338]:  file LI042418.pdf has already been scraped
+[2018-05-02 14:56:36.693394]:  file LI041718.pdf has already been scraped
+[2018-05-02 14:56:36.693420]:  file LI041018.pdf has already been scraped
+[2018-05-02 14:56:36.693432]:  file LI040318.pdf has already been scraped
+[2018-05-02 14:56:36.693443]:  file LI032018.pdf has already been scraped
+[2018-05-02 14:56:36.693455]:  file LI031318.pdf has already been scraped
+[2018-05-02 14:56:36.693466]:  file LI030618.pdf has already been scraped
+[2018-05-02 14:56:36.693478]:  file LI022718.pdf has already been scraped
+[2018-05-02 14:56:36.693492]:  file LI021318.pdf has already been scraped
+[2018-05-02 14:56:36.693513]:  file LI020618.pdf has already been scraped
+[2018-05-02 14:56:36.693532]:  file LI013018.pdf has already been scraped
+[2018-05-02 14:56:36.693544]:  file LI012318.pdf has already been scraped
+[2018-05-02 14:56:36.693556]:  file LI010918.pdf has already been scraped
+[2018-05-02 14:56:36.693612]:  no new PDF documents to parse
+
+
+##############################################################################
+[2018-05-02 14:56:49.131744]:  requesting from SF city web page - http://sfbos.org/legislation-introduced
+##############################################################################
+[2018-05-02 14:57:10.388296]:  wrote LI042418.pdf to file
+[2018-05-02 14:57:10.388478]:  wrote LI041718.pdf to file
+[2018-05-02 14:57:10.388623]:  wrote LI041018.pdf to file
+[2018-05-02 14:57:10.388781]:  wrote LI040318.pdf to file
+[2018-05-02 14:57:10.388938]:  wrote LI032018.pdf to file
+[2018-05-02 14:57:10.389088]:  wrote LI031318.pdf to file
+[2018-05-02 14:57:10.389235]:  wrote LI030618.pdf to file
+[2018-05-02 14:57:10.389397]:  wrote LI022718.pdf to file
+[2018-05-02 14:57:10.389546]:  wrote LI021318.pdf to file
+[2018-05-02 14:57:10.389668]:  wrote LI020618.pdf to file
+[2018-05-02 14:57:10.389788]:  wrote LI013018.pdf to file
+[2018-05-02 14:57:10.389917]:  wrote LI012318.pdf to file
+[2018-05-02 14:57:10.390101]:  wrote LI010918.pdf to file
