@@ -90,7 +90,6 @@ class Delegations extends Component {
 						</div>
 						 	
 					</nav>
-					<h1 className="border border-dark text-center">Bills</h1>
 					<table className="table table-bordered">
 						<thead>
 							<tr>
