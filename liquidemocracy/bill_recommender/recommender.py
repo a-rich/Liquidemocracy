@@ -186,7 +186,7 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
     return recommended_bills
 
-classes = json.load(open('/home/aweeeezy/bin/school/liquidemocracy-api/liquidemocracy/bill_classifier/class_mapping.json', 'r'))
+classes = json.load(open('../bill_classifier/class_mapping.json', 'r'))
 levels = ['federal', 'state', 'county', 'city']
 
 #potential_delegates = find_delegates(user, non_interests)
