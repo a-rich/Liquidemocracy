@@ -50,7 +50,7 @@ class Delegations extends Component {
 				return(
 				<tr>
 					<td>{delegate.name}</td>
-					<td><Link to={`https://liquidemocracy.herokuapp.com/bill/${bill.bill_id.$oid}`}>{bill.bill_title}</Link></td>
+					<td><Link to={`/bill/${bill.bill_id.$oid}`}>{bill.bill_title}</Link></td>
 					<td className={color}>{bill.vote}</td>
 				</tr>
 				);
