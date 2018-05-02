@@ -34,11 +34,24 @@ class Delegations extends Component {
 	renderDelegations() {
 		return _.map(this.state.delegations, (delegate) => {
 			return _.map(delegate.bills, (bill) => {
+				let color;
+
+				switch(bill.vote) {
+					case "yay":
+						color = "text-success";
+						break;
+					case "nay":
+						color = "text-danger";
+						break;
+					case "None":
+						color = "text-warning";
+						break;
+				}
 				return(
 				<tr>
 					<td>{delegate.name}</td>
 					<td>{bill.bill_title}</td>
-					<td>{bill.vote}</td>
+					<td className={color}>{bill.vote}</td>
 				</tr>
 				);
 			})
