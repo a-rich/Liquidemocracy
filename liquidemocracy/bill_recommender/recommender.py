@@ -182,6 +182,7 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
             json.loads(user.residence.location.to_json()))
 
     interest_vector = list(json.loads(user.interest_vector.to_json()).values())
+    print("\n\nloaded interest vector: {}\n\n".format(interest_vector))
     interests, non_interests = find_interests(interest_vector)
 
     recommended_bills = find_interesting_bills(interests, user_location,
@@ -190,8 +191,8 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
     return recommended_bills
 
 classes = json.load(open('liquidemocracy/bill_classifier/class_mapping.json', 'r'))
-for i, c in enumerate(classes):
-    print("{}: {}".format(i,c))
+for i, (k,v) in enumerate(classes.items()):
+    print("{} -- {}: {}".format(i,k,v))
 levels = ['federal', 'state', 'county', 'city']
 
 #potential_delegates = find_delegates(user, non_interests)
