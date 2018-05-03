@@ -14,17 +14,21 @@ def find_interests(user):
     global classes
 
     # Calculate L2 norm of the user's interest vector
-    norm = np.linalg.norm(user, ord=2)
+    norm = np.linalg.norm(list(user.values()), ord=2)
+    print("\nnorm: {}\n".format(norm))
 
     # Account for cold-start problem for new users
     if not norm:
         norm = np.float64(1.0)
 
     # L2 normalize the user's interest vector
-    user_norm = user/norm
+    user_norm = {k: v/norm for k,v in user.items()}
+
+    for k,v in user_norm.items():
+        print("normed {}: {}".format(k,v))
 
     # Sort policy areas in decreasing order of user interest
-    sorted_user = sorted([(val, cls) for cls, val in enumerate(user_norm)],
+    sorted_user = sorted([(val, cls) for cls, val in user_norm.items()],
                          key=lambda x: x[0], reverse=True)
 
     print("\n\nsorted_user: {}\n\n".format(sorted_user))
@@ -34,14 +38,14 @@ def find_interests(user):
     index, norm_sum, interests = 0, 0, []
     while norm_sum < 0.7 and index < 16:
         norm_sum += np.sum(np.square(sorted_user[index][0]))
-        interests.append(classes[str(sorted_user[index][1])])
+        interests.append(sorted_user[index][1])
         index += 1
 
     print("\n\ninterests: {}\n\n".format(interests))
 
     # Put the remaining policy areas into a list containing those which are
     # uninteresting to the user
-    non_interests = [classes[str(sorted_user[i][1])]
+    non_interests = [sorted_user[i][1]
             for i in range(index, len(sorted_user))]
 
     return interests, non_interests
@@ -181,7 +185,8 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
     user_location = convert_user_location(
             json.loads(user.residence.location.to_json()))
 
-    interest_vector = list(json.loads(user.interest_vector.to_json()).values())
+    #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
+    interest_vector = json.loads(user.interest_vector.to_json())
     print("\n\nloaded interest vector: {}\n\n".format(interest_vector))
     interests, non_interests = find_interests(interest_vector)
 
@@ -190,9 +195,7 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
     return recommended_bills
 
-classes = json.load(open('liquidemocracy/bill_classifier/class_mapping.json', 'r'))
-for i, (k,v) in enumerate(classes.items()):
-    print("{} -- {}: {}".format(i,k,v))
+#classes = json.load(open('liquidemocracy/bill_classifier/class_mapping.json', 'r'))
 levels = ['federal', 'state', 'county', 'city']
 
 #potential_delegates = find_delegates(user, non_interests)
