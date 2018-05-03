@@ -15,7 +15,6 @@ def find_interests(user):
 
     # Calculate L2 norm of the user's interest vector
     norm = np.linalg.norm(list(user.values()), ord=2)
-    print("\nnorm: {}\n".format(norm))
 
     # Account for cold-start problem for new users
     if not norm:
@@ -24,14 +23,9 @@ def find_interests(user):
     # L2 normalize the user's interest vector
     user_norm = {k: v/norm for k,v in user.items()}
 
-    for k,v in user_norm.items():
-        print("normed {}: {}".format(k,v))
-
     # Sort policy areas in decreasing order of user interest
     sorted_user = sorted([(val, cls) for cls, val in user_norm.items()],
                          key=lambda x: x[0], reverse=True)
-
-    print("\n\nsorted_user: {}\n\n".format(sorted_user))
 
     # Add policy areas to a list until it's filled with those that constitute
     # 70% of the user's interest.
@@ -40,8 +34,6 @@ def find_interests(user):
         norm_sum += np.sum(np.square(sorted_user[index][0]))
         interests.append(classes[sorted_user[index][1]])
         index += 1
-
-    print("\n\ninterests: {}\n\n".format(interests))
 
     # Put the remaining policy areas into a list containing those which are
     # uninteresting to the user
@@ -187,7 +179,6 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
     #interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interest_vector = json.loads(user.interest_vector.to_json())
-    print("\n\nloaded interest vector: {}\n\n".format(interest_vector))
     interests, non_interests = find_interests(interest_vector)
 
     recommended_bills = find_interesting_bills(interests, user_location,
