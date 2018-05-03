@@ -38,14 +38,14 @@ def find_interests(user):
     index, norm_sum, interests = 0, 0, []
     while norm_sum < 0.7 and index < 16:
         norm_sum += np.sum(np.square(sorted_user[index][0]))
-        interests.append(sorted_user[index][1])
+        interests.append(classes[sorted_user[index][1]])
         index += 1
 
     print("\n\ninterests: {}\n\n".format(interests))
 
     # Put the remaining policy areas into a list containing those which are
     # uninteresting to the user
-    non_interests = [sorted_user[i][1]
+    non_interests = [classes[sorted_user[i][1]]
             for i in range(index, len(sorted_user))]
 
     return interests, non_interests
@@ -195,7 +195,7 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
     return recommended_bills
 
-#classes = json.load(open('liquidemocracy/bill_classifier/class_mapping.json', 'r'))
+classes = json.load(open('liquidemocracy/bill_classifier/class_mapping.json', 'r'))
 levels = ['federal', 'state', 'county', 'city']
 
 #potential_delegates = find_delegates(user, non_interests)
