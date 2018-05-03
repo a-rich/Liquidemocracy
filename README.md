@@ -100,6 +100,7 @@ The above instructions suffice to test the main applications. If you wish to tes
 * **Modify a slate package file to fix import error:**
 
 `vim env/lib//python3.5/site-packages/slate/classes.py`
+
 Change line 25 from `import utils` to `from . import utils`
 
 * **Run scraping routine:**
