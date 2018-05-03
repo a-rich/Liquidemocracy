@@ -27,6 +27,8 @@ def find_interests(user):
     sorted_user = sorted([(val, cls) for cls, val in enumerate(user_norm)],
                          key=lambda x: x[0], reverse=True)
 
+    print("\nsorted_user: {}\n".format(sorted_user))
+
     # Add policy areas to a list until it's filled with those that constitute
     # 70% of the user's interest.
     index, norm_sum, interests = 0, 0, []
@@ -34,6 +36,8 @@ def find_interests(user):
         norm_sum += np.sum(np.square(sorted_user[index][0]))
         interests.append(classes[str(sorted_user[index][1])])
         index += 1
+
+    print("\ninterests: {}\n".format(interests))
 
     # Put the remaining policy areas into a list containing those which are
     # uninteresting to the user
