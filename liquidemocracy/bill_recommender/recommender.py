@@ -185,9 +185,7 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
 
     return recommended_bills
 
-print("\n\nCWD: {}\n\n".format(os.getcwd()))
-
-classes = json.load(open('../bill_classifier/class_mapping.json', 'r'))
+classes = json.load(open(''liquidemocracy/bill_classifier/class_mapping.json', 'r'))
 levels = ['federal', 'state', 'county', 'city']
 
 #potential_delegates = find_delegates(user, non_interests)
