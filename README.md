@@ -86,7 +86,7 @@ https://www.npmjs.com/get-npm
 
 ### Visit the React application by going to `localhost:8080` in your browser
 
-If everything was ran correctly, you should be able to go to localhost:8080 and the website should be visible. Make sure you have nothing else running on port 8080. If so, you can modify the server.js file and manually change the port number in app.listen().
+If everything was run correctly, you should be able to go to localhost:8080 and the website should be visible. Make sure you have nothing else running on port 8080. If so, you can modify the server.js file and manually change the port number in app.listen().
 
 Testing the individual back end services
 --------------------------------------------------------
