@@ -27,8 +27,6 @@ def find_interests(user):
     sorted_user = sorted([(val, cls) for cls, val in enumerate(user_norm)],
                          key=lambda x: x[0], reverse=True)
 
-    print("\nsorted_user: {}\n".format(sorted_user))
-
     # Add policy areas to a list until it's filled with those that constitute
     # 70% of the user's interest.
     index, norm_sum, interests = 0, 0, []
@@ -36,8 +34,6 @@ def find_interests(user):
         norm_sum += np.sum(np.square(sorted_user[index][0]))
         interests.append(classes[str(sorted_user[index][1])])
         index += 1
-
-    print("\ninterests: {}\n".format(interests))
 
     # Put the remaining policy areas into a list containing those which are
     # uninteresting to the user
@@ -181,7 +177,6 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
     user_location = convert_user_location(
             json.loads(user.residence.location.to_json()))
 
-    #interest_vector = [0, 3, 1, 0, 0, 5, 5, 6, 12, 2, 4, 6, 9, 21, 3, 4]
     interest_vector = list(json.loads(user.interest_vector.to_json()).values())
     interests, non_interests = find_interests(interest_vector)
 
@@ -189,6 +184,8 @@ def recommend_bills(user_email, filtered_levels, index, limit, query=""):
             filtered_levels, index, limit, query)
 
     return recommended_bills
+
+print("\n\nCWD: {}\n\n".format(os.getcwd()))
 
 classes = json.load(open('../bill_classifier/class_mapping.json', 'r'))
 levels = ['federal', 'state', 'county', 'city']
