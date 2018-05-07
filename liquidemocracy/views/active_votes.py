@@ -98,6 +98,40 @@ def delegate():
 
     return jsonify(msg="Success")
 
+@active_votes.route('/api/remove/delegation/', methods=['POST'])
+@jwt_required
+def remove_delegation():
+
+     req = request.get_json()
+     bill_id = req['bill_id']
+     delegate_id = req['delegate']
+
+     user = User.objects.get(email=get_jwt_identity())
+     delegate = User.objects.get(id=delegate_id)
+     bill = Bill.objects.get(id=bill_id)
+
+     for d in user.delegated_votes:
+         if d.delegate == delegate.id \
+                 and d.cast_vote.bill_id == bill.id:
+            user.delegated_votes.remove(d)
+            delegate = User.objects.get(id=d.delegate)
+            for d_1 in old_delegate.received_votes:
+                if d_1.cast_vote.bill_id == bill.id \
+                        and d_1.delegator == user.id:
+                    old_delegate.received_votes.remove(d_1)
+                    old_delegate.save()
+                    break
+
+     for d in user.delegates:
+         if d.user_id == delegate.id:
+             for bill_ in d.bills:
+                 if str(bill_.bill_id) == str(bill.id):
+                    d.bills.remove(bill_)
+
+     user.save()
+     delegate.save()
+
+     return jsonify(msg='success')
 
 @active_votes.route('/api/votes/active/', methods=['GET'])
 @jwt_required
