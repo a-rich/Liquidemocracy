@@ -52,10 +52,43 @@ class Delegations extends Component {
 					<td>{delegate.name}</td>
 					<td><Link to={`/bill/${bill.bill_id.$oid}`}>{bill.bill_title}</Link></td>
 					<td className={color}>{bill.vote}</td>
+					<td><button className="btn btn-sm btn-danger" 
+					onClick={
+					() => this.remove_bill_delegation(bill.bill_id.$oid, delegate.user_id.$oid, delegate.name, bill.bill_title)}>
+					Remove</button></td>
 				</tr>
 				);
 			})
 		})
+	}
+
+	remove_bill_delegation(bill_id, delegate_id, name, bill_title) {
+		let token = localStorage.getItem("jwt");
+
+		const values = {
+			'item': bill_id,
+			'type': "bill",
+			'delegate': delegate_id
+		}
+
+		const headers = {
+			headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+			}
+		}
+
+		let input = confirm("Are you sure you want to remove the delegate " + name + " from bill: " + bill_title);
+
+		if(input == true)
+		{
+			axios.post(`${ROOT_URL}/remove/delegation/`, values, headers)
+			.then(() => {alert(name + " removed."); window.location.reload();});
+		}
+		else
+		{
+			return;
+		}
 	}
 
 	logout() {
@@ -96,6 +129,7 @@ class Delegations extends Component {
 								<th scope="col">Delegate</th>
 								<th scope="col">Bill</th>
 								<th scope="col">Vote</th>
+								<th scope="col">Remove</th>
 							</tr>
 						</thead>
 						<tbody>

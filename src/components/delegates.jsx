@@ -51,7 +51,7 @@ class Delegates extends Component {
 
 	 const values = {
 		 category: this.state.category,
-		 delegate_id: this.state.dele_id
+		 delegate_id: this.state.dele_id[0]
 	 }
 
 	 axios.post(`${ROOT_URL}/category/delegate/`, values, headers);
@@ -99,14 +99,14 @@ class Delegates extends Component {
 		}
 
 		axios.post(`${ROOT_URL}/delegate/add/`, values, headers)
-		.then(() => {alert("Added " + this.state.delegate[0].name + " to delegates list/"); window.location.reload();});
+		.then(() => {alert("Added " + this.state.delegate[0].name + " to delegates list"); window.location.reload();});
 	}
 
 	remove_delegate(id, name) {
 		let token = localStorage.getItem("jwt");
 
 		const values = {
-			delegate_id: id
+			delegate_id: id[0]
 		}
 
 		const headers = {
@@ -122,7 +122,6 @@ class Delegates extends Component {
 		{
 			axios.post(`${ROOT_URL}/delegate/remove/`, values, headers)
 			.then(() => {alert(name + " removed."); window.location.reload();});
-			alert(name + " removed.");
 		}
 		else
 		{
