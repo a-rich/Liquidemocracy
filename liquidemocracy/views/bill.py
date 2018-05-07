@@ -197,6 +197,11 @@ def delegate():
         elif d.cast_vote.bill_id == bill.id:
             user.delegated_votes.remove(d)
             old_delegate = User.objects.get(id=d.delegate)
+            for dele in user.delegates:
+                if str(dele.user_id) == str(old_delegate.id):
+                    for bill_ in dele.bills:
+                        if str(bill_.bill_id) == str(bill.id):
+                            dele.bills.remove(bill_)
             for d_1 in old_delegate.received_votes:
                 if d_1.cast_vote.bill_id == bill.id \
                         and d_1.delegator == user.id:
@@ -207,7 +212,6 @@ def delegate():
     user.delegated_votes.append(delegated_vote)
     delegate.received_votes.append(delegated_vote)
     for d in user.delegates:
-        print("d.user_id: {} -- delegate_id: {}".format(d.user_id, delegate_id))
         if d.user_id == delegate.id:
             d.bills.append(cast_vote)
 
