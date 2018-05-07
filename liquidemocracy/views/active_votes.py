@@ -26,6 +26,10 @@ def add_delegate():
     req = request.get_json()
     user = User.objects.get(email=get_jwt_identity())
     delegate = User.objects.get(id=req['delegate_id'])
+
+    if delegate.id == user.id:
+        return jsonify(msg="You can not add yourself as a delegate")
+
     delegate_obj = Delegate(user_id=delegate.id, name=delegate.name)
     user.delegates.append(delegate_obj)
     user.save()
