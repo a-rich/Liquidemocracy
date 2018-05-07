@@ -115,11 +115,11 @@ def remove_delegation():
                  and d.cast_vote.bill_id == bill.id:
             user.delegated_votes.remove(d)
             delegate = User.objects.get(id=d.delegate)
-            for d_1 in old_delegate.received_votes:
+            for d_1 in delegate.received_votes:
                 if d_1.cast_vote.bill_id == bill.id \
                         and d_1.delegator == user.id:
-                    old_delegate.received_votes.remove(d_1)
-                    old_delegate.save()
+                    delegate.received_votes.remove(d_1)
+                    delegate.save()
                     break
 
      for d in user.delegates:
