@@ -112,38 +112,38 @@ def remove_delegation():
 
     if item_type == "bill":
         bill = Bill.objects.get(id=item)
-        for d in user.delegated_votes:
+        for d in list(user.delegated_votes):
             if d.delegate == delegate.id \
                     and d.cast_vote.bill_id == bill.id:
                user.delegated_votes.remove(d)
                delegate = User.objects.get(id=d.delegate)
-               for d_1 in delegate.received_votes:
+               for d_1 in list(delegate.received_votes):
                    if d_1.cast_vote.bill_id == bill.id \
                            and d_1.delegator == user.id:
                        delegate.received_votes.remove(d_1)
                        delegate.save()
                        break
 
-        for d in user.delegates:
+        for d in list(user.delegates):
             if d.user_id == delegate.id:
                 for bill_ in d.bills:
                     if str(bill_.bill_id) == str(bill.id):
                        d.bills.remove(bill_)
     elif item_type == "category":
         category = item
-        for d in user.delegated_categories:
+        for d in list(user.delegated_categories):
             if d.delegate == delegate.id \
                     and d.category == category:
                user.delegated_categories.remove(d)
                delegate = User.objects.get(id=d.delegate)
-               for d_1 in delegate.received_categories:
+               for d_1 in list(delegate.received_categories):
                    if d_1.category == category \
                            and d_1.delegator == user.id:
                        delegate.received_categories.remove(d_1)
                        delegate.save()
                        break
 
-        for d in user.delegates:
+        for d in list(user.delegates):
             if d.user_id == delegate.id:
                 for cat in d.categories:
                     if cat == category:
