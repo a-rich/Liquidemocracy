@@ -3,19 +3,64 @@ import { connect } from 'react-redux';
 import { logoutUser, fetchProfile } from '../actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import ReactModal from 'react-modal';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
+
+const categories = ["Taxation", "Health", "Armed Forces and National Security", "Foreign Trade and International Finance", 
+                    "International Affairs", "Crime and Law Enforcement", "Transportation and Public Works", 
+                    "Education", "Energy", "Agriculture and Food", "Economics and Public Finance", 
+                    "Labor and Employment", "Environmental Protection", "Science, Technology, Communications", 
+                    "Immigration", "Other"];
 
 class Delegates extends Component {
 
 	constructor(props) {
 	    super(props);
 	    this.state = {query: "",
+	                  showModal: false,
 	                  delegate: [],
-	                  delegates: []};
+	                  delegates: [],
+	                  category: "",
+	                  dele_id: ""};
 	    this.handleQuery = this.handleQuery.bind(this);
 	    this.retrieve_delegate = this.retrieve_delegate.bind(this);
 	    this.add_delegate = this.add_delegate.bind(this);
+	    this.remove_delegate = this.remove_delegate.bind(this);
+	    this.delegate_category = this.delegate_category.bind(this);
+	    this.handleOpenModal = this.handleOpenModal.bind(this);
+    	this.handleCloseModal = this.handleCloseModal.bind(this);
+    	this.handleCloseModalOnCancel = this.handleCloseModalOnCancel.bind(this);
+  }
+
+  handleOpenModal (id) {
+
+    	this.setState({ showModal: true, dele_id: id });
+  }
+  
+  handleCloseModal () {
+
+     let token = localStorage.getItem("jwt");
+
+     const headers = {
+	 headers: {
+	 'Content-Type': 'application/json',
+	 'Authorization': `Bearer ${token}`
+		 }
+	 }
+
+	 const values = {
+		 category: this.state.category,
+		 delegate_id: this.state.dele_id
+	 }
+
+	 axios.post(`${ROOT_URL}/category/delegate/`, values, headers);
+
+    this.setState({ showModal: false });
+  }
+
+  handleCloseModalOnCancel () {
+  	this.setState({ showModal: false });
   }
 
   	handleQuery(e) {
@@ -54,7 +99,44 @@ class Delegates extends Component {
 		}
 
 		axios.post(`${ROOT_URL}/delegate/add/`, values, headers)
-		.then(() => {alert("Added " + this.state.delegate[0].name + " to delegates list"); window.location.reload();});
+		.then(() => {alert("Added " + this.state.delegate[0].name + " to delegates list/"); window.location.reload();});
+	}
+
+	remove_delegate(id, name) {
+		let token = localStorage.getItem("jwt");
+
+		const values = {
+			delegate_id: id
+		}
+
+		const headers = {
+			headers: {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+			}
+		}
+
+		let input = confirm("Are you sure you want to remove the delegate " + name);
+
+		if(input == true)
+		{
+			axios.post(`${ROOT_URL}/delegate/remove/`, values, headers)
+			.then(() => {alert(name + " removed."); window.location.reload();});
+			alert(name + " removed.");
+		}
+		else
+		{
+			return;
+		}
+
+	}
+
+	delegate_category(id, name) {
+
+	}
+
+	setCategory(category) {
+		this.setState({category: category});
 	}
 
 	componentWillMount() {
@@ -124,9 +206,35 @@ class Delegates extends Component {
 							<h2 className="text-center">List of Delegates</h2>
 							<ul className="list-group">
 				          	{ _.map(this.state.delegates, delegate => {
-				          		return(<li key={Object.keys(delegate)} className="list-group-item">{Object.values(delegate)}</li>);
+				          		return(<li key={Object.keys(delegate)} 
+				          			className="list-group-item">{Object.values(delegate)}
+				          			<button onClick={() => this.remove_delegate(Object.keys(delegate), Object.values(delegate))} 
+				          					className="btn btn-danger" style={{float: 'right'}}>Remove</button>
+				          			<button onClick={() => this.handleOpenModal(Object.keys(delegate))} 
+				          					className="btn btn-primary" style={{float: 'right'}}>Delegate Category</button></li>);
 				          	})}
 				          </ul>
+				          <ReactModal 
+				           isOpen={this.state.showModal}
+				           contentLabel="Category List"
+				           onRequestClose={this.handleCloseModal}
+				           shouldCloseOnOverlayClick={false}
+				           ariaHideApp={false}
+				           className="Modal"
+				        >
+				        <div className="container-fluid text-center">
+				          <h3 className="text-center">Categories</h3>
+				          <ul className="list-group delegate_list">
+				          	{ _.map(categories, category => {
+				          		return(<li className="list-group-item" key={category} 
+				          			onClick={() => this.setCategory(category)}>{category}</li>);
+				          	})}
+				          </ul>
+				          <div>Selected: {this.state.category}</div>
+				          <button className="btn btn-success" onClick={this.handleCloseModal}>Submit</button>
+				          <button className="btn btn-danger" onClick={this.handleCloseModalOnCancel}>Cancel</button>
+				        </div>
+				        </ReactModal>
 						</div>
 					</div>
 
