@@ -102,36 +102,57 @@ def delegate():
 @jwt_required
 def remove_delegation():
 
-     req = request.get_json()
-     bill_id = req['bill_id']
-     delegate_id = req['delegate']
+    req = request.get_json()
+    item_type = req['type']
+    item = req['item']
+    delegate_id = req['delegate']
 
-     user = User.objects.get(email=get_jwt_identity())
-     delegate = User.objects.get(id=delegate_id)
-     bill = Bill.objects.get(id=bill_id)
+    user = User.objects.get(email=get_jwt_identity())
+    delegate = User.objects.get(id=delegate_id)
 
-     for d in user.delegated_votes:
-         if d.delegate == delegate.id \
-                 and d.cast_vote.bill_id == bill.id:
-            user.delegated_votes.remove(d)
-            delegate = User.objects.get(id=d.delegate)
-            for d_1 in delegate.received_votes:
-                if d_1.cast_vote.bill_id == bill.id \
-                        and d_1.delegator == user.id:
-                    delegate.received_votes.remove(d_1)
-                    delegate.save()
-                    break
+    if item_type == "bill":
+        bill = Bill.objects.get(id=item)
+        for d in user.delegated_votes:
+            if d.delegate == delegate.id \
+                    and d.cast_vote.bill_id == bill.id:
+               user.delegated_votes.remove(d)
+               delegate = User.objects.get(id=d.delegate)
+               for d_1 in delegate.received_votes:
+                   if d_1.cast_vote.bill_id == bill.id \
+                           and d_1.delegator == user.id:
+                       delegate.received_votes.remove(d_1)
+                       delegate.save()
+                       break
 
-     for d in user.delegates:
-         if d.user_id == delegate.id:
-             for bill_ in d.bills:
-                 if str(bill_.bill_id) == str(bill.id):
-                    d.bills.remove(bill_)
+        for d in user.delegates:
+            if d.user_id == delegate.id:
+                for bill_ in d.bills:
+                    if str(bill_.bill_id) == str(bill.id):
+                       d.bills.remove(bill_)
+    elif item_type == "category":
+        category = item
+        for d in user.delegated_categories:
+            if d.delegate == delegate.id \
+                    and d.category == category:
+               user.delegated_categories.remove(d)
+               delegate = User.objects.get(id=d.delegate)
+               for d_1 in delegate.received_categories:
+                   if d_1.category == category \
+                           and d_1.delegator == user.id:
+                       delegate.received_categories.remove(d_1)
+                       delegate.save()
+                       break
 
-     user.save()
-     delegate.save()
+        for d in user.delegates:
+            if d.user_id == delegate.id:
+                for cat in d.categories:
+                    if cat == category:
+                       d.categories.remove(cat)
 
-     return jsonify(msg='success')
+    user.save()
+    delegate.save()
+
+    return jsonify(msg='success')
 
 @active_votes.route('/api/votes/active/', methods=['GET'])
 @jwt_required
