@@ -187,21 +187,6 @@ class Delegates extends Component {
 					</nav>
 					
 					<div className="row">
-						<div className="col-sm-4">
-							<div className="input-group">
-								<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
-								<button className="btn btn-secondary" 
-								onClick={() => this.retrieve_delegate(this.state.query)}>
-								<i className="fas fa-search"></i>
-								</button>
-							</div>
-							{this.state.delegate[0] != undefined ? 
-								(<ul className="list-group">
-									<li className="list-group-item"
-									onClick={() => this.add_delegate(this.state.delegate[0]._id.$oid)} 
-									key={this.state.delegate[0].id}>{this.state.delegate[0].name}
-									</li></ul>) : ""}
-						</div>
 						<div className="col-sm-8">
 							<h2 className="text-center">List of Delegates</h2>
 							<ul className="list-group">
@@ -235,6 +220,21 @@ class Delegates extends Component {
 				          <button className="btn btn-danger" onClick={this.handleCloseModalOnCancel}>Cancel</button>
 				        </div>
 				        </ReactModal>
+						</div>
+						<div className="col-sm-4">
+							<div className="input-group">
+								<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
+								<button className="btn btn-secondary" 
+								onClick={() => this.retrieve_delegate(this.state.query)}>
+								<i className="fas fa-search"></i>
+								</button>
+							</div>
+							{this.state.delegate[0] != undefined ? 
+								(<ul className="list-group">
+									<li className="list-group-item"
+									onClick={() => this.add_delegate(this.state.delegate[0]._id.$oid)} 
+									key={this.state.delegate[0].id}>{this.state.delegate[0].name}
+									</li></ul>) : ""}
 						</div>
 					</div>
 
