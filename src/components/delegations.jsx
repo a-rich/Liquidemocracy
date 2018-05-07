@@ -1,12 +1,61 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logoutUser } from '../actions';
+import { logoutUser, fetchProfile } from '../actions';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
 class Delegations extends Component {
 
-	componentWillMount() {
+	constructor(props) {
+	    super(props);
+	    this.state = {delegations: []};
+  }
 
+	componentWillMount() {
+		if(localStorage.getItem("jwt") != null)
+		{
+			this.props.fetchProfile();
+
+			let token = localStorage.getItem("jwt");
+
+			const headers = {
+				headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+				}
+			}
+
+			axios.get(`${ROOT_URL}/votes/active/`, headers).then((response) => this.setState({delegations: response.data}));
+		}
+	}
+
+	renderDelegations() {
+		return _.map(this.state.delegations, (delegate) => {
+			return _.map(delegate.bills, (bill) => {
+				let color;
+
+				switch(bill.vote) {
+					case "yay":
+						color = "text-success";
+						break;
+					case "nay":
+						color = "text-danger";
+						break;
+					case "None":
+						color = "text-warning";
+						break;
+				}
+				return(
+				<tr>
+					<td>{delegate.name}</td>
+					<td><Link to={`/bill/${bill.bill_id.$oid}`}>{bill.bill_title}</Link></td>
+					<td className={color}>{bill.vote}</td>
+				</tr>
+				);
+			})
+		})
 	}
 
 	logout() {
@@ -15,6 +64,10 @@ class Delegations extends Component {
 	}
 
 	render() {
+		if(this.state.delegations.length == 0 )
+		{
+			return <div className="Loader"></div>
+		}
 		return (
 				<div>
 				<nav className="navbar bg-primary">
@@ -37,11 +90,22 @@ class Delegations extends Component {
 						</div>
 						 	
 					</nav>
-					<h1 className="border border-dark text-center">Policy Areas</h1>
+					<table className="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">Delegate</th>
+								<th scope="col">Bill</th>
+								<th scope="col">Vote</th>
+							</tr>
+						</thead>
+						<tbody>
+							{this.renderDelegations()}
+						</tbody>
+					</table>
 				</div>
 			)
 	}
 
 }
 
-export default connect(null, {logoutUser})(Delegations);
+export default connect(null, {logoutUser, fetchProfile})(Delegations);

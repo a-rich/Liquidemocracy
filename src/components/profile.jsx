@@ -140,7 +140,6 @@ class Profile extends Component {
 						</div>
 						 	
 					</nav>
-					<h1 className="border border-dark text-center">Profile</h1>
 					<div className="container-fluid">
 						<h4>Email: {this.props.profile.profile.email}</h4>
 						<h4>Name: {this.props.profile.profile.name}</h4>
