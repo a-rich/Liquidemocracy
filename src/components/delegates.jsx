@@ -99,8 +99,19 @@ class Delegates extends Component {
 		}
 
 		axios.post(`${ROOT_URL}/delegate/add/`, values, headers)
-		.then(() => {alert("Added " + this.state.delegate[0].name + " to delegates list"); window.location.reload();});
-	}
+		.then((response) => {
+			if(response.data.msg == "You can not add yourself as a delegate")
+				{
+					alert(response.data.msg); 
+					window.location.reload();
+				}
+				else
+				{
+					alert("Added " + this.state.delegate[0].name + " to delegates list"); 
+					window.location.reload();
+				}
+		}
+	)};
 
 	remove_delegate(id, name) {
 		let token = localStorage.getItem("jwt");
