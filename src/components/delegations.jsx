@@ -143,10 +143,7 @@ class Delegations extends Component {
 	}
 
 	render() {
-		if(this.state.delegations.length == 0 )
-		{
-			return <div className="Loader"></div>
-		}
+		
 		return (
 				<div>
 				<nav className="navbar bg-primary">
