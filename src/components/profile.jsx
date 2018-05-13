@@ -207,8 +207,7 @@ class Profile extends Component {
 						 	
 					</nav>
 					<h1 className="text-center customH1"><span className="customSpan">Profile</span></h1>
-					<div className="container-fluid">
-						<div style={{'backgroundColor': '#ffffff'}} className="profile-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+						<div style={{'backgroundColor': '#ffffff', 'padding': '5px'}} className="profile-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 							<form>
 								<Field 
 									label="Email"
@@ -243,7 +242,6 @@ class Profile extends Component {
 								<button className="btn btn-success" type="submit">Save</button>
 							</form>
 						</div>
-					</div>
 				</div>
 			)
 		}
