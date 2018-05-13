@@ -73,3 +73,11 @@ li:active {
 	height: 50px;
 	background-color: #ffffff;
 }
+
+body {
+	background-image: url("http://atextures.com/wp-content/uploads/2014/08/Paper-Grunge-Background-107-625x416.jpg");
+}
+
+tr, th, td {
+	background-color: #ffffff;
+}

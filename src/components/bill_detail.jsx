@@ -200,7 +200,7 @@ class BillDetail extends Component {
 							<br />
 						</div>
 					</div>
-					<div className="col">
+					<div style={{'backgroundColor': '#ffffff'}} className="col">
 						<h4 className="text-center">Vote</h4>
 						<br />
 						<div className="text-center">
