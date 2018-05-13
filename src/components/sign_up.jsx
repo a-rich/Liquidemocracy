@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createAccount, loginUser } from '../actions';
 import axios from 'axios';
 import _ from 'lodash';
+import Alert from 'react-s-alert';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com';
 
@@ -113,9 +114,14 @@ class SignUp extends Component {
 			throw new error;
 		}
 		else {
-			this.props.loginUser(values);
-			alert('A verification link has been sent to your email.');
-			this.props.history.push("/");
+			Alert.success("A verification link has been sent to your email.", {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							this.props.history.push("/");
+    								}
+								});
 		}
 	})
 	.catch(error => {

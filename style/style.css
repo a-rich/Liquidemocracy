@@ -21,6 +21,7 @@
 .Modal {
 	background-color: #ADD8E6;
 	padding: 10px;
+	border-radius: 5px;
 	margin: auto;
 	margin-top: 10%;
 	width: 300px;

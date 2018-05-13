@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { logoutUser, fetchProfile } from '../actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Alert from 'react-s-alert';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
@@ -100,7 +101,16 @@ class Delegations extends Component {
 		if(input == true)
 		{
 			axios.post(`${ROOT_URL}/remove/delegation/`, values, headers)
-			.then(() => {alert(name + " removed."); window.location.reload();});
+			.then(() => {let msg = name + " removed.";
+				Alert.success(msg, {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.reload();
+    								}
+								});
+			});
 		}
 		else
 		{
@@ -129,7 +139,16 @@ class Delegations extends Component {
 		if(input == true)
 		{
 			axios.post(`${ROOT_URL}/remove/delegation/`, values, headers)
-			.then(() => {alert(name + " removed."); window.location.reload();});
+			.then(() => {let msg = name + " removed.";
+				Alert.success(msg, {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.reload();
+    								}
+								});
+			});
 		}
 		else
 		{

@@ -4,6 +4,7 @@ import { logoutUser, fetchProfile } from '../actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Field, reduxForm, SubmissionError, initialize } from 'redux-form';
+import Alert from 'react-s-alert';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
@@ -12,6 +13,8 @@ class Profile extends Component {
 	    super(props);
 	    this.state = {editing: false,
 	    			  isEditing: false};
+
+	    //this.logout = this.logout.bind(this);
   }
 
   renderField(field) {
@@ -52,27 +55,55 @@ class Profile extends Component {
 				{
 					if(response.data.msg.residence_update.includes("Cannot update residence"))
 					{
-						alert(response.data.msg.residence_update);
-						window.location.reload();
+						Alert.error(response.data.msg.residence_update, {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.reload();
+    								}
+								});
 						return false;
 					}
 					else
 					{
-						alert(response.data.msg.residence_update);
-						window.location.reload();
+						Alert.success(response.data.msg.residence_update, {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.reload();
+    								}
+								});
 					}
 				}
 				else if(response.data.msg.email_update != null)
 				{
-					alert("Sent confirmation link to new email. You will be logged out and asked to login using new email.");
-					this.setState({editing: false});
-					this.logout();
+					this.setState({editing: false}, () => {
+						this.logout();
+						Alert.info("Sent confirmation link to new email. You will be logged out and asked to login using new email.", {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.replace("https://liquidemocracy.herokuapp.com/");
+    								}
+								});
+					});
 				}
 				else
 				{
-					alert("Name successfully updated.");
-					this.setState({editing: false}, () => this.props.fetchProfile());
-					window.location.reload();
+					this.setState({editing: false}, () => {
+						this.props.fetchProfile();
+						Alert.success("Name successfully updated.", {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.reload();
+    								}
+								});
+					});
 				}
 	});
 }
@@ -105,7 +136,6 @@ class Profile extends Component {
 
 	logout() {
 		this.props.logoutUser();
-		window.location.assign('https://liquidemocracy.herokuapp.com');
 	}
 
 	render() {

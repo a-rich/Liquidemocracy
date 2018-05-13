@@ -13,6 +13,7 @@ import Delegations from './components/delegations';
 import Delegates from './components/delegates';
 import Profile from './components/profile';
 import promise from 'redux-promise';
+import Alert from 'react-s-alert';
 
 import reducers from './reducers';
 
@@ -40,6 +41,7 @@ ReactDOM.render(
             <Route path="/delegates" component={Delegates} />
   	  			<Route path="/" component={Landing} />
   	  		</Switch>
+          <Alert stack={{limit: 3}} />
   	  	</div>
     	</BrowserRouter>
   </Provider>

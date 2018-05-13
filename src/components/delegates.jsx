@@ -4,6 +4,7 @@ import { logoutUser, fetchProfile } from '../actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ReactModal from 'react-modal';
+import Alert from 'react-s-alert';
 
 const ROOT_URL = 'https://liquidemocracy-api.herokuapp.com/api';
 
@@ -102,13 +103,24 @@ class Delegates extends Component {
 		.then((response) => {
 			if(response.data.msg == "You can not add yourself as a delegate")
 				{
-					alert(response.data.msg); 
-					window.location.reload();
+					Alert.error(response.data.msg, {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true
+								}); 
 				}
 				else
 				{
-					alert("Added " + this.state.delegate[0].name + " to delegates list"); 
-					window.location.reload();
+					let msg = "Added " + this.state.delegate[0].name + " to delegates list";
+					//alert("Added " + this.state.delegate[0].name + " to delegates list"); 
+					Alert.success(msg, {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.reload();
+    								}
+								});
 				}
 		}
 	)};
@@ -132,7 +144,16 @@ class Delegates extends Component {
 		if(input == true)
 		{
 			axios.post(`${ROOT_URL}/delegate/remove/`, values, headers)
-			.then(() => {alert(name + " removed."); window.location.reload();});
+			.then(() => {let msg = name + " removed.";
+				Alert.success(msg, {
+								    effect: 'genie',
+								    position: 'bottom-right',
+								    preserveContext: true,
+								    onClose: function () {
+        							window.location.reload();
+    								}
+								});
+			});
 		}
 		else
 		{
