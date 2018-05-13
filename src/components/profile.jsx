@@ -208,7 +208,7 @@ class Profile extends Component {
 					</nav>
 					<h1 className="text-center customH1"><span className="customSpan">Profile</span></h1>
 					<div className="container-fluid">
-						<div className="profile-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+						<div style={{'backgroundColor': '#ffffff'}} className="profile-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 							<form>
 								<Field 
 									label="Email"
@@ -241,7 +241,6 @@ class Profile extends Component {
 									component={this.renderField}
 								/>
 								<button className="btn btn-success" type="submit">Save</button>
-								<button type="button" className="btn btn-danger" onClick={() => this.setState({editing: false}, () => window.location.reload())}>Cancel</button>
 							</form>
 						</div>
 					</div>
