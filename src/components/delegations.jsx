@@ -185,7 +185,7 @@ class Delegations extends Component {
 						</div>
 						 	
 					</nav>
-					<h1 className="text-center border border-dark">Categories</h1>
+					<h1 className="text-center customH1"><span className="customSpan">Categories</span></h1>
 					<table className="table table-bordered">
 						<thead>
 							<tr>
@@ -198,7 +198,7 @@ class Delegations extends Component {
 							{this.renderCategories()}
 						</tbody>
 					</table>
-					<h1 className="text-center border border-dark">Bills</h1>
+					<h1 className="text-center customH1"><span className="customSpan">Bills</span></h1>
 					<table className="table table-bordered">
 						<thead>
 							<tr>

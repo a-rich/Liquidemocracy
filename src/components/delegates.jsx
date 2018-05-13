@@ -195,7 +195,7 @@ class Delegates extends Component {
 
 	render() {
 		return (
-				<div className="container-fluid">
+				<div>
 				<nav className="navbar bg-primary">
 					 
 					 <Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
@@ -216,10 +216,11 @@ class Delegates extends Component {
 						</div>
 						 	
 					</nav>
+
+					<h1 className=" col customH1 text-center"><span className="customSpan">List of Delegates</span></h1>
 					
 					<div className="row">
-						<div className="col-sm-8">
-							<h2 className="text-center">List of Delegates</h2>
+						<div className="col-sm-8 " style={{'paddingTop': '35px'}}>
 							<ul className="list-group">
 				          	{ _.map(this.state.delegates, delegate => {
 				          		return(<li key={Object.keys(delegate)} 
@@ -252,7 +253,7 @@ class Delegates extends Component {
 				        </div>
 				        </ReactModal>
 						</div>
-						<div className="col-sm-4">
+						<div className="col-sm-4" style={{'paddingTop': '35px'}}>
 							<div className="input-group">
 								<input value={this.state.query} onChange={this.handleQuery} className="form-control" placeholder="Search"></input>
 								<button className="btn btn-secondary" 

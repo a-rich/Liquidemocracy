@@ -206,7 +206,7 @@ class Profile extends Component {
 						</div>
 						 	
 					</nav>
-					<h1 className="border border-dark text-center">Profile</h1>
+					<h1 className="text-center customH1"><span className="customSpan">Profile</span></h1>
 					<div className="container-fluid">
 						<div className="profile-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 							<form>
