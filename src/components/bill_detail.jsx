@@ -26,7 +26,7 @@ class BillDetail extends Component {
     handleOpenModal () {
     	this.setState({ showModal: true });
   }
-  
+
      handleCloseModal () {
      	if(this.state.dele_id == "")
      	{
@@ -52,7 +52,7 @@ class BillDetail extends Component {
 
     	this.setState({ showModal: false });
   }
-  
+
 
   	renderField(field) {
 		const { touched , error }  = field.meta;
@@ -100,7 +100,7 @@ class BillDetail extends Component {
 			this.setState({button: ""});
 		}
 
-		this.props.fetchBill(this.props.match.params.id, this.state.email);	
+		this.props.fetchBill(this.props.match.params.id, this.state.email);
 	}
 
 	logout() {
@@ -192,10 +192,10 @@ class BillDetail extends Component {
 				<div className="row no-gutters">
 					<div className="col-9 text-center card">
 						<h3 className="card-header">{this.props.bill.bill.title}</h3>
-						<p className="card-header">Categories: {this.props.bill.bill.category} 
+						<p className="card-header">Categories: {this.props.bill.bill.category}
 						                           <br />
 						                           Vote Date: {new Date(this.props.bill.bill.date.$date).toString()}</p>
-						<div className="card-body" style={{'height':'300px', 'overflowY': 'auto'}}>
+						<div className="card-body">
 							{this.props.bill.bill.text}
 							<br />
 						</div>
@@ -218,7 +218,7 @@ class BillDetail extends Component {
 							<div style={{color: '#ff0000'}}>{this.state.error_message}</div>
 						</div>
 						<br />
-						<ReactModal 
+						<ReactModal
 				           isOpen={this.state.showModal}
 				           contentLabel="List of Delegates"
 				           onRequestClose={this.handleCloseModal}
@@ -239,7 +239,7 @@ class BillDetail extends Component {
 				        </div>
 				        </ReactModal>
 						<div className="text-center">
-							<button onClick={this.handleOpenModal} 
+							<button onClick={this.handleOpenModal}
 							        className={`btn btn-info ${this.state.button}`}>Delegate?</button>
 						</div>
 					</div>
@@ -247,7 +247,7 @@ class BillDetail extends Component {
 
 				<div className="row no-gutters">
 					<div className="col">
-			
+
 					</div>
 				</div>
 			</div>
@@ -258,7 +258,7 @@ class BillDetail extends Component {
 		const { handleSubmit, error } = this.props;
 
 		if(!this.props.bill) {
-			
+
 			return <div className="Loader"></div>
 		}
 
@@ -266,25 +266,25 @@ class BillDetail extends Component {
 		return (
 				<div className="container-fluid">
 					<nav className="navbar bg-primary">
-					 
+
 					 <Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
-	                
+
 	                <div className="login-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 		                <form className="form-inline navbar-form" >
-							<Field 
+							<Field
 								label="Email"
 								name="email"
 								type="email"
 								component={this.renderField}
 							/>
-							<Field 
+							<Field
 								label="Password"
 								name="password"
 								type="password"
 								component={this.renderField}
 							/>
 							<button className="btn btn-success" type="submit">Sign in</button>
-							<button className="btn btn-info mx-2" 
+							<button className="btn btn-info mx-2"
 							onClick={() => this.props.history.push("/signup")}>Sign Up</button>
 							<span style={{color: '#B80000'}}>{error}</span>
 						</form>
@@ -299,9 +299,9 @@ class BillDetail extends Component {
 			return (
 					<div className="container-fluid">
 						<nav className="navbar bg-primary">
-					 
+
 					 	<Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
-	                	
+
 	                	<Link className="nav-item" style={{color: '#ffffff'}} to="/profile">
 						 Profile
 						</Link>
@@ -311,12 +311,12 @@ class BillDetail extends Component {
 						<Link className="nav-item" style={{color: '#ffffff'}} to="/delegations">
 						 Delegations
 						</Link>
-						<div className="nav-item" 
-						 	 style={{color: '#ffffff', cursor:'pointer'}} 
+						<div className="nav-item"
+						 	 style={{color: '#ffffff', cursor:'pointer'}}
 						 	 onClick={() => this.logout()}>
 						 Log Out
 						</div>
-						 	
+
 						</nav>
 						{this.renderBillDefaultDetail()}
 					</div>

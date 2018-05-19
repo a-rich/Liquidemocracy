@@ -45,7 +45,7 @@ class Delegations extends Component {
 						color = "text-danger";
 						break;
 					case "None":
-						color = "text-warning";
+						color = "text-muted";
 						break;
 				}
 				return(
@@ -53,7 +53,7 @@ class Delegations extends Component {
 					<td>{delegate.name}</td>
 					<td><Link to={`/bill/${bill.bill_id.$oid}`}>{bill.bill_title}</Link></td>
 					<td className={color}>{bill.vote}</td>
-					<td><button className="btn btn-sm btn-danger" 
+					<td><button className="btn btn-sm btn-danger"
 					onClick={
 					() => this.remove_bill_delegation(bill.bill_id.$oid, delegate.user_id.$oid, delegate.name, bill.bill_title)}>
 					Remove</button></td>
@@ -70,7 +70,7 @@ class Delegations extends Component {
 				<tr>
 					<td>{delegate.name}</td>
 					<td>{category}</td>
-					<td><button className="btn btn-sm btn-danger" 
+					<td><button className="btn btn-sm btn-danger"
 					onClick={
 					() => this.remove_category_delegation(category, delegate.user_id.$oid, delegate.name)}>
 					Remove</button></td>
@@ -162,13 +162,13 @@ class Delegations extends Component {
 	}
 
 	render() {
-		
+
 		return (
 				<div>
 				<nav className="navbar bg-primary">
-					 
+
 					 <Link className="navbar-brand" style={{color: '#ffffff'}} to="/">Liquidemocracy</Link>
-	                	
+
 	                <Link className="nav-item" style={{color: '#ffffff'}} to="/profile">
 						 Profile
 						</Link>
@@ -178,12 +178,12 @@ class Delegations extends Component {
 						<div className="nav-item active" style={{color: '#ffffff'}}>
 						 Delegations
 						</div>
-						<div className="nav-item" 
-						 	 style={{color: '#ffffff', cursor:'pointer'}} 
+						<div className="nav-item"
+						 	 style={{color: '#ffffff', cursor:'pointer'}}
 						 	 onClick={() => this.logout()}>
 						 Log Out
 						</div>
-						 	
+
 					</nav>
 					<h1 className="text-center customH1"><span className="customSpan">Categories</span></h1>
 					<table className="table table-bordered">
