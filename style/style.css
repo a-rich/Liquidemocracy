@@ -65,7 +65,6 @@ li:active {
 	  #ffffff 40px
 	);
 }
-*/
 
 .customSpan {
 	display: inline-block;
@@ -75,6 +74,7 @@ li:active {
 	height: 50px;
 	background-color: #ffffff;
 }
+*/
 
 body {
     background: url("scales-of-justice.svg") no-repeat center center fixed;
