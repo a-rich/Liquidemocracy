@@ -65,14 +65,14 @@ def delegate():
             delegate=delegate_id,
             category=category)
 
-    for d in user.delegated_categories:
+    for d in list(user.delegated_categories):
         if d.delegate == delegate.id \
                 and d.category == category:
             return jsonify(msg='Already delegated this category.')
         elif d.category == category:
             user.delegated_cateogries.remove(d)
             old_delegate = User.objects.get(id=d.delegate)
-            for d_1 in old_delegate.received_categories:
+            for d_1 in list(old_delegate.received_categories):
                 if d_1.category == category \
                         and d_1.delegator == user.id:
                     old_delegate.received_categories.remove(d_1)
@@ -81,7 +81,7 @@ def delegate():
 
     user.delegated_categories.append(delegated_category)
     delegate.received_categories.append(delegated_category)
-    for d in user.delegates:
+    for d in list(user.delegates):
         if d.user_id == delegate.id:
             d.categories.append(category)
 
@@ -126,7 +126,7 @@ def remove_delegation():
 
         for d in list(user.delegates):
             if d.user_id == delegate.id:
-                for bill_ in d.bills:
+                for bill_ in list(d.bills):
                     if str(bill_.bill_id) == str(bill.id):
                        d.bills.remove(bill_)
     elif item_type == "category":
@@ -145,7 +145,7 @@ def remove_delegation():
 
         for d in list(user.delegates):
             if d.user_id == delegate.id:
-                for cat in d.categories:
+                for cat in list(d.categories):
                     if cat == category:
                        d.categories.remove(cat)
 
