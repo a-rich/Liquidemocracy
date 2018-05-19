@@ -53,7 +53,7 @@ li:active {
     100% { transform: rotate(360deg); }
 }
 
-.customH1 {
+.customH1, h6 {
 	font-family: Brush Script MT, Brush Script Std, cursive;
 	font-size: 50px;
     border-radius: 10px;
