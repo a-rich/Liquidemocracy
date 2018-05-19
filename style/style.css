@@ -83,3 +83,11 @@ body {
 tr, th, td {
 	background-color: #ffffff;
 }
+
+tr:nth-child(even) {
+	background-color: rgb(245,248,250);
+}
+
+tr:nth-child(odd) {
+	background-color: #ffffff;
+}
