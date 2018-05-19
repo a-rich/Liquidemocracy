@@ -65,16 +65,16 @@ li:active {
 	  #ffffff 40px
 	);
 }
+*/
 
 .customSpan {
 	display: inline-block;
-	border-radius: 50px;
-	padding-bottom: 10px;
-	margin-top: 10px;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px;
 	height: 50px;
 	background-color: #ffffff;
 }
-*/
 
 body {
     background: url("scales-of-justice.svg") no-repeat center center fixed;
