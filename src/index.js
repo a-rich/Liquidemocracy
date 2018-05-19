@@ -17,16 +17,6 @@ import Alert from 'react-s-alert';
 
 import reducers from './reducers';
 
-$(document).ready(function()
-{
-  $("tr:even").css("background-color", "rgb(245,248,250)");
-});
-
-$(document).ready(function()
-{
-  $("tr:odd").css("background-color", "#ffffff");
-});
-
 const persistConfig = {
   key: 'root',
   storage,
