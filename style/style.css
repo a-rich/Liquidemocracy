@@ -99,3 +99,7 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
 	background-color: #ffffff;
 }
+
+.card-body {
+    height: cover;
+}
