@@ -56,7 +56,8 @@ li:active {
 .customH1 {
 	font-family: Brush Script MT, Brush Script Std, cursive;
 	font-size: 50px;
-	background-color: #ffffff;
+    border-radius: 10px;
+	background-color: rgba(245,248,250, 0.5);
 }
 /*
 
