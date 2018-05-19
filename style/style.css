@@ -75,8 +75,10 @@ li:active {
 }
 
 body {
-	background-image: url("scales-of-justice.svg");
-    background-repeat: no-repeat;
+    background: url("scales-of-justice.svg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 
