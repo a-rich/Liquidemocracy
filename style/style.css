@@ -53,6 +53,7 @@ li:active {
     100% { transform: rotate(360deg); }
 }
 
+/*
 .customH1 {
 	font-family: Brush Script MT, Brush Script Std, cursive;
 	font-size: 50px;
@@ -64,6 +65,7 @@ li:active {
 	  #ffffff 40px
 	);
 }
+*/
 
 .customSpan {
 	display: inline-block;
