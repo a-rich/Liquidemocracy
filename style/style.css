@@ -80,9 +80,11 @@ body {
     background-size: contain;
 }
 
+/*
 tr, th, td {
 	background-color: #ffffff;
 }
+*/
 
 li:nth-child(even) {
 	background-color: rgb(245,248,250);
@@ -98,8 +100,4 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
 	background-color: #ffffff;
-}
-
-.card-body {
-    height: cover;
 }
