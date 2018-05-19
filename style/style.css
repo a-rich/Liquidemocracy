@@ -53,19 +53,12 @@ li:active {
     100% { transform: rotate(360deg); }
 }
 
-/*
 .customH1 {
 	font-family: Brush Script MT, Brush Script Std, cursive;
 	font-size: 50px;
-	background: repeating-linear-gradient(
-	  135deg,
-	  #ff1919,
-	  #ff1919 20px,
-	  #ffffff 20px,
-	  #ffffff 40px
-	);
+	background-color: #ffffff;
 }
-*/
+/*
 
 .customSpan {
 	display: inline-block;
@@ -75,6 +68,7 @@ li:active {
 	height: 50px;
 	background-color: #ffffff;
 }
+*/
 
 body {
     background: url("scales-of-justice.svg") no-repeat center center fixed;
