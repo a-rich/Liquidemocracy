@@ -1,6 +1,6 @@
 import datetime
 import dateutil
-from flask import Blueprint, request, url_for, render_template, jsonify
+from flask import Blueprint, request, url_for, render_template, jsonify, redirect
 from flask import current_app as app
 from flask_jwt_simple import jwt_required, get_jwt_identity
 from liquidemocracy.models import *
@@ -61,8 +61,6 @@ def confirm_account_creation(token):
         Upon email confirmation, add new user to the User model.
     """
 
-    #TODO: redirect to React component for login
-
     try:
         ts = URLSafeTimedSerializer(app.config['SERIALIZATION_KEY'])
         token = ts.loads(token, salt='account_creation_key', max_age=21600)
@@ -81,7 +79,7 @@ def confirm_account_creation(token):
                      last_update=datetime.datetime.now()
                      )
                  ).save()
-            return jsonify(msg='Account created.')
+            return redirect("https://liquidemocracy.herokuapp.com/")
         return jsonify(error='This email is already in use.')
     except Exception as e:
         print(e)
@@ -141,7 +139,7 @@ def confirm_account_recovery(token):
         token = ts.loads(token, salt='account_recovery_key', max_age=21600)
         user = User.objects.get(email=token['email'])
         user.update(password=token['password'])
-        return jsonify(msg='User {} successfully reset their password to {}'.format(token['email'], token['password']))
+        return redirect("https://liquidemocracy.herokuapp.com/")
     except Exception as e:
         return jsonify(error=str(e))
 
@@ -228,7 +226,7 @@ def confirm_update_email(token):
         if not User.exists(token['new_email']):
             user = User.objects.get(email=token['old_email'])
             user.update(email=token['new_email'])
-            return jsonify(msg='Account email updated.')
+            return redirect("https://liquidemocracy.herokuapp.com/")
         return jsonify(error='This email is already in use.')
     except Exception as e:
         return jsonify(error=str(e))
